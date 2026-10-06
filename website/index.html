@@ -1,0 +1,472 @@
+<meta charset="utf-8">
+<title>Drone Autonomy</title>
+<meta name="description" content="Meta-learning plus classical planning, perception and mapping for a quadrotor, in simulation, with a plan for real flights.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: a ground-station console. One wide replay instrument up top, then
+   narrow reading columns for the stack, the tracking test, the study plan
+   and the real-drone pick. Colours borrow from a flight cage: cool concrete,
+   ink, and the safety orange of netting and prop guards. */
+:root {
+  --bg: #eef1f0;
+  --panel: #ffffff;
+  --ink: #16212b;
+  --muted: #5b6871;
+  --line: #d3dad8;
+  --accent: #d9530f;      /* safety orange: plan, carrot, highlights */
+  --track: #0f7c86;       /* teal: the drone's own track */
+  --map: #26323c;         /* mapped occupied voxels */
+  --truth: #9fb0b5;       /* ground-truth obstacles (hidden from the drone) */
+  --good: #2f7d32;
+  --warn: #b26a00;
+  --bad: #b3261e;
+  --display: "IBM Plex Sans Condensed", "Arial Narrow", system-ui, sans-serif;
+  --body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111719; --panel: #182124; --ink: #e4ebea; --muted: #93a2a6; --line: #2a373b;
+    --accent: #f07a3a; --track: #4cc3cc; --map: #d7e0df; --truth: #3f5156;
+    --good: #6cc070; --warn: #e0a43a; --bad: #ef6b62; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #111719; --panel: #182124; --ink: #e4ebea; --muted: #93a2a6; --line: #2a373b;
+  --accent: #f07a3a; --track: #4cc3cc; --map: #d7e0df; --truth: #3f5156;
+  --good: #6cc070; --warn: #e0a43a; --bad: #ef6b62; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font: 15px/1.6 var(--body); margin: 0; }
+.wrap { max-width: 1180px; margin: 0 auto; padding-inline: 20px; padding-block: 28px 56px; display: grid; gap: 44px; }
+h1, h2, h3 { font-family: var(--display); line-height: 1.1; text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(2.2rem, 5vw, 3.4rem); font-weight: 700; letter-spacing: -0.01em; }
+h2 { font-size: 1.6rem; font-weight: 600; }
+h3 { font-size: 1.1rem; font-weight: 600; }
+p { margin: 0; max-width: 68ch; }
+.eyebrow { font: 500 0.72rem/1 var(--mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.mono { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+a { color: var(--accent); }
+a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+header { display: grid; gap: 14px; }
+header .lede { font-size: 1.12rem; color: var(--muted); }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { font: 500 0.75rem/1 var(--mono); padding: 6px 9px; border: 1px solid var(--line); border-radius: 3px; background: var(--panel); color: var(--muted); }
+.chip b { color: var(--ink); font-weight: 500; }
+.chip.live::before { content: ""; display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--warn); margin-right: 6px; vertical-align: 1px; }
+
+/* replay console */
+.console { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; display: grid; grid-template-columns: minmax(0, 1fr) 300px; }
+.stage { padding: 16px; display: grid; gap: 12px; min-width: 0; border-right: 1px solid var(--line); }
+.stage-head { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; }
+.flights { display: flex; flex-wrap: wrap; gap: 6px; }
+.flights button { font: 500 0.8rem/1 var(--mono); padding: 8px 10px; border-radius: 3px; border: 1px solid var(--line); background: transparent; color: var(--ink); cursor: pointer; }
+.flights button[aria-pressed="true"] { border-color: var(--accent); color: var(--accent); }
+canvas#room { width: 100%; height: auto; display: block; border-radius: 3px; background: var(--bg); touch-action: none; }
+.transport { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.transport button, .transport select { font: 500 0.8rem/1 var(--mono); padding: 8px 12px; border-radius: 3px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); cursor: pointer; }
+.transport button.primary { background: var(--accent); border-color: var(--accent); color: #fff; min-width: 78px; }
+#scrub { flex: 1 1 200px; accent-color: var(--accent); min-width: 0; }
+.toggle { display: flex; gap: 6px; align-items: center; font: 0.8rem var(--mono); color: var(--muted); }
+.legend { display: flex; flex-wrap: wrap; gap: 14px; font: 0.75rem var(--mono); color: var(--muted); }
+.legend i { display: inline-block; width: 14px; height: 3px; vertical-align: middle; margin-right: 6px; }
+.side { padding: 16px; display: grid; gap: 18px; align-content: start; }
+.side section { display: grid; gap: 8px; }
+canvas#depth { width: 100%; image-rendering: pixelated; border-radius: 3px; border: 1px solid var(--line); }
+dl.readout { display: grid; grid-template-columns: auto 1fr; gap: 4px 14px; margin: 0; font: 0.82rem var(--mono); font-variant-numeric: tabular-nums; }
+dl.readout dt { color: var(--muted); }
+dl.readout dd { margin: 0; text-align: right; }
+.outcome { font: 600 0.8rem/1 var(--mono); padding: 6px 9px; border-radius: 3px; justify-self: start; border: 1px solid currentColor; }
+.outcome.ok { color: var(--good); } .outcome.bad { color: var(--bad); } .outcome.meh { color: var(--warn); }
+.note { font-size: 0.85rem; color: var(--muted); }
+
+/* reading sections */
+.block { display: grid; gap: 16px; }
+.cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; align-items: start; }
+.cols > * { min-width: 0; }
+.pipeline { display: flex; flex-wrap: wrap; gap: 8px; align-items: stretch; }
+.stagebox { flex: 1 1 140px; border: 1px solid var(--line); background: var(--panel); border-radius: 4px; padding: 10px 12px; display: grid; gap: 4px; align-content: start; }
+.stagebox .eyebrow { color: var(--accent); }
+.stagebox p { font-size: 0.85rem; color: var(--muted); }
+.stagebox.learned { border-color: var(--accent); }
+.arrow { align-self: center; color: var(--muted); font-family: var(--mono); }
+figure { margin: 0; display: grid; gap: 8px; }
+figure svg { width: 100%; height: auto; background: var(--panel); border: 1px solid var(--line); border-radius: 4px; }
+figcaption { font-size: 0.85rem; color: var(--muted); }
+.table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 4px; background: var(--panel); }
+table { border-collapse: collapse; width: 100%; font-size: 0.86rem; min-width: 640px; }
+th, td { text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font: 500 0.72rem var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+tr:last-child td { border-bottom: 0; }
+td .na { color: var(--muted); }
+.pill { font: 500 0.72rem/1 var(--mono); padding: 4px 7px; border-radius: 10px; border: 1px solid var(--line); color: var(--muted); white-space: nowrap; }
+.pill.on { color: var(--warn); border-color: var(--warn); }
+.ladder { display: grid; gap: 0; counter-reset: stage; }
+.ladder li { list-style: none; display: grid; grid-template-columns: 76px 1fr; gap: 12px; padding: 10px 0; border-top: 1px solid var(--line); }
+.ladder li:first-child { border-top: 0; }
+.ladder .eyebrow { padding-top: 3px; }
+.ladder ol { padding: 0; margin: 0; }
+.spec { display: grid; grid-template-columns: auto 1fr; gap: 6px 16px; font-size: 0.88rem; margin: 0; }
+.spec dt { color: var(--muted); font-family: var(--mono); font-size: 0.78rem; padding-top: 2px; }
+.spec dd { margin: 0; }
+footer { border-top: 1px solid var(--line); padding-top: 18px; display: flex; flex-wrap: wrap; gap: 18px; font: 0.82rem var(--mono); color: var(--muted); }
+#loading { padding: 40px; text-align: center; color: var(--muted); font-family: var(--mono); }
+
+@media (max-width: 860px) {
+  .console { grid-template-columns: 1fr; }
+  .stage { border-right: 0; border-bottom: 1px solid var(--line); }
+  .side { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+}
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
+</style>
+
+<div class="wrap">
+  <header>
+    <span class="eyebrow">Quadrotor research · simulation · Holybro X500 V2 target</span>
+    <h1>Drone Autonomy</h1>
+    <p class="lede">A quadrotor that sees with a depth camera, maps a room it has never been in, plans a route with A*, and flies it under payload, wind and motor wear. The study compares seven meta-learning algorithms combined with classical control and planning.</p>
+    <div class="chips">
+      <span class="chip"><b>Simulated</b> 500 Hz rigid-body physics</span>
+      <span class="chip"><b>Camera</b> RealSense D435i model</span>
+      <span class="chip"><b>Map</b> 0.2 m voxels</span>
+      <span class="chip live"><b>Meta-learning runs</b> in progress</span>
+    </div>
+  </header>
+
+  <section class="block" aria-labelledby="replay-h">
+    <div style="display:grid;gap:6px">
+      <span class="eyebrow">Recorded flights</span>
+      <h2 id="replay-h">Watch the classical stack cross unknown rooms</h2>
+      <p class="note">Every frame below is replayed from the simulator, not drawn by hand. The drone starts with an empty map. The dark cells are what it has mapped from its own depth camera so far. Turn on ground truth to see the obstacles it hasn't found yet.</p>
+    </div>
+    <div class="console" id="console">
+      <div class="stage">
+        <div class="stage-head">
+          <div class="flights" id="flights" role="group" aria-label="Choose a flight"></div>
+          <label class="toggle"><input type="checkbox" id="truth" checked> ground truth</label>
+        </div>
+        <canvas id="room" width="1120" height="640" aria-label="Top-down view of the room, map, plan and drone track"></canvas>
+        <div class="transport">
+          <button class="primary" id="play" type="button">Play</button>
+          <input type="range" id="scrub" min="0" max="0" value="0" aria-label="Flight time">
+          <select id="speed" aria-label="Playback speed">
+            <option value="1">1×</option><option value="2" selected>2×</option><option value="4">4×</option>
+          </select>
+          <span class="mono" id="clock">0.0 s</span>
+        </div>
+        <div class="legend">
+          <span><i style="background:var(--map)"></i>mapped obstacle</span>
+          <span><i style="background:var(--truth)"></i>true obstacle</span>
+          <span><i style="background:var(--accent)"></i>A* plan + carrot</span>
+          <span><i style="background:var(--track)"></i>flown track</span>
+        </div>
+      </div>
+      <aside class="side">
+        <section>
+          <span class="eyebrow">Depth camera · 16 × 8 policy view</span>
+          <canvas id="depth" width="160" height="80" aria-label="Depth image, near is bright"></canvas>
+          <span class="note">87° × 58° field of view, 5 m range. Near is bright.</span>
+        </section>
+        <section>
+          <span class="eyebrow">Telemetry</span>
+          <dl class="readout">
+            <dt>position</dt><dd id="t-pos">–</dd>
+            <dt>altitude</dt><dd id="t-alt">–</dd>
+            <dt>speed</dt><dd id="t-spd">–</dd>
+            <dt>to goal</dt><dd id="t-goal">–</dd>
+            <dt>room mapped</dt><dd id="t-map">–</dd>
+          </dl>
+        </section>
+        <section>
+          <span class="eyebrow">Conditions for this flight</span>
+          <dl class="readout" id="task"></dl>
+        </section>
+        <section>
+          <span class="eyebrow">Result</span>
+          <span class="outcome" id="outcome">–</span>
+        </section>
+      </aside>
+    </div>
+    <div id="loading" hidden>Loading flights…</div>
+  </section>
+
+  <section class="block" aria-labelledby="stack-h">
+    <span class="eyebrow">Architecture</span>
+    <h2 id="stack-h">One stack, three places to learn</h2>
+    <div class="pipeline">
+      <div class="stagebox"><span class="eyebrow">Perception</span><h3>Depth camera</h3><p>Ray-cast D435i model with range-squared noise and dropouts</p></div>
+      <span class="arrow">→</span>
+      <div class="stagebox"><span class="eyebrow">Mapping</span><h3>Occupancy grid</h3><p>Log-odds voxels, free space carved along each ray</p></div>
+      <span class="arrow">→</span>
+      <div class="stagebox"><span class="eyebrow">Planning</span><h3>A* + carrot</h3><p>26-connected A* on the inflated map, replanned at 2 Hz</p></div>
+      <span class="arrow">→</span>
+      <div class="stagebox learned"><span class="eyebrow">Combo 3 · learned</span><h3>Local planner</h3><p>Meta-RL policy turns depth and carrot into velocity</p></div>
+      <span class="arrow">→</span>
+      <div class="stagebox learned"><span class="eyebrow">Combos 1 + 2 · learned</span><h3>Controller</h3><p>Geometric controller with meta-tuned gains or a meta-learned residual</p></div>
+      <span class="arrow">→</span>
+      <div class="stagebox"><span class="eyebrow">Vehicle</span><h3>X500 V2 dynamics</h3><p>Thrust + body rates, as PX4 offboard accepts</p></div>
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="track-h">
+    <span class="eyebrow">Why adaptation matters</span>
+    <h2 id="track-h">The same figure-eight with 25% extra payload, wind and a worn motor</h2>
+    <div class="cols">
+      <figure>
+        <svg id="trackplot" viewBox="0 0 520 330" role="img" aria-label="Top-down tracking comparison"></svg>
+        <figcaption id="trackcap">Recorded in the simulator.</figcaption>
+      </figure>
+      <div style="display:grid;gap:12px">
+        <p>Fixed gains tuned for the nominal drone sag and lag once the drone carries extra mass, flies into wind and loses 20% of one motor. The classical L1 adaptive controller estimates that lumped disturbance and cancels it.</p>
+        <p>The meta-learning study asks whether a policy trained to adapt can beat L1 from a few seconds of flight data, and whether it holds up outside the training range.</p>
+        <dl class="spec" id="trackstats"></dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="study-h">
+    <span class="eyebrow">Study plan</span>
+    <h2 id="study-h">Seven meta-learning algorithms against classical baselines</h2>
+    <p class="note">Every method adapts to a new set of dynamics: payload ×0.85–1.3, one motor down to 75%, drag ×0.5–2, wind up to 2.5 m/s with gusts, and 0–30 ms latency. All are scored on held-out tasks and on out-of-distribution tasks beyond those ranges. Results will appear here when the runs finish. No numbers are shown until then.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Algorithm</th><th>How it adapts</th><th>1 · Residual on controller</th><th>2 · Controller gains</th><th>3 · Local planner</th></tr></thead>
+        <tbody>
+          <tr><td>MAML</td><td>One policy-gradient step, second-order meta-gradient</td><td><span class="pill on">training</span></td><td><span class="pill on">training</span></td><td><span class="pill">queued</span></td></tr>
+          <tr><td>FOMAML</td><td>Same step, first-order approximation</td><td><span class="pill on">training</span></td><td><span class="pill on">training</span></td><td><span class="pill">queued</span></td></tr>
+          <tr><td>ANIL</td><td>Adapts only the output layer</td><td><span class="pill on">training</span></td><td><span class="na">n/a: no hidden layers</span></td><td><span class="pill">queued</span></td></tr>
+          <tr><td>Meta-SGD</td><td>Learns a step size for every parameter</td><td><span class="pill on">training</span></td><td><span class="pill on">training</span></td><td><span class="pill">queued</span></td></tr>
+          <tr><td>Reptile</td><td>Several PPO steps, then moves toward the average</td><td><span class="pill on">training</span></td><td><span class="pill on">training</span></td><td><span class="pill">queued</span></td></tr>
+          <tr><td>PEARL</td><td>Infers a latent task variable from recent flight data</td><td><span class="pill">queued</span></td><td><span class="na">n/a</span></td><td><span class="pill">queued</span></td></tr>
+          <tr><td>RL²</td><td>Recurrent policy carries what it learned across episodes</td><td><span class="pill">queued</span></td><td><span class="na">n/a</span></td><td><span class="pill">queued</span></td></tr>
+          <tr><td>Baselines</td><td>Nominal classical, L1 adaptive, domain-randomised PPO, PPO + fine-tune</td><td colspan="3"><span class="note">same tasks, same adaptation budget</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="drone-h">
+    <span class="eyebrow">Real-world platform</span>
+    <h2 id="drone-h">Holybro X500 V2 with a Jetson Orin Nano and a RealSense D435i</h2>
+    <div class="cols">
+      <div style="display:grid;gap:12px">
+        <p>About $1,600–2,000 in parts. PX4 takes collective thrust and body rates from the companion computer in offboard mode, which is the policy's own action space. The D435i is the camera the simulator models. The X500 is PX4's reference airframe, so the simulator's mass, arm and inertia come from a published model.</p>
+        <dl class="spec">
+          <dt>mass</dt><dd>≈ 2.0 kg with Jetson and camera</dd>
+          <dt>compute</dt><dd>Jetson Orin Nano Super, up to 67 TOPS</dd>
+          <dt>depth</dt><dd>D435i active stereo, 0.3–3 m best range</dd>
+          <dt>interface</dt><dd>PX4 <span class="mono">VehicleRatesSetpoint</span> over uXRCE-DDS at 50 Hz</dd>
+          <dt>trade-off</dt><dd>10" props: fly only inside a netted cage</dd>
+        </dl>
+        <p class="note">Runner-up: Crazyflie 2.1 Brushless, the safest choice for checking that control transfers, but it can't carry a depth camera. The ModalAI Starling 2 would fit best, but it appears to be unavailable new.</p>
+      </div>
+      <ol class="ladder">
+        <li><span class="eyebrow">Stage 0</span><div><h3>System ID</h3><p class="note">Weigh it, measure inertia on a pendulum, test thrust and motor lag on a thrust stand, then update the simulator.</p></div></li>
+        <li><span class="eyebrow">Stage 1</span><div><h3>Hover</h3><p class="note">Motion-capture state, policy in the loop, ±10 cm for 60 s.</p></div></li>
+        <li><span class="eyebrow">Stage 2</span><div><h3>Tracking</h3><p class="note">Figure-eights with known added payloads, compared against the simulator.</p></div></li>
+        <li><span class="eyebrow">Stage 3</span><div><h3>Known obstacles</h3><p class="note">Foam pillars, live depth mapping, A* and the local planner.</p></div></li>
+        <li><span class="eyebrow">Stage 4</span><div><h3>Unknown room</h3><p class="note">Onboard VIO only. Success rate, clearance, time to goal.</p></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <footer>
+    <span>Drone Autonomy · simulation study, October 2026</span>
+    <a href="https://github.com/amalmehta/DroneAutonomy">Code on GitHub</a>
+    <span>Paper: coming with the results</span>
+  </footer>
+</div>
+
+<script>
+(function () {
+  const $ = (id) => document.getElementById(id);
+  const css = (n) => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+  const ROOM = [14, 8];
+  let D = null, F = null, frame = 0, playing = false, last = 0, acc = 0;
+  let occCache = new Map();
+
+  function b64bytes(s) { const b = atob(s); const u = new Uint8Array(b.length); for (let i = 0; i < b.length; i++) u[i] = b.charCodeAt(i); return u; }
+  function occBits(snap, nx, ny) {
+    if (occCache.has(snap)) return occCache.get(snap);
+    const bytes = b64bytes(snap.occ), n = nx * ny, out = new Uint8Array(n);
+    for (let i = 0; i < n; i++) out[i] = (bytes[i >> 3] >> (7 - (i & 7))) & 1;
+    occCache.set(snap, out); return out;
+  }
+
+  function pickFlight(i) {
+    F = D.flights[i]; frame = 0; occCache = new Map();
+    $("scrub").max = F.frames.length - 1; $("scrub").value = 0;
+    [...$("flights").children].forEach((b, j) => b.setAttribute("aria-pressed", String(j === i)));
+    const t = F.task;
+    $("task").innerHTML = `
+      <dt>payload</dt><dd>×${t.mass_scale.toFixed(2)}</dd>
+      <dt>weakest motor</dt><dd>${Math.round(t.weakest_motor * 100)}%</dd>
+      <dt>wind</dt><dd>${t.wind.toFixed(1)} m/s</dd>
+      <dt>gusts σ</dt><dd>${t.gust.toFixed(2)} m/s</dd>
+      <dt>latency</dt><dd>${t.latency_ms} ms</dd>`;
+    const o = $("outcome");
+    o.textContent = F.outcome + (F.time_s ? ` · ${F.time_s} s` : "");
+    o.className = "outcome " + (F.outcome === "reached goal" ? "ok" : F.outcome === "collision" ? "bad" : "meh");
+    draw();
+  }
+
+  function draw() {
+    if (!F) return;
+    const cv = $("room"), g = cv.getContext("2d");
+    const W = cv.width, H = cv.height, pad = 20;
+    const s = Math.min((W - 2 * pad) / ROOM[0], (H - 2 * pad) / ROOM[1]);
+    const ox = (W - ROOM[0] * s) / 2, oy = (H - ROOM[1] * s) / 2;
+    const X = (x) => ox + x * s, Y = (y) => H - (oy + y * s);
+    const col = { bg: css("--bg"), panel: css("--panel"), line: css("--line"), map: css("--map"), truth: css("--truth"),
+      accent: css("--accent"), track: css("--track"), muted: css("--muted"), ink: css("--ink") };
+    g.clearRect(0, 0, W, H);
+    g.fillStyle = col.panel; g.fillRect(X(0), Y(ROOM[1]), ROOM[0] * s, ROOM[1] * s);
+    // 1 m grid
+    g.strokeStyle = col.line; g.lineWidth = 1;
+    for (let x = 0; x <= ROOM[0]; x++) { g.beginPath(); g.moveTo(X(x), Y(0)); g.lineTo(X(x), Y(ROOM[1])); g.stroke(); }
+    for (let y = 0; y <= ROOM[1]; y++) { g.beginPath(); g.moveTo(X(0), Y(y)); g.lineTo(X(ROOM[0]), Y(y)); g.stroke(); }
+    g.fillStyle = col.muted; g.font = "18px 'IBM Plex Mono', monospace";
+    g.fillText("14 × 8 m room · 1 m grid", X(0), Y(ROOM[1]) - 4);
+
+    // ground truth
+    if ($("truth").checked) {
+      g.strokeStyle = col.truth; g.fillStyle = col.truth; g.lineWidth = 2;
+      F.boxes.forEach((b) => {
+        g.globalAlpha = b[2] > 0.1 ? 0.18 : 0.35;   // hanging boxes lighter
+        g.fillRect(X(b[0]), Y(b[4]), (b[3] - b[0]) * s, (b[4] - b[1]) * s);
+        g.globalAlpha = 1; g.strokeRect(X(b[0]), Y(b[4]), (b[3] - b[0]) * s, (b[4] - b[1]) * s);
+      });
+      F.pillars.forEach((c) => { g.globalAlpha = 0.35; g.beginPath(); g.arc(X(c[0]), Y(c[1]), c[2] * s, 0, 7); g.fill(); g.globalAlpha = 1; g.stroke(); });
+    }
+
+    // mapped occupancy (latest snapshot at or before this frame)
+    const snaps = F.snaps; let sn = snaps[0];
+    for (const q of snaps) { if (q.k <= frame) sn = q; else break; }
+    const [nx, ny] = D.meta.grid, r = D.meta.res;
+    const bits = occBits(sn, nx, ny);
+    g.fillStyle = col.map; g.globalAlpha = 0.85;
+    for (let i = 0; i < nx; i++) for (let j = 0; j < ny; j++) if (bits[i * ny + j]) g.fillRect(X(i * r) + 1, Y((j + 1) * r) + 1, r * s - 2, r * s - 2);
+    g.globalAlpha = 1;
+    let mapped = 0; for (let i = 0; i < bits.length; i++) mapped += bits[i];
+
+    // plan
+    if (sn.path) {
+      g.strokeStyle = col.accent; g.lineWidth = 2.5; g.setLineDash([10, 7]); g.beginPath();
+      sn.path.forEach((p, i) => (i ? g.lineTo(X(p[0]), Y(p[1])) : g.moveTo(X(p[0]), Y(p[1])))); g.stroke(); g.setLineDash([]);
+    }
+    // start / goal
+    const mark = (p, label) => { g.strokeStyle = col.ink; g.lineWidth = 2; g.beginPath(); g.arc(X(p[0]), Y(p[1]), 12, 0, 7); g.stroke();
+      g.fillStyle = col.ink; g.font = "600 17px 'IBM Plex Mono', monospace"; g.fillText(label, X(p[0]) + 16, Y(p[1]) + 6); };
+    mark(F.start, "start"); mark(F.goal, "goal");
+
+    // track so far
+    const fr = F.frames;
+    g.strokeStyle = col.track; g.lineWidth = 3.5; g.beginPath();
+    for (let i = 0; i <= frame; i++) { const p = fr[i].p; i ? g.lineTo(X(p[0]), Y(p[1])) : g.moveTo(X(p[0]), Y(p[1])); }
+    g.stroke();
+
+    const f = fr[frame];
+    // camera field of view
+    const hf = (D.meta.cam.hfov / 2) * Math.PI / 180, R = D.meta.cam.max_range;
+    g.fillStyle = col.track; g.globalAlpha = 0.08; g.beginPath(); g.moveTo(X(f.p[0]), Y(f.p[1]));
+    for (let a = -hf; a <= hf + 1e-6; a += hf / 12) g.lineTo(X(f.p[0] + R * Math.cos(f.yaw + a)), Y(f.p[1] + R * Math.sin(f.yaw + a)));
+    g.closePath(); g.fill(); g.globalAlpha = 1;
+    // carrot
+    g.fillStyle = col.accent; g.beginPath(); g.arc(X(f.c[0]), Y(f.c[1]), 7, 0, 7); g.fill();
+    // drone: X-frame with props, drawn to scale (0.5 m wheelbase)
+    g.save(); g.translate(X(f.p[0]), Y(f.p[1])); g.rotate(-f.yaw);
+    const arm = 0.25 * s, prop = 0.127 * s;
+    g.strokeStyle = col.ink; g.lineWidth = 3;
+    [[1, 1], [1, -1], [-1, 1], [-1, -1]].forEach(([a, b]) => { g.beginPath(); g.moveTo(0, 0); g.lineTo(a * arm * 0.707, b * arm * 0.707); g.stroke();
+      g.beginPath(); g.arc(a * arm * 0.707, b * arm * 0.707, prop, 0, 7); g.stroke(); });
+    g.fillStyle = col.accent; g.beginPath(); g.moveTo(arm * 0.6, 0); g.lineTo(arm * 0.25, -6); g.lineTo(arm * 0.25, 6); g.fill();
+    g.restore();
+
+    // side panel
+    drawDepth(f.d);
+    const prev = fr[Math.max(0, frame - 1)].p, dt = D.meta.dt;
+    const spd = frame ? Math.hypot(f.p[0] - prev[0], f.p[1] - prev[1], f.p[2] - prev[2]) / dt : 0;
+    $("t-pos").textContent = `${f.p[0].toFixed(2)}, ${f.p[1].toFixed(2)} m`;
+    $("t-alt").textContent = `${f.p[2].toFixed(2)} m`;
+    $("t-spd").textContent = `${spd.toFixed(2)} m/s`;
+    $("t-goal").textContent = `${Math.hypot(F.goal[0] - f.p[0], F.goal[1] - f.p[1], F.goal[2] - f.p[2]).toFixed(1)} m`;
+    $("t-map").textContent = `${mapped} cells`;
+    $("clock").textContent = `${(frame * dt).toFixed(1)} s`;
+    $("scrub").value = frame;
+  }
+
+  function drawDepth(b64) {
+    const cv = $("depth"), g = cv.getContext("2d"), cols = D.meta.cam.cols, rows = D.meta.cam.rows;
+    const px = b64bytes(b64), cw = cv.width / cols, ch = cv.height / rows;
+    for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) {
+      const v = 255 - px[r * cols + c];         // near = bright
+      g.fillStyle = `rgb(${Math.round(v * 0.95)},${Math.round(v * 0.75)},${Math.round(v * 0.55)})`;
+      g.fillRect(c * cw, r * ch, cw + 0.5, ch + 0.5);
+    }
+  }
+
+  function tick(t) {
+    if (!playing) return;
+    const dt = last ? (t - last) / 1000 : 0; last = t;
+    acc += dt * Number($("speed").value);
+    const step = D.meta.dt;
+    while (acc >= step) { acc -= step; frame++; }
+    if (frame >= F.frames.length - 1) { frame = F.frames.length - 1; setPlaying(false); }
+    draw();
+    if (playing) requestAnimationFrame(tick);
+  }
+  function setPlaying(on) {
+    playing = on; $("play").textContent = on ? "Pause" : "Play"; last = 0; acc = 0;
+    if (on) { if (frame >= F.frames.length - 1) frame = 0; requestAnimationFrame(tick); }
+  }
+
+  function trackPlot() {
+    const T = D.tracking, svg = $("trackplot"), W = 520, H = 330, m = 36;
+    const all = [...T.ref, ...T.classical.p, ...T.l1.p];
+    const xs = all.map((p) => p[0]), ys = all.map((p) => p[1]);
+    const x0 = Math.min(...xs) - 0.1, x1 = Math.max(...xs) + 0.1, y0 = Math.min(...ys) - 0.1, y1 = Math.max(...ys) + 0.1;
+    const s = Math.min((W - 2 * m) / (x1 - x0), (H - 2 * m) / (y1 - y0));
+    const X = (x) => m + (x - x0) * s, Y = (y) => H - m - (y - y0) * s;
+    const line = (pts, color, w, dash) => `<polyline fill="none" stroke="${color}" stroke-width="${w}" ${dash ? 'stroke-dasharray="6 5"' : ""} points="${pts.map((p) => X(p[0]).toFixed(1) + "," + Y(p[1]).toFixed(1)).join(" ")}"/>`;
+    let ticks = "";
+    for (let x = Math.ceil(x0 * 2) / 2; x <= x1; x += 0.5) ticks += `<line x1="${X(x)}" x2="${X(x)}" y1="${m - 10}" y2="${H - m}" stroke="var(--line)"/><text x="${X(x)}" y="${H - m + 16}" text-anchor="middle" fill="var(--muted)" font-size="11" font-family="IBM Plex Mono, monospace">${x.toFixed(1)}</text>`;
+    for (let y = Math.ceil(y0 * 2) / 2; y <= y1; y += 0.5) ticks += `<line x1="${m}" x2="${W - m + 10}" y1="${Y(y)}" y2="${Y(y)}" stroke="var(--line)"/><text x="${m - 6}" y="${Y(y) + 4}" text-anchor="end" fill="var(--muted)" font-size="11" font-family="IBM Plex Mono, monospace">${y.toFixed(1)}</text>`;
+    svg.innerHTML = ticks +
+      line(T.ref, "var(--ink)", 2, true) + line(T.classical.p, "var(--accent)", 2.5) + line(T.l1.p, "var(--track)", 2.5) +
+      `<text x="${W - m}" y="${H - 6}" text-anchor="end" fill="var(--muted)" font-size="11" font-family="IBM Plex Mono, monospace">x (m) · y (m) · 6 s</text>`;
+    $("trackcap").textContent = "Dashed: reference. Orange: classical, fixed gains. Teal: classical + L1 adaptive. Recorded in the simulator.";
+    const t = T.task;
+    $("trackstats").innerHTML = `
+      <dt>conditions</dt><dd>payload ×${t.mass_scale}, one motor at ${Math.round(t.weakest_motor * 100)}%, ${t.wind} m/s wind, ${t.latency_ms} ms latency</dd>
+      <dt>classical</dt><dd class="mono">${(T.classical.rmse * 100).toFixed(1)} cm RMS error</dd>
+      <dt>L1 adaptive</dt><dd class="mono">${(T.l1.rmse * 100).toFixed(1)} cm RMS error</dd>`;
+  }
+
+  function init(data) {
+    D = data;
+    D.flights.forEach((f, i) => {
+      const b = document.createElement("button"); b.type = "button";
+      b.textContent = `Room ${i + 1}` + (f.task.mass_scale !== 1 || f.task.wind > 0 ? " · disturbed" : " · nominal");
+      b.addEventListener("click", () => { setPlaying(false); pickFlight(i); });
+      $("flights").appendChild(b);
+    });
+    const first = Math.max(0, D.flights.findIndex((f) => f.outcome === "reached goal"));
+    pickFlight(first);
+    trackPlot();
+  }
+
+  $("play").addEventListener("click", () => setPlaying(!playing));
+  $("scrub").addEventListener("input", (e) => { setPlaying(false); frame = Number(e.target.value); draw(); });
+  $("truth").addEventListener("change", draw);
+  window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", draw);
+  new MutationObserver(() => { draw(); if (D) trackPlot(); }).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+
+  $("loading").hidden = false;
+  fetch("data/demo.json").then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then((d) => { $("loading").hidden = true; init(d); })
+    .catch(() => { $("loading").textContent = "The flight recordings didn't load. Run `drone-autonomy demo` to generate website/data/demo.json, then reload."; });
+})();
+</script>
