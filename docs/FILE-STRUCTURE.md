@@ -21,14 +21,19 @@ drone_autonomy/              Python package
   rl/meta/rl2.py             RL² (GRU policy, recurrent PPO over multi-episode trials)
   methods.py                 registry: methods per problem, labels, iteration budgets
   train.py, sweep.py         single training run; parallel sweeps
+  benchmark.py               adaptation curves on fixed test / OOD tasks, full-stack navigation scoring
   demo.py                    records full-stack flights for the website
-  figures.py                 README / paper figures from recorded data
+  figures.py                 README / paper / website figures and the results summary
   cli.py                     `drone-autonomy` command
 tests/test_core.py           fast checks of physics, perception, mapping, planning and learners
 website/index.html           project site with the flight replay viewer
 website/data/demo.json       recorded flights it replays
+website/data/results.json    benchmark summary the results section reads
+website/images/              adaptation figures shown on the site
+results/                     benchmark output per (problem, method, seed) and summary.json
 docs/                        instructions, system design, drone selection, this file, images
 .github/workflows/pages.yml  deploys website/ to GitHub Pages
+scripts/queue_nav_meta.sh    starts navigation meta-training once the DR planner exists
 drone_autonomy.md            project brief, open questions and changelog
 runs/, logs/                 training outputs (not committed)
 ```

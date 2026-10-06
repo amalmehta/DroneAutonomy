@@ -74,12 +74,14 @@ Decided without asking:
 - The local planner is trained with a privileged planner (a Dijkstra field on the true map) and evaluated with online mapping.
 - Hanging obstacles sit at 1.9 m or higher.
 - ANIL is not applicable to gain tuning (no hidden layers). PEARL and RL² are not run on gain tuning.
-- Compute: 2 seeds for the tracking problems because the machine is shared and heavily loaded.
+- Compute: 2 seeds for the tracking problems and 1 for navigation, because the machine is shared and heavily loaded.
+- Navigation gradient meta-learners warm-start from the DR local planner; navigation adaptation uses a 10x smaller Adam step (3e-4) after Reptile diverged at 3e-3.
 
 CHANGELOG:
 
 - 2026-10-05 — created
 - 2026-10-06 — built the simulator, stack, learners, website demo; pushed to GitHub with Pages
+- 2026-10-06 — trained and benchmarked all methods; website results section; navigation Reptile rerun with a smaller inner step
 - 2026-09-15 — added meta-instruction: built-out applications include a small feedback tab
 - 2026-09-15 — added meta-instruction: no "Claude" attribution in commits, PRs, or branches
 - 2026-09-16 — added meta-instruction: always include a README when adding to GitHub

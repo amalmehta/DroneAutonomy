@@ -52,13 +52,21 @@ Many runs in parallel (one single-threaded process per run):
 
 Checkpoints and JSON-lines logs go to `runs/<problem>/<method>/seed<k>/`. Add `--skip-done` to resume a sweep.
 
+## Benchmark
+
+```bash
+.venv/bin/drone-autonomy bench --problems tracking_residual tracking_gains navigation --seeds 0 1
+```
+
+Scores every method (trained checkpoints from `runs/`) on fixed held-out and out-of-distribution tasks and writes `results/<problem>/<method>_seed<k>.json`. Navigation methods are also scored on the full online-mapping stack, which is slow. `--methods` limits the set; `--quick` uses a handful of tasks for a smoke test.
+
 ## Figures
 
 ```bash
 .venv/bin/drone-autonomy figures
 ```
 
-This regenerates `docs/images/` from the recorded data.
+This regenerates `docs/images/` from the recorded flights and, once `results/` exists, the adaptation figures, `results/summary.json` and the website's `data/results.json`.
 
 ## Website
 

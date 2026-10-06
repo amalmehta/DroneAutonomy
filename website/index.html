@@ -112,6 +112,17 @@ td .na { color: var(--muted); }
 .spec { display: grid; grid-template-columns: auto 1fr; gap: 6px 16px; font-size: 0.88rem; margin: 0; }
 .spec dt { color: var(--muted); font-family: var(--mono); font-size: 0.78rem; padding-top: 2px; }
 .spec dd { margin: 0; }
+.findings { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+.finding { background: var(--panel); border: 1px solid var(--line); border-radius: 4px; padding: 12px 14px; display: grid; gap: 6px; align-content: start; }
+.finding p { font-size: 0.9rem; }
+.tabs { display: flex; flex-wrap: wrap; gap: 6px; }
+.tabs button { font: 500 0.8rem/1 var(--mono); padding: 9px 12px; border-radius: 3px; border: 1px solid var(--line); background: transparent; color: var(--ink); cursor: pointer; }
+.tabs button[aria-selected="true"] { border-color: var(--accent); color: var(--accent); }
+td.num, th.num { text-align: right; font-family: var(--mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+tr.best td { font-weight: 600; }
+tr.group td { color: var(--muted); font: 500 0.72rem var(--mono); letter-spacing: 0.08em; text-transform: uppercase; background: var(--bg); }
+.delta-good { color: var(--good); } .delta-bad { color: var(--bad); }
+.resfig img { background: #fff; border: 1px solid var(--line); border-radius: 4px; padding: 6px; }
 footer { border-top: 1px solid var(--line); padding-top: 18px; display: flex; flex-wrap: wrap; gap: 18px; font: 0.82rem var(--mono); color: var(--muted); }
 #loading { padding: 40px; text-align: center; color: var(--muted); font-family: var(--mono); }
 
@@ -132,7 +143,7 @@ footer { border-top: 1px solid var(--line); padding-top: 18px; display: flex; fl
       <span class="chip"><b>Simulated</b> 500 Hz rigid-body physics</span>
       <span class="chip"><b>Camera</b> RealSense D435i model</span>
       <span class="chip"><b>Map</b> 0.2 m voxels</span>
-      <span class="chip live"><b>Meta-learning runs</b> in progress</span>
+      <span class="chip"><b>Benchmarked</b> 14 methods, 3 problems</span>
     </div>
   </header>
 
@@ -227,25 +238,26 @@ footer { border-top: 1px solid var(--line); padding-top: 18px; display: flex; fl
     </div>
   </section>
 
-  <section class="block" aria-labelledby="study-h">
-    <span class="eyebrow">Study plan</span>
-    <h2 id="study-h">Seven meta-learning algorithms against classical baselines</h2>
-    <p class="note">Every method adapts to a new set of dynamics: payload ×0.85–1.3, one motor down to 75%, drag ×0.5–2, wind up to 2.5 m/s with gusts, and 0–30 ms latency. All are scored on held-out tasks and on out-of-distribution tasks beyond those ranges. Results will appear here when the runs finish. No numbers are shown until then.</p>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Algorithm</th><th>How it adapts</th><th>1 · Residual on controller</th><th>2 · Controller gains</th><th>3 · Local planner</th></tr></thead>
-        <tbody>
-          <tr><td>MAML</td><td>One policy-gradient step, second-order meta-gradient</td><td><span class="pill on">training</span></td><td><span class="pill on">training</span></td><td><span class="pill">queued</span></td></tr>
-          <tr><td>FOMAML</td><td>Same step, first-order approximation</td><td><span class="pill on">training</span></td><td><span class="pill on">training</span></td><td><span class="pill">queued</span></td></tr>
-          <tr><td>ANIL</td><td>Adapts only the output layer</td><td><span class="pill on">training</span></td><td><span class="na">n/a: no hidden layers</span></td><td><span class="pill">queued</span></td></tr>
-          <tr><td>Meta-SGD</td><td>Learns a step size for every parameter</td><td><span class="pill on">training</span></td><td><span class="pill on">training</span></td><td><span class="pill">queued</span></td></tr>
-          <tr><td>Reptile</td><td>Several PPO steps, then moves toward the average</td><td><span class="pill on">training</span></td><td><span class="pill on">training</span></td><td><span class="pill">queued</span></td></tr>
-          <tr><td>PEARL</td><td>Infers a latent task variable from recent flight data</td><td><span class="pill">queued</span></td><td><span class="na">n/a</span></td><td><span class="pill">queued</span></td></tr>
-          <tr><td>RL²</td><td>Recurrent policy carries what it learned across episodes</td><td><span class="pill">queued</span></td><td><span class="na">n/a</span></td><td><span class="pill">queued</span></td></tr>
-          <tr><td>Baselines</td><td>Nominal classical, L1 adaptive, domain-randomised PPO, PPO + fine-tune</td><td colspan="3"><span class="note">same tasks, same adaptation budget</span></td></tr>
-        </tbody>
-      </table>
+  <section class="block" aria-labelledby="results-h">
+    <span class="eyebrow">Results</span>
+    <h2 id="results-h">What seven meta-learning algorithms bought, and where they broke</h2>
+    <p class="note">Every method adapts to new dynamics: payload ×0.85–1.3, one motor down to 75%, drag ×0.5–2, wind up to 2.5 m/s with gusts, and 0–30 ms latency. Scores are on 32 held-out tasks (navigation: 24, in rooms never seen in training) and on out-of-distribution tasks beyond every range. Adaptation data is flight episodes on the new task: gradient methods take up to 3 updates of 10 episodes each; PEARL and RL² use up to 3 episodes of experience. Tracking uses 2 training seeds, navigation 1.</p>
+    <div class="findings">
+      <div class="finding"><span class="eyebrow">Combo 1 · residual on controller</span><p id="f1"></p></div>
+      <div class="finding"><span class="eyebrow">Combo 2 · controller gains</span><p id="f2"></p></div>
+      <div class="finding"><span class="eyebrow">Combo 3 · local planner</span><p id="f3"></p></div>
+      <div class="finding"><span class="eyebrow">Out of distribution</span><p id="f4"></p></div>
     </div>
+    <div class="tabs" role="tablist" aria-label="Choose a result table">
+      <button role="tab" id="tab-tracking_residual" aria-selected="true" type="button">1 · Residual on controller</button>
+      <button role="tab" id="tab-tracking_gains" aria-selected="false" type="button">2 · Controller gains</button>
+      <button role="tab" id="tab-navigation" aria-selected="false" type="button">3 · Local planner</button>
+    </div>
+    <div class="table-wrap"><table id="results-table"></table></div>
+    <figure class="resfig">
+      <img id="results-fig" src="images/adaptation_tracking_residual.png" alt="Adaptation curves for every method on held-out and out-of-distribution tasks">
+      <figcaption id="results-cap"></figcaption>
+    </figure>
   </section>
 
   <section class="block" aria-labelledby="drone-h">
@@ -468,5 +480,57 @@ footer { border-top: 1px solid var(--line); padding-top: 18px; display: flex; fl
   fetch("data/demo.json").then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })
     .then((d) => { $("loading").hidden = true; init(d); })
     .catch(() => { $("loading").textContent = "The flight recordings didn't load. Run `drone-autonomy demo` to generate website/data/demo.json, then reload."; });
+  // ------------------------------------------------------------- results
+  const FAMILY = { classical: "Classical", l1: "Classical", classical_l1: "Classical", dr: "Non-meta learned", dr_finetune: "Non-meta learned",
+    e2e_dr: "Non-meta learned", e2e_dr_finetune: "Non-meta learned", maml: "Gradient meta-learning", fomaml: "Gradient meta-learning",
+    anil: "Gradient meta-learning", metasgd: "Gradient meta-learning", reptile: "Gradient meta-learning", pearl: "Context meta-learning", rl2: "Context meta-learning" };
+  const ORDER = ["classical", "l1", "classical_l1", "dr", "dr_finetune", "e2e_dr", "e2e_dr_finetune", "maml", "fomaml", "anil", "metasgd", "reptile", "pearl", "rl2"];
+  const CAPS = {
+    tracking_residual: "Tracking error against adaptation data, mean and 95% interval over tasks and seeds. Lower is better. Flat lines don't adapt.",
+    tracking_gains: "Tracking error when meta-learning tunes the classical controller's seven gains. Lower is better.",
+    navigation: "Success rate with the privileged planner against adaptation data. Higher is better. Gradient methods lose ground as they adapt; RL² gains.",
+  };
+  let R = null;
+  const cm = (v) => (v * 100).toFixed(1);
+  const pc = (v) => Math.round(v * 100) + "%";
+  function delta(pre, post, lowerBetter) {
+    const d = post - pre; if (Math.abs(d) < 0.005) return "";
+    const good = lowerBetter ? d < 0 : d > 0;
+    return ` <span class="${good ? "delta-good" : "delta-bad"}">${d > 0 ? "▲" : "▼"}</span>`;
+  }
+  function showResults(problem) {
+    document.querySelectorAll(".tabs button").forEach((b) => b.setAttribute("aria-selected", String(b.id === "tab-" + problem)));
+    const rows = (R[problem] || []).slice().sort((a, b) => ORDER.indexOf(a.method) - ORDER.indexOf(b.method));
+    const nav = problem === "navigation";
+    let head = nav
+      ? `<tr><th>Method</th><th class="num">Before</th><th class="num">After adapting</th><th class="num">Data</th><th class="num">Full stack, unseen rooms</th><th class="num">Full stack collisions</th><th class="num">OOD success</th></tr>`
+      : `<tr><th>Method</th><th class="num">Before (cm)</th><th class="num">After adapting (cm)</th><th class="num">Data</th><th class="num">OOD error (cm)</th><th class="num">OOD crash rate</th></tr>`;
+    const bestKey = nav ? Math.max(...rows.map((r) => r.full_test_success_post)) : Math.min(...rows.map((r) => r.test_post));
+    let body = "", fam = "";
+    rows.forEach((r) => {
+      if (FAMILY[r.method] !== fam) { fam = FAMILY[r.method]; body += `<tr class="group"><td colspan="7">${fam}</td></tr>`; }
+      const best = nav ? r.full_test_success_post === bestKey : r.test_post === bestKey;
+      const eps = r.test_episodes ? `${r.test_episodes} ep` : "none";
+      body += nav
+        ? `<tr class="${best ? "best" : ""}"><td>${r.label}</td><td class="num">${pc(r.test_pre)}</td><td class="num">${pc(r.test_post)}${delta(r.test_pre, r.test_post, false)}</td><td class="num">${eps}</td>
+             <td class="num">${pc(r.full_test_success_post)}</td><td class="num">${pc(r.full_test_collision_post)}</td><td class="num">${pc(r.ood_post)}</td></tr>`
+        : `<tr class="${best ? "best" : ""}"><td>${r.label}</td><td class="num">${cm(r.test_pre)}</td><td class="num">${cm(r.test_post)}${delta(r.test_pre, r.test_post, true)}</td><td class="num">${eps}</td>
+             <td class="num">${cm(r.ood_post)}</td><td class="num">${pc(r.ood_crash || 0)}</td></tr>`;
+    });
+    $("results-table").innerHTML = `<thead>${head}</thead><tbody>${body}</tbody>`;
+    $("results-fig").src = `images/adaptation_${problem}.png`;
+    $("results-cap").textContent = CAPS[problem];
+  }
+  function findings() {
+    const g = (p, m) => (R[p] || []).find((r) => r.method === m) || {};
+    const tr = (m) => g("tracking_residual", m), tg = (m) => g("tracking_gains", m), nv = (m) => g("navigation", m);
+    $("f1").innerHTML = `A learned residual cuts tracking error from ${cm(tr("classical").test_post)} cm (classical) and ${cm(tr("l1").test_post)} cm (L1 adaptive) to ${cm(tr("dr").test_post)} cm. Meta-learners adapt by about a centimetre (MAML ${cm(tr("maml").test_pre)} → ${cm(tr("maml").test_post)} cm) but don't beat the non-meta baseline.`;
+    $("f2").innerHTML = `Here meta-learning pays off. Meta-SGD tunes the seven gains from ${cm(tg("metasgd").test_pre)} to ${cm(tg("metasgd").test_post)} cm, against ${cm(tg("dr_finetune").test_post)} cm for the best non-meta tuning.`;
+    $("f3").innerHTML = `On the full stack in unseen rooms, the classical planner is most reliable: ${pc(nv("classical").full_test_success_post)} success with ${pc(nv("classical").full_test_collision_post)} collisions. Gradient adaptation makes learned planners worse (MAML ${pc(nv("maml").test_pre)} → ${pc(nv("maml").test_post)}). RL² is the only one that improves with experience (${pc(nv("rl2").test_pre)} → ${pc(nv("rl2").test_post)}).`;
+    $("f4").innerHTML = `Beyond the training ranges every method fails: tracking error above ${cm(Math.min(...R.tracking_residual.map((r) => r.ood_post)))} cm and near-zero navigation success. Learned residuals crash more often (${pc(tr("maml").ood_crash)} for MAML) than the plain controller (${pc(tr("classical").ood_crash)}).`;
+  }
+  document.querySelectorAll(".tabs button").forEach((b) => b.addEventListener("click", () => showResults(b.id.slice(4))));
+  fetch("data/results.json").then((r) => r.json()).then((d) => { R = d; findings(); showResults("tracking_residual"); })
+    .catch(() => { $("f1").textContent = "Results didn't load. Run `drone-autonomy figures` to write website/data/results.json, then reload."; });
 })();
 </script>

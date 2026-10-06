@@ -33,6 +33,11 @@ ITERS = {  # meta-training iterations per (problem, method); tuned to the CPU bu
                    "reptile": 50, "pearl": 200, "rl2": 120},
 }
 
+# Adam step for per-task PPO adaptation (Reptile inner loop, DR fine-tuning).
+# 3e-3 suits the small tracking policy; on the larger, warm-started navigation
+# policy it wrecked the planner (Reptile: 0% success), so navigation uses 3e-4.
+INNER_LR = {"navigation": 3e-4}
+
 # Navigation from scratch is slow on a CPU, so the gradient-based meta-learners
 # are initialised from the domain-randomised local planner of the same seed.
 WARM_START = {("navigation", m): "dr" for m in ("maml", "fomaml", "anil", "metasgd", "reptile")}
@@ -58,14 +63,14 @@ def build(problem_name, method_name, seed=0, problem=None, warm=True):
         m.name = method_name
         return m
     if method_name in ("dr_finetune", "e2e_dr_finetune"):
-        m = DomainRandomized(P, finetune=True, seed=seed)
+        m = DomainRandomized(P, finetune=True, seed=seed, ft_lr=INNER_LR.get(problem_name, 3e-3))
         m.name = method_name
         return m
     if method_name in ("maml", "fomaml", "anil", "metasgd"):
         return _warm(GradMeta(P, method_name, seed=seed), problem_name, method_name, seed, warm)
     if method_name == "reptile":
-        return _warm(Reptile(P, total_iters=ITERS[problem_name]["reptile"], seed=seed), problem_name, method_name,
-                     seed, warm)
+        return _warm(Reptile(P, total_iters=ITERS[problem_name]["reptile"], inner_lr=INNER_LR.get(problem_name, 3e-3),
+                             seed=seed), problem_name, method_name, seed, warm)
     if method_name == "pearl":
         from .rl.meta.pearl import PEARL
         return PEARL(P, seed=seed)

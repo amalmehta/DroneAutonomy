@@ -6,7 +6,9 @@ A quadrotor that maps unknown rooms with a depth camera, plans with A*, and adap
 
 ![The same figure-eight with extra payload, wind and a worn motor: fixed gains vs L1 adaptive control](docs/images/tracking.png)
 
-**[Live demo: replay the recorded flights](https://amalmehta.github.io/DroneAutonomy/)**
+![Tracking error against adaptation data for every method, on held-out and out-of-distribution tasks](docs/images/adaptation_tracking_residual.png)
+
+**[Live demo: replay the recorded flights and browse the results](https://amalmehta.github.io/DroneAutonomy/)**
 
 | | |
 |---|---|
@@ -15,4 +17,4 @@ A quadrotor that maps unknown rooms with a depth camera, plans with A*, and adap
 | [File structure](docs/FILE-STRUCTURE.md) | what's where |
 | [Drone selection](docs/DRONE-SELECTION.md) | which drone to fly the stack on, and the test plan |
 
-Status: the simulator, the full navigation stack, all seven meta-learning algorithms and the baselines are built. Training runs are in progress; results, the paper and the results section of the website will follow.
+Status: simulator, navigation stack, seven meta-learning algorithms and baselines are built, trained and benchmarked (numbers in `results/summary.json` and on the website). The paper is next.
