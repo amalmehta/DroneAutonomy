@@ -1,0 +1,6 @@
+\section{Conclusion}\label{sec:conclusion}
+
+Combining meta-learning with a classical quadrotor stack at three insertion points, we found that a robust learned residual captures most of the tracking benefit without meta-learning, that meta-learning pays off most when it tunes classical gains, and that gradient-based adaptation can make learned navigation planners less safe, while a recurrent policy improved with experience. A classical local planner on an online map was the most reliable navigator in unseen rooms, and every method failed beyond the training distribution. These results argue for keeping classical components in the loop and adapting their parameters, and for testing adaptation methods on out-of-distribution conditions before trusting them on a real vehicle, which is the next step on the platform we recommend.
+
+\section*{Acknowledgment}
+The simulator, learning algorithms, experiments, benchmark, figures and table scripts, and the text of this paper were produced with an AI coding assistant (Claude Code, Anthropic) working under the author's direction. Citation metadata were checked against arXiv and Crossref by script. The author reviewed the results and is responsible for all claims.

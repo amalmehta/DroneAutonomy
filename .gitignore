@@ -7,3 +7,8 @@ logs/
 results/raw/
 .claude/
 .DS_Store
+paper/**/*.aux
+paper/**/*.log
+paper/**/*.bbl
+paper/**/*.blg
+paper/**/*.out

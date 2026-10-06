@@ -1,0 +1,38 @@
+\RequirePackage[T1]{fontenc}  % before the class, so XeTeX never looks for TU/ptm shapes
+\documentclass[conference]{IEEEtran}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,fit,calc}
+\usepackage{url}
+\usepackage[hidelinks]{hyperref}
+\newcommand{\TODO}[1]{\textcolor{red}{\textbf{TODO: #1}}}
+\input{generated/values.tex}
+
+\begin{document}
+
+\title{Where Does Meta-Learning Help a Quadrotor?\\Seven Algorithms Combined with Classical Control and Planning}
+
+\author{\IEEEauthorblockN{Amal Mehta}
+\IEEEauthorblockA{\TODO{affiliation}\\amal.mehta@gmail.com}}
+
+\maketitle
+
+\input{sections/abstract}
+\input{sections/introduction}
+\input{sections/related}
+\input{sections/system}
+\input{sections/learners}
+\input{sections/protocol}
+\input{sections/results}
+\input{sections/platform}
+\input{sections/limitations}
+\input{sections/conclusion}
+
+\label{pw:mainend}
+\bibliographystyle{IEEEtran}
+\bibliography{refs}
+
+\end{document}

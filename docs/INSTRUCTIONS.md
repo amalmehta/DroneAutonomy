@@ -68,6 +68,18 @@ Scores every method (trained checkpoints from `runs/`) on fixed held-out and out
 
 This regenerates `docs/images/` from the recorded flights and, once `results/` exists, the adaptation figures, `results/summary.json` and the website's `data/results.json`.
 
+## Paper
+
+```bash
+.venv/bin/python paper/drone-autonomy/figures_scripts/make_all.py paper/drone-autonomy/ieee-conf
+```
+
+Regenerates every number, table and figure in the paper from `results/`. Then compile from `paper/drone-autonomy/ieee-conf/`:
+
+```bash
+tectonic -Z search-path=template main.tex
+```
+
 ## Website
 
 `.github/workflows/pages.yml` publishes `website/` to GitHub Pages on every push to `main` that touches it.

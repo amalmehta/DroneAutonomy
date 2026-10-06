@@ -1,0 +1,7 @@
+\section{Experimental Protocol}\label{sec:protocol}
+
+Every method is scored on fixed task sets: 32 held-out and 32 OOD tasks for tracking, and 24 of each for navigation, flown in rooms from a test pool never used in training (128 rooms per pool). Before adapting and after each of three adaptation stages, we fly deterministic evaluation episodes (the policy mean) on every task. A stage of gradient-based adaptation uses 10 exploratory episodes and one update, so three stages use 30 episodes. A PEARL stage adds one episode of context, and an RL$^2$ stage is one more episode of the trial. Non-adapting methods are evaluated once. We report tracking RMSE in centimetres (an early termination counts as 1.5\,m error for the rest of the episode) and navigation success within 0.5\,m of the goal before a collision or a 30\,s time-out.
+
+Navigation is scored twice. Learned planners are scored with the privileged planner, and then on the full online stack (depth camera, map built in flight, A*) in 12 unseen rooms per split, before and after one adaptation stage. That stage's exploration flights use the privileged planner, like a calibration flight in a known room.
+
+Tracking methods are trained with 2 seeds and navigation methods with 1, and the deterministic classical baselines are evaluated once. Intervals are 95\% normal intervals over tasks and seeds. Everything ran on one shared Intel Core i9-9980HK CPU without a GPU.

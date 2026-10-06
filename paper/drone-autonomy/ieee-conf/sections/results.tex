@@ -1,0 +1,47 @@
+\section{Results}\label{sec:results}
+
+\begin{table*}[t]
+\centering
+\caption{Tracking under new dynamics. A learned residual beats classical and L1 control by a wide margin, while meta-learning helps most when it tunes the controller's gains. Held-out RMSE before and after adapting (mean, with the 95\% half-interval after adapting), OOD RMSE and OOD crash rate after adapting. Data: adaptation episodes used. Bold: best in column. Tracking methods use 2 training seeds.}
+\label{tab:tracking}
+\footnotesize
+\input{generated/tables/tracking.tex}
+\end{table*}
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/adaptation_curves.pdf}
+\caption{Adaptation helps when it tunes gains (b), barely moves a learned residual (a) and degrades learned navigation planners (c), where only RL$^2$ improves with experience. Held-out tasks; mean and 95\% interval over tasks and seeds; horizontal lines are methods that do not adapt. PEARL and RL$^2$ use one episode per stage, the gradient-based methods ten.}
+\label{fig:curves}
+\end{figure*}
+
+\textbf{A learned residual beats classical adaptation.} On held-out tasks the nominal geometric controller tracks with \valResClassicalPost\,cm RMSE and L1 augmentation with \valResLonePost\,cm (Table~\ref{tab:tracking}). A DR residual trained over all tasks reaches \valResDrPost\,cm without any adaptation, \valResRatioClassical$\times$ and \valResRatioLone$\times$ lower respectively.
+
+\textbf{Gradient-based meta-learning adds little to the residual.} MAML, FOMAML, ANIL and Meta-SGD start slightly worse than DR (\valResMamlPre, \valResFomamlPre, \valResAnilPre\ and \valResMetasgdPre\,cm) and improve with 30 adaptation episodes to \valResMamlPost, \valResFomamlPost, \valResAnilPost\ and \valResMetasgdPost\,cm, within the interval of DR's \valResDrPost\,cm (Fig.~\ref{fig:curves}a). Fine-tuning DR with PPO makes it slightly worse (\valResDrftPost\,cm), and Reptile trails at \valResReptilePost\,cm. With a broad task distribution and a strong classical controller underneath, a single robust residual already captures most of the benefit in our setup.
+
+\textbf{Meta-learning helps most when it tunes gains.} When the policy chooses the controller's seven gains (Combination 2), adaptation matters more: Meta-SGD improves from \valGainMetasgdPre\ to \valGainMetasgdPost\,cm, and MAML and FOMAML reach \valGainMamlPost\ and \valGainFomamlPost\,cm. DR-tuned gains stay at \valGainDrPost\,cm, or \valGainDrftPost\,cm with fine-tuning (Fig.~\ref{fig:curves}b). This result is preliminary: with two seeds, Meta-SGD's interval ($\pm$\valGainMetasgdCi\,cm) only just separates from the fine-tuned DR gains ($\pm$\valGainDrftCi\,cm). Tuned gains remain well above the learned residual (\valResDrPost\,cm), but a gain vector is a far smaller and more interpretable thing to adapt on a real vehicle.
+
+\textbf{Context-based methods adapt from fewer episodes.} PEARL improves from \valResPearlPre\ to \valResPearlPost\,cm with three episodes of context, against the 30 episodes the gradient methods use, though it does not reach their final error. RL$^2$ improves from \valResRltwoPre\ to \valResRltwoPost\,cm and is the weakest learned residual.
+
+\begin{table*}[t]
+\centering
+\caption{Navigation in unseen rooms. The classical local planner is the most reliable on the full stack; gradient-based adaptation lowers learned planners' success, while RL$^2$ improves. Success and collision rates before and after adapting, with the privileged planner (24 rooms, 3 stages) and on the full online-mapping stack (12 rooms, 1 stage), and OOD success. One training seed. Bold: best in column.}
+\label{tab:nav}
+\footnotesize
+\input{generated/tables/navigation.tex}
+\end{table*}
+
+\textbf{Adaptation hurts learned navigation planners, except RL$^2$.} With the privileged planner, every warm-started gradient method loses success as it adapts: MAML from \valNavMamlPre\% to \valNavMamlPost\%, FOMAML from \valNavFomamlPre\% to \valNavFomamlPost\%, ANIL from \valNavAnilPre\% to \valNavAnilPost\%, Meta-SGD from \valNavMetasgdPre\% to \valNavMetasgdPost\% and Reptile from \valNavReptilePre\% to \valNavReptilePost\% (Table~\ref{tab:nav}, Fig.~\ref{fig:curves}c). DR with fine-tuning also drops, from \valNavDrftPre\% to \valNavDrftPost\%. Collision rates rise as success falls, so the updates trade safety away. RL$^2$ is the only method that improves with experience, from \valNavRltwoPre\% to \valNavRltwoPost\%, and PEARL stays flat (\valNavPearlPre\% to \valNavPearlPost\%). We read this as noisy policy gradients from 10 sparse-reward episodes per task overwriting a competent planner, while RL$^2$ adapts without gradient steps. This is one seed, so the effect needs confirming.
+
+\textbf{On the full stack, the classical planner is most reliable.} With a map built in flight and A* replanning, the classical local planner reaches the goal in \valNavClassicalFullPost\% of the 12 unseen rooms with \valNavClassicalFullColl\% collisions. The learned planners reach between \valNavFullLearnedLo\% and \valNavFullLearnedHi\% with \valNavFullCollLo--\valNavFullCollHi\% collisions. With 12 rooms one room moves a rate by 8 points, so we treat these numbers as indicative: the classical planner was never worse, and it never collided. Fig.~\ref{fig:flight} shows a recorded classical flight.
+
+\textbf{The map and planner matter.} The end-to-end DR planner, which sees only the goal direction, succeeds in \valNavEtoePre\% of the 24 held-out rooms, against \valNavDrPre\% for the same learner given the carrot, and in \valNavEtoeFullPost\% against \valNavDrFullPost\% on the full stack.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/example_flights.pdf}
+\caption{The classical stack maps an unseen room from its depth camera and reaches the goal. Grey: true obstacles (paler boxes hang overhead and are flown under); black: voxels mapped by the end of the flight; dashed: final A* plan; blue: flown track from start (circle) to goal (star).}
+\label{fig:flight}
+\end{figure}
+
+\textbf{Outside the training distribution every method fails.} On the OOD tasks, which combine heavier payload, weaker motors, stronger wind and longer latency, no tracking method gets below \valOodRmseMin\,cm RMSE and no navigation method exceeds \valNavOodMax\% success. Learned residuals also crash more often (\valResOodCrashLearnedLo--\valResOodCrashLearnedHi\%) than the nominal controller (\valResClassicalOodCrash\%). Adaptation does not rescue them: three stages change OOD error by at most \valOodAdaptMaxDelta\,cm. Our OOD set is harsh, so it measures how methods fail more than how they adapt, but the ordering is a caution for deployment: on the edge of the envelope, the plain classical controller degraded most gracefully.

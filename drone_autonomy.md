@@ -53,7 +53,7 @@ DELIVERABLES:
 - Website with flight replay: website/ → https://amalmehta.github.io/DroneAutonomy/
 - Drone recommendation and test plan: docs/DRONE-SELECTION.md
 - Docs: README.md, docs/INSTRUCTIONS.md, docs/SYSTEM-DESIGN.md, docs/FILE-STRUCTURE.md
-- IEEE-format paper (pending results)
+- IEEE-format paper: paper/Where Does Meta-Learning Help a Quadrotor.pdf (sources in paper/drone-autonomy/)
 - GitHub repo: https://github.com/amalmehta/DroneAutonomy
 
 OPEN QUESTIONS / ASSUMPTIONS:
@@ -82,6 +82,7 @@ CHANGELOG:
 - 2026-10-05 — created
 - 2026-10-06 — built the simulator, stack, learners, website demo; pushed to GitHub with Pages
 - 2026-10-06 — trained and benchmarked all methods; website results section; navigation Reptile rerun with a smaller inner step
+- 2026-10-06 — IEEE conference-format paper drafted (paper/), all checks passing except the affiliation TODO
 - 2026-09-15 — added meta-instruction: built-out applications include a small feedback tab
 - 2026-09-15 — added meta-instruction: no "Claude" attribution in commits, PRs, or branches
 - 2026-09-16 — added meta-instruction: always include a README when adding to GitHub

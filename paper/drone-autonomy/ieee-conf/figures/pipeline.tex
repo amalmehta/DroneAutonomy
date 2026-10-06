@@ -1,0 +1,21 @@
+% Fig. 1: the stack and the three places meta-learning plugs in (hand-drawn TikZ, no data)
+\begin{tikzpicture}[
+  box/.style={draw, rounded corners=1.5pt, align=center, font=\footnotesize, minimum height=8.5mm, inner sep=2pt, text width=16mm},
+  learn/.style={box, draw=orange!80!black, very thick, fill=orange!8},
+  arr/.style={-{Stealth[length=2mm]}, thick},
+  tag/.style={font=\scriptsize\itshape, text=orange!70!black, align=center}]
+  \node[box] (cam) {Depth camera\\(D435i model)};
+  \node[box, right=4mm of cam] (map) {Occupancy map\\(log-odds voxels)};
+  \node[box, right=4mm of map] (astar) {A* planner\\+ carrot};
+  \node[learn, right=4mm of astar] (local) {Local planner\\(velocity)};
+  \node[learn, right=4mm of local] (ctrl) {Geometric\\controller};
+  \node[box, right=9mm of ctrl] (dyn) {Quadrotor\\dynamics};
+  \draw[arr] (cam) -- (map); \draw[arr] (map) -- (astar); \draw[arr] (astar) -- (local);
+  \draw[arr] (local) -- (ctrl);
+  \draw[arr] (ctrl) -- node[above, font=\scriptsize] {CTBR} (dyn);
+  \draw[arr] (dyn.south) -- ++(0,-4mm) -| node[pos=0.25, below, font=\scriptsize] {pose, depth rays} (cam.south);
+  \node[tag, above=1mm of local] {Combination 3:\\meta-RL planner};
+  \node[tag, above=1mm of ctrl] {Combinations 1, 2:\\residual or gains};
+  \node[font=\scriptsize, align=center, below=7mm of ctrl] (task) {Task: payload, motor wear,\\drag, wind, gusts, latency};
+  \draw[arr, dashed] (task.east) -| (dyn.south east);
+\end{tikzpicture}

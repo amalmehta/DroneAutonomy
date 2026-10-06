@@ -1,0 +1,33 @@
+\section{System}\label{sec:system}
+
+\subsection{Vehicle model}
+We simulate many drones at once, each with its own task, in a batched rigid-body model integrated at 500\,Hz. Commands are collective thrust and body rates (CTBR), the setpoint PX4 accepts in offboard mode~\cite{meier2015px4}. Each command passes through a latency buffer, then a PX4-like body-rate PI loop that uses the \emph{nominal} inertia, then an X-configuration mixer that gives up yaw torque first when motors saturate. First-order motors (time constant 40\,ms) are scaled by per-motor efficiencies. Forces include linear drag (0.3\,N\,s/m), steady wind and Ornstein--Uhlenbeck gusts. The nominal vehicle approximates a Holybro X500 V2 carrying a Jetson and a D435i: mass 2.0\,kg, arm 0.25\,m and inertia 0.0217/0.0217/0.040\,kg\,m$^2$ from PX4's x500 simulation model; the thrust-to-weight ratio of 2.1, motor lag and drag are our estimates (Sec.~\ref{sec:platform}).
+
+\subsection{Tasks}
+A task fixes payload (mass scale; inertia grows by half the relative mass increase, as for a payload near the centre), the efficiency of one randomly chosen motor, drag, steady wind, gust intensity and command latency (Table~\ref{tab:tasks}). Training and held-out tasks share ranges but use disjoint random seeds. OOD tasks lie beyond every range at once.
+
+\begin{table}[t]
+\centering
+\caption{Task distribution. Each task draws every parameter from the given range.}
+\label{tab:tasks}
+\footnotesize
+\input{generated/tables/tasks.tex}
+\end{table}
+
+\subsection{Classical control}
+A geometric controller~\cite{lee2010geometric} runs at 100\,Hz: a PID position loop produces a desired acceleration, limited to 35$^\circ$ tilt, which sets collective thrust and an attitude whose error gives body-rate commands. It has seven gains: proportional, derivative and integral gains for the horizontal and vertical axes, and an attitude gain. The adaptive baseline adds piecewise-constant L1 augmentation~\cite{wu2022l1quad}: a velocity predictor estimates a lumped acceleration disturbance, whose low-pass-filtered value is subtracted from the desired acceleration.
+
+\textbf{Tracking.} Combinations 1 and 2 are scored on trajectory tracking: each episode follows a smooth random reference (a sum of two cosines per axis, at most 2\,m/s horizontally; 15\% of episodes are pure hover) for 4\,s. The reward is $\exp(-\|e\|/0.25)$ for position error $e$ in metres, minus a small action penalty. An episode ends early if the error exceeds 1.5\,m or the tilt exceeds 70$^\circ$.
+
+\textbf{Combination 1: residual on the controller.} At 50\,Hz a policy adds a bounded correction to the controller's output: up to 25\% of hover thrust, and up to 1\,rad/s in roll and pitch rate (0.5\,rad/s in yaw). It observes tracking errors, velocity, attitude, body rates, the reference acceleration, its previous action and the controller's own command.
+
+\textbf{Combination 2: controller gains.} The policy is a Gaussian over the logarithm of the seven gain scales relative to nominal. One gain vector is drawn per episode and the controller flies the whole episode with it.
+
+\subsection{Navigation stack (Combination 3)}
+Rooms measure 14$\times$8$\times$3\,m and contain randomly placed pillars and boxes; a quarter of the boxes hang from the ceiling with their lowest edge at 1.9\,m or higher, so the map and planner work in three dimensions. Start and goal sit at opposite ends. The drone is a 0.35\,m sphere for collision checks.
+
+\textbf{Perception and mapping.} A depth camera modelled on the D435i casts rays over an 87$^\circ\times$58$^\circ$ field of view up to 5\,m, adds noise with standard deviation $0.008\,d^2$ and drops 2\% of pixels. The policy sees a 16$\times$8 image; the mapper uses 48$\times$24. A log-odds voxel map with 0.2\,m voxels carves free space along each ray, stopping one voxel short of a hit so that grazing rays don't erase surfaces.
+
+\textbf{Planning.} A* searches the 26-connected voxel grid inflated by the drone radius plus a 0.15\,m margin, replanned at 2\,Hz. The carrot is the furthest point up to 1.5\,m along the path that is still in straight-line sight.
+
+\textbf{Local planner.} At 10\,Hz the local planner outputs a velocity command in the heading frame. The classical controller tracks it through a leashed position setpoint while yaw turns toward the carrot. The learned planner observes the depth image, the carrot and goal in the heading frame, velocity, attitude, altitude and its previous action. It is rewarded for progress along the true shortest path, with penalties for time, proximity, jerky commands and collisions, and a bonus at the goal. The classical local planner pursues the carrot, slows down near depth returns and adds a repulsive term from close returns. For speed, learned planners are trained with a privileged planner: a distance field computed on the true map, equivalent to A* on a perfect map. Evaluation also runs the full online stack.

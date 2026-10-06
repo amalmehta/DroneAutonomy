@@ -31,6 +31,8 @@ website/data/demo.json       recorded flights it replays
 website/data/results.json    benchmark summary the results section reads
 website/images/              adaptation figures shown on the site
 results/                     benchmark output per (problem, method, seed) and summary.json
+paper/Where Does Meta-Learning Help a Quadrotor.pdf   the compiled paper
+paper/drone-autonomy/        paper sources: intake, figure/table/value scripts, ieee-conf/ (main.tex, sections, generated values and tables, figures, refs.bib, sources.md, checks)
 docs/                        instructions, system design, drone selection, this file, images
 .github/workflows/pages.yml  deploys website/ to GitHub Pages
 scripts/queue_nav_meta.sh    starts navigation meta-training once the DR planner exists

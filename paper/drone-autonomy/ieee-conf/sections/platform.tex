@@ -1,0 +1,27 @@
+\section{Real-World Platform and Test Plan}\label{sec:platform}
+
+The stack needs a flight controller that accepts CTBR or velocity setpoints from a companion computer at 50\,Hz or more, a depth camera, onboard compute for mapping and planning, and a vehicle that is safe in a netted cage. Table~\ref{tab:platforms} compares indoor research platforms in the \$1--3k range, from manufacturer pages checked on 2026-10-05.
+
+\begin{table}[t]
+\centering
+\caption{Candidate platforms. Only the X500 build is in stock, within budget, and carries a depth camera that matches the simulator. Status from manufacturer stores on 2026-10-05.}
+\label{tab:platforms}
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}lllll@{}}
+\toprule
+Platform & Mass & Depth & CTBR & Status \\
+\midrule
+X500 V2 build$^\dagger$ & $\approx$2.0\,kg & D435i & PX4 & in stock \\
+Crazyflie 2.1 Brushless & 37\,g & none & partial & listed \\
+Starling 2 & 285\,g & ToF & PX4 & unavailable new \\
+Starling 2 Max & 566\,g & ToF (C29 only) & PX4 & over budget \\
+PX4 Vision V1.5 & 893\,g$^*$ & discontinued & PX4 & sold out \\
+\bottomrule
+\multicolumn{5}{@{}l}{$^\dagger$Holybro X500 V2 + Jetson Orin Nano Super + D435i. $^*$Without battery.}
+\end{tabular}
+\end{table}
+
+We recommend a Holybro X500 V2 with a Jetson Orin Nano Super and a RealSense D435i, about \$1.6--2.0k in parts. PX4's offboard mode takes body rates and collective thrust directly, the policies' own action space. The D435i is the camera the simulator models, and the X500 is PX4's reference airframe, so its simulator parameters come from a published model. The cost of this choice is a 2\,kg vehicle with 10-inch propellers, which must fly inside a netted cage. The Crazyflie is the safest vehicle for checking that low-level control transfers, but it cannot carry a depth camera.
+
+The test plan has five stages, each gated by the previous one: (0) system identification of mass, inertia, thrust curve and motor lag to replace our estimates; (1) hover with the policy in the loop under motion capture; (2) trajectory tracking with known added payloads, compared with the simulator; (3) known foam obstacles with live depth mapping; (4) an unknown room with onboard visual-inertial odometry only. Safety layers include an RC kill switch, PX4 geofence, offboard-loss failsafe, and a watchdog that falls back to hold if commands arrive late.

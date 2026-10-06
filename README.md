@@ -16,5 +16,6 @@ A quadrotor that maps unknown rooms with a depth camera, plans with A*, and adap
 | [System design](docs/SYSTEM-DESIGN.md) | architecture, components, flows, decisions, limits |
 | [File structure](docs/FILE-STRUCTURE.md) | what's where |
 | [Drone selection](docs/DRONE-SELECTION.md) | which drone to fly the stack on, and the test plan |
+| [Paper (PDF)](paper/Where%20Does%20Meta-Learning%20Help%20a%20Quadrotor.pdf) | IEEE conference-format write-up of the study |
 
-Status: simulator, navigation stack, seven meta-learning algorithms and baselines are built, trained and benchmarked (numbers in `results/summary.json` and on the website). The paper is next.
+Status: simulator, navigation stack, seven meta-learning algorithms and baselines are built, trained and benchmarked (numbers in `results/summary.json` and on the website). The paper draft is in `paper/`.
