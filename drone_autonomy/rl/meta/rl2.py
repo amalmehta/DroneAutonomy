@@ -54,10 +54,10 @@ class RL2:
         self.iteration = 0
 
     @torch.no_grad()
-    def run_trials(self, tasks, K, deterministic, seed):
+    def run_trials(self, tasks, K, deterministic, seed, problem=None):
         """Each env row runs K consecutive episodes of its task with carried hidden state."""
         n = len(tasks)
-        env = self.problem.env(n)
+        env = (problem or self.problem).env(n)
         rng = np.random.default_rng(seed)
         h = None
         prev_a = np.zeros((n, self.ad), np.float32)
@@ -135,10 +135,11 @@ class RL2:
             out[f"post_{key}"] = float(np.nanmean(eps[-1][key]))
         return out
 
-    def adaptation_curve(self, tasks, stages, E=10, E_eval=4, seed=0):
-        """Stage s = performance in episode s+1 of a trial (deterministic actions)."""
+    def adaptation_curve(self, tasks, stages, E=10, E_eval=4, seed=0, eval_problem=None):
+        """Stage s = performance in episode s+1 of a trial (deterministic actions).
+        RL^2 adapts inside its hidden state, so the whole trial runs on eval_problem."""
         T = len(tasks)
-        _, eps = self.run_trials(tasks.repeat(E_eval), stages + 1, True, seed)
+        _, eps = self.run_trials(tasks.repeat(E_eval), stages + 1, True, seed, eval_problem)
         out = []
         for s, st in enumerate(eps):
             d = {k: np.asarray(v).reshape(T, E_eval) for k, v in st.items()}

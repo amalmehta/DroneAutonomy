@@ -83,3 +83,112 @@ def make_all():
     flight_figure(data, IMAGES / "flights.png")
     tracking_figure(data, IMAGES / "tracking.png")
     print(f"wrote {IMAGES}/flights.png, {IMAGES}/tracking.png")
+    if RESULTS.exists():
+        make_results()
+
+
+# ----------------------------------------------------------------- results
+RESULTS = Path("results")
+PAPER_FIGS = Path("paper/figures")
+PALETTE = {  # one hue per family: classical greys, baselines blue, MAML family warm, context methods green/purple
+    "classical": "#7d8a90", "l1": "#3d4a52", "classical_l1": "#3d4a52",
+    "dr": "#2c6fbb", "dr_finetune": "#6aa3e0", "e2e_dr": "#1b3f73", "e2e_dr_finetune": "#5a7fb5",
+    "maml": "#d9530f", "fomaml": "#f08c4a", "anil": "#b8860b", "metasgd": "#c2185b", "reptile": "#8d6e63",
+    "pearl": "#2f7d32", "rl2": "#6a3fa0",
+}
+METRIC = {"tracking_residual": ("rmse", "tracking RMSE (m)", 1.0), "tracking_gains": ("rmse", "tracking RMSE (m)", 1.0),
+          "navigation": ("success", "success rate", 1.0)}
+
+
+def load_results(problem):
+    out = {}
+    for f in sorted((RESULTS / problem).glob("*_seed*.json")):
+        r = json.loads(f.read_text())
+        out.setdefault(r["method"], []).append(r)
+    return out
+
+
+def curve(runs, split, key):
+    """Mean and 95% CI (over tasks x seeds) per stage; x = episodes of adaptation data."""
+    stages = min(len(r[split]) for r in runs)
+    xs, mu, lo, hi = [], [], [], []
+    for s in range(stages):
+        vals = np.concatenate([np.asarray(r[split][s][key], float) for r in runs])
+        vals = vals[np.isfinite(vals)]
+        m = vals.mean()
+        se = vals.std(ddof=1) / np.sqrt(len(vals)) if len(vals) > 1 else 0.0
+        xs.append(runs[0][split][s]["episodes_used"]); mu.append(m); lo.append(m - 1.96 * se); hi.append(m + 1.96 * se)
+    return np.array(xs), np.array(mu), np.array(lo), np.array(hi)
+
+
+def adaptation_figure(problem, out):
+    from .methods import LABELS
+    res = load_results(problem)
+    if not res:
+        return None
+    key, ylabel, _ = METRIC[problem]
+    fig, axs = plt.subplots(1, 2, figsize=(10, 3.6), sharey=False)
+    for ax, split, title in zip(axs, ("test", "ood"), ("held-out tasks", "out-of-distribution tasks")):
+        for meth, runs in res.items():
+            x, mu, lo, hi = curve(runs, split, key)
+            c = PALETTE.get(meth, "#444")
+            xp = np.maximum(x, 0) + 1
+            if len(x) == 1:
+                ax.axhline(mu[0], color=c, lw=1.4, ls=":" if meth.startswith("classical") or meth == "l1" else "--",
+                           label=LABELS.get(meth, meth))
+            else:
+                ax.plot(xp, mu, "-o", color=c, ms=3.5, lw=1.8, label=LABELS.get(meth, meth))
+                ax.fill_between(xp, lo, hi, color=c, alpha=0.12, lw=0)
+        ax.set_xscale("log")
+        ax.set_xlabel("adaptation episodes + 1 (log)", fontsize=8)
+        ax.set_ylabel(ylabel, fontsize=8)
+        ax.set_title(title, fontsize=9, color=INK)
+        ax.tick_params(labelsize=7.5)
+        ax.grid(alpha=0.25, lw=0.6)
+    axs[1].legend(fontsize=7, frameon=False, loc="center left", bbox_to_anchor=(1.02, 0.5))
+    fig.tight_layout()
+    fig.savefig(out, dpi=170, bbox_inches="tight")
+    plt.close(fig)
+    return out
+
+
+def summary(problem):
+    """Final numbers per method: pre-adaptation and best-budget post-adaptation, test and OOD."""
+    from .methods import LABELS
+    res = load_results(problem)
+    key = METRIC[problem][0]
+    rows = []
+    for meth, runs in res.items():
+        row = {"method": meth, "label": LABELS.get(meth, meth), "seeds": len(runs)}
+        for split in ("test", "ood"):
+            x, mu, lo, hi = curve(runs, split, key)
+            row[f"{split}_pre"], row[f"{split}_post"] = float(mu[0]), float(mu[-1])
+            row[f"{split}_post_ci"] = float(hi[-1] - mu[-1])
+            row[f"{split}_episodes"] = int(x[-1])
+            if "crashed" in runs[0][split][-1]:
+                row[f"{split}_crash"] = float(np.mean([np.mean(r[split][-1]["crashed"]) for r in runs]))
+            if "collision" in runs[0][split][-1]:
+                row[f"{split}_collision"] = float(np.mean([np.mean(r[split][-1]["collision"]) for r in runs]))
+        if "fullstack" in runs[0]:
+            for split in ("test", "ood"):
+                fs = [r["fullstack"][split] for r in runs]
+                row[f"full_{split}_success_pre"] = float(np.mean([np.mean(f[0]["success"]) for f in fs]))
+                row[f"full_{split}_success_post"] = float(np.mean([np.mean(f[-1]["success"]) for f in fs]))
+                row[f"full_{split}_collision_post"] = float(np.mean([np.mean(f[-1]["collision"]) for f in fs]))
+        rows.append(row)
+    return rows
+
+
+def make_results():
+    PAPER_FIGS.mkdir(parents=True, exist_ok=True)
+    IMAGES.mkdir(parents=True, exist_ok=True)
+    out = {}
+    for problem in ("tracking_residual", "tracking_gains", "navigation"):
+        f = adaptation_figure(problem, PAPER_FIGS / f"adaptation_{problem}.pdf")
+        if f:
+            adaptation_figure(problem, IMAGES / f"adaptation_{problem}.png")
+            out[problem] = summary(problem)
+    (RESULTS / "summary.json").write_text(json.dumps(out, indent=1))
+    Path("website/data").mkdir(parents=True, exist_ok=True)
+    Path("website/data/results.json").write_text(json.dumps(out))
+    print("results figures:", ", ".join(out) or "none yet")

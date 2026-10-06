@@ -23,6 +23,7 @@ def main(argv=None):
     b.add_argument("--problems", nargs="+", default=["tracking_residual", "tracking_gains", "navigation"])
     b.add_argument("--seeds", nargs="+", type=int, default=[0, 1, 2])
     b.add_argument("--workers", type=int, default=8)
+    b.add_argument("--methods", nargs="+", default=None, help="default: every method of each problem")
     b.add_argument("--quick", action="store_true", help="fewer tasks, for smoke tests")
 
     sub.add_parser("figures", help="make paper/website figures from results/")
@@ -39,7 +40,7 @@ def main(argv=None):
         sweep(a.problems, a.methods, a.seeds, a.workers, a.skip_done)
     elif a.cmd == "bench":
         from .benchmark import bench_all
-        bench_all(a.problems, a.seeds, a.workers, a.quick)
+        bench_all(a.problems, a.seeds, a.workers, a.quick, a.methods)
     elif a.cmd == "figures":
         from .figures import make_all
         make_all()

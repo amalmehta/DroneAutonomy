@@ -107,10 +107,10 @@ class PEARL:
 
     # ------------------------------------------------------------ rollouts
     @torch.no_grad()
-    def run_episodes(self, tasks, E, z_per_task, deterministic, seed):
+    def run_episodes(self, tasks, E, z_per_task, deterministic, seed, problem=None):
         """One synchronised batch: E episodes for each of T tasks with given z (T, LATENT)."""
         T = len(tasks)
-        env = self.problem.env(T * E)
+        env = (problem or self.problem).env(T * E)
         obs = env.reset(tasks.repeat(E), seed=seed)
         z = z_per_task.repeat_interleave(E, 0)
         trans = []
@@ -218,7 +218,7 @@ class PEARL:
         return float(q_loss), float(pi_loss)
 
     # ----------------------------------------------------------- evaluation
-    def adaptation_curve(self, tasks, stages, E=10, E_eval=4, seed=0):
+    def adaptation_curve(self, tasks, stages, E=10, E_eval=4, seed=0, eval_problem=None):
         """Stage s: context = s exploration episodes collected with posterior sampling."""
         rng = np.random.default_rng(seed)
         T = len(tasks)
@@ -231,7 +231,7 @@ class PEARL:
                 else:
                     mu, var = self.posterior(self._ctx_tensor(context))
                     z_mean, z_sample = mu, mu + var.sqrt() * torch.randn_like(mu)
-            _, st = self.run_episodes(tasks, E_eval, z_mean, True, int(rng.integers(1 << 30)))
+            _, st = self.run_episodes(tasks, E_eval, z_mean, True, int(rng.integers(1 << 30)), eval_problem)
             st["episodes_used"] = s
             out.append(st)
             if s < stages:

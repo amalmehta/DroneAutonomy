@@ -45,22 +45,25 @@ class Method:
     def _detach(self, ps):
         return [p.detach().clone() for p in ps]
 
-    def adaptation_curve(self, tasks, stages, E=10, E_eval=4, seed=0):
+    def adaptation_curve(self, tasks, stages, E=10, E_eval=4, seed=0, eval_problem=None):
         """Evaluate (deterministically) before and after each adaptation stage.
 
         One stage = E exploratory episodes per task + one adaptation update.
+        Exploration always uses self.problem; evaluation uses eval_problem if
+        given (e.g. the full online-mapping stack).
         """
         rng = np.random.default_rng(seed)
         T = len(tasks)
+        ev = eval_problem or self.problem
         params = self._detach(expand_params(self.shared_params(), T))
         out = []
         for s in range(stages + 1):
-            _, st = self.problem.collect(params, tasks, E_eval, _seed(rng), deterministic=True)
+            _, st = ev.collect(params, tasks, E_eval, _seed(rng), deterministic=True)
             st["episodes_used"] = s * E
             out.append(st)
             if s < stages and self.adapts:
                 batch, _ = self.problem.collect(params, tasks, E, _seed(rng))
-                params = self._detach(self.adapt(params, batch))
+                params = self._detach(self.adapt([p.detach().requires_grad_(True) for p in params], batch))
         return out
 
     def state_dict(self):
