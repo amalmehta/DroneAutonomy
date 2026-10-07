@@ -6,7 +6,7 @@ Tracking problems: stage s = after s adaptation updates of E=10 episodes each
 
 Navigation is scored twice:
   'oracle'     adaptation curves with the privileged planner (fast)
-  'fullstack'  the complete depth -> map -> A* stack in unseen test rooms,
+  'fullstack'  the complete depth -> map -> A* stack in 48 distinct unseen test rooms,
                before and after one adaptation stage (exploration flights use
                the privileged planner, like a calibration flight in a known room)
 """
@@ -25,7 +25,7 @@ from .train import run_dir
 
 RESULTS = Path("results")
 N_TASKS = {"tracking_residual": 32, "tracking_gains": 32, "navigation": 24}
-FULLSTACK_TASKS = 12
+FULLSTACK_TASKS = {"test": 48, "ood": 12}  # one episode per task, each in its own unseen room
 
 
 def methods_for(problem):
@@ -80,7 +80,7 @@ def bench_one(problem, method, seed, quick=False):
 
 def fullstack(method, seed, m, quick=False):
     from .rl.nav_problem import Navigation
-    n = 4 if quick else FULLSTACK_TASKS
+    sizes = {"test": 4, "ood": 4} if quick else FULLSTACK_TASKS
     local = "classical" if method.startswith("classical") else "policy"
     planner = "none" if method.startswith("e2e") else "mapping"
     ev = Navigation(planner=planner, split="test", local=local, adaptive=(method == "classical_l1"))
@@ -89,7 +89,7 @@ def fullstack(method, seed, m, quick=False):
         m = Fixed(ev, name=method)
     out = {}
     for split in ("test", "ood"):
-        tasks = fixed_eval_tasks(n, split)
+        tasks = fixed_eval_tasks(sizes[split], split)
         stages = 1 if getattr(m, "adapts", False) else 0
         curve = m.adaptation_curve(tasks, stages, E=10, E_eval=1, seed=2000 + seed, eval_problem=ev)
         out[split] = [_summ(c) for c in curve]

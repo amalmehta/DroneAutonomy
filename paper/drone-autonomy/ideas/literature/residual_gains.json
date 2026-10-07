@@ -1,0 +1,456 @@
+{
+  "queries": [
+    "residual reinforcement learning adaptive control quadrotor",
+    "learning controller gain tuning quadrotor"
+  ],
+  "services": {
+    "openalex": {
+      "ok": 2,
+      "cached": 0,
+      "errors": []
+    },
+    "crossref": {
+      "ok": 2,
+      "cached": 0,
+      "errors": []
+    },
+    "arxiv": {
+      "ok": 2,
+      "cached": 0,
+      "errors": []
+    },
+    "semanticscholar": {
+      "ok": 0,
+      "cached": 0,
+      "errors": [
+        "'residual reinforcement learning adaptive control quadrotor': 429",
+        "'learning controller gain tuning quadrotor': 429"
+      ]
+    }
+  },
+  "records": [
+    {
+      "title": "Adaptive Outer-Loop Control of Quadrotors via Reinforcement Learning",
+      "authors": [
+        "Vishnu Saj",
+        "Sushil Vemuri",
+        "Dileep Kalathil",
+        "Moble Benedict"
+      ],
+      "year": 2026,
+      "ids": {
+        "openalex": "W7164210606",
+        "doi": "10.4050/f-0082-2026-0298",
+        "arxiv": "2605.16015"
+      },
+      "url": "https://openalex.org/W7161916281",
+      "abstract": "Deep Reinforcement Learning (DRL) for quadrotor flight control typically relies on Domain Randomization (DR) for sim-to-real transfer, resulting in overly conservative policies that struggle with dynamic disturbances. To overcome this, we propose a novel adaptive control architecture that actively perceives and reacts to instantaneous perturbations. First, we train an optimal outer-loop policy, then replace its reliance on ground-truth disturbance data with a Residual Dynamics Predictor (RDP). The RDP estimates the external forces and moments acting on the aircraft in flight online using only the history of states and control actions. For seamless hardware transfer, we introduce a data-efficient linear calibration bridge and an online thrust correction mechanism that align the simulated latent space with reality using mere seconds of flight data. Real-world validations on a Crazyflie micro-quadrotor demonstrate that our adaptive controller significantly outperforms baselines, maintaining precise trajectory tracking under severe uncertainties including mass variations, asymmetric payloads, and dynamic slung loads",
+      "venue": "arXiv (Cornell University)",
+      "found_in": [
+        "arxiv",
+        "openalex"
+      ],
+      "query": "residual reinforcement learning adaptive control quadrotor"
+    },
+    {
+      "title": "Reinforcement Learning Based Prediction of PID Controller Gains for Quadrotor UAVs",
+      "authors": [
+        "Serhat S\u00f6nmez",
+        "Montecchio, Luca",
+        "Simone Martini",
+        "Matthew J. Rutherford",
+        "Alessandro Rizzo",
+        "Margareta Stefanovic",
+        "Kimon P. Valavanis"
+      ],
+      "year": 2025,
+      "ids": {
+        "openalex": "W4407309007",
+        "doi": "10.48550/arxiv.2502.04552",
+        "arxiv": "2502.04552"
+      },
+      "url": "https://doi.org/10.48550/arxiv.2502.04552",
+      "abstract": "A reinforcement learning (RL) based methodology is proposed and implemented for online fine-tuning of PID controller gains, thus, improving quadrotor effective and accurate trajectory tracking. The RL agent is first trained offline on a quadrotor PID attitude controller and then validated through simulations and experimental flights. RL exploits a Deep Deterministic Policy Gradient (DDPG) algorithm, which is an off-policy actor-critic method. Training and simulation studies are performed using Matlab/Simulink and the UAV Toolbox Support Package for PX4 Autopilots. Performance evaluation and comparison studies are performed between the hand-tuned and RL-based tuned approaches. The results show that the controller parameters based on RL are adjusted during flights, achieving the smallest attitude errors, thus significantly improving attitude tracking performance compared to the hand-tuned approach.",
+      "venue": "arXiv (Cornell University)",
+      "found_in": [
+        "arxiv",
+        "openalex"
+      ],
+      "query": "learning controller gain tuning quadrotor"
+    },
+    {
+      "title": "Robust Fuzzy Q-Learning-Based Strictly Negative Imaginary Tracking Controllers for the Uncertain Quadrotor Systems",
+      "authors": [
+        "Vu Phi Tran",
+        "Mohamed A. Mabrok",
+        "Sreenatha Gopalarao Anavatti",
+        "Matthew Garratt",
+        "Ian R. Petersen"
+      ],
+      "year": 2022,
+      "ids": {
+        "openalex": "W4282921508",
+        "doi": "10.1109/tcyb.2022.3175366",
+        "arxiv": "2203.13959"
+      },
+      "url": "https://doi.org/10.1109/tcyb.2022.3175366",
+      "abstract": "Quadrotors are one of the popular unmanned aerial vehicles (UAVs) due to their versatility and simple design. However, the tuning of gains for quadrotor flight controllers can be laborious, and accurately stable control of trajectories can be difficult to maintain under exogenous disturbances and uncertain system parameters. This article introduces a novel robust adaptive control synthesis methodology for a quadrotor robot's attitude and altitude stabilization. The proposed method is based on the fuzzy reinforcement learning and strictly negative imaginary (SNI) property. The first stage of our control approach is to transform a nonlinear quadrotor system into an equivalent negative-imaginary (NI) linear model by means of the feedback linearization (FL) technique. The second phase is to design a control scheme that adapts online the SNI controller gains via fuzzy Q -learning. The performance of the designed controller is compared with that of a fixed-gain SNI controller, a fuzzy-SNI controller, and a conventional PID controller in a series of numerical simulations. Furthermore, the proofs for the stability of the proposed controller and the adaptive laws are provided using the NI theorem.",
+      "venue": "IEEE Transactions on Cybernetics",
+      "found_in": [
+        "arxiv",
+        "openalex"
+      ],
+      "query": "learning controller gain tuning quadrotor"
+    },
+    {
+      "title": "Recursive Least Squares-Informed Real-Time Reinforcement Learning for Resilient Adaptive Quadrotor Control",
+      "authors": [
+        "Nejat Tukenmez",
+        "Seta  O. Bogosyan"
+      ],
+      "year": 2026,
+      "ids": {
+        "doi": "10.2139/ssrn.6948784"
+      },
+      "url": "https://doi.org/10.2139/ssrn.6948784",
+      "abstract": "The deployment of quadrotors in dynamic and unpredictable environments requires intelligent control architectures capable of mitigating aerodynamic disturbances and unmodeled dynamics. Thus, there is a crucial need for robust, model-independent control frameworks, since deriving exact mathematical models for such complex operating conditions is often intractable. Reinforcement learning (RL) provides a powerful, data-driven alternative to classical methods, allowing control policies to adapt through environmental interaction rather than relying on rigid physical equations. However, transitioning these data-driven algorithms from theoretical simulation to physical hardware remains a significant gap between theory and practice. To bridge this gap, this paper introduces a hybrid architecture via Recursive Least Squares (RLS) by focusing on the principles of Dynamic Programming (DP). By coupling a computationally efficient RLS estimator with an RL policy, the framework continuously performs control strategy evaluation online without prior model knowledge. These real-time contextual data directly inform the learning agent, accelerating adaptation while remaining computationally viable for control loops. Crucially, this work transitions the proposed architecture from theoretical design to rigorous experimental validation. Physical flight tests conducted on a quadrotor platform demonstrate the real-time viability, substantial resilience, and promising results against induced disturbances when compared to the traditional control baseline, firmly establishing its utility for practical control engineering.",
+      "venue": "",
+      "found_in": [
+        "crossref"
+      ],
+      "query": "residual reinforcement learning adaptive control quadrotor"
+    },
+    {
+      "title": "Prescribed\u2010Time Adaptive Robust Optimal Control for Quadrotor UAV Using Game\u2010Theoretic Reinforcement Learning",
+      "authors": [
+        "Siyi Zhang",
+        "Yan Zhang",
+        "Zhengrong Xiang"
+      ],
+      "year": 2026,
+      "ids": {
+        "doi": "10.1002/acs.70139"
+      },
+      "url": "https://doi.org/10.1002/acs.70139",
+      "abstract": "ABSTRACT\n                  This paper investigates the optimal control problem of quadrotor unmanned aerial vehicles (UAVs) under uncertain dynamics and external environmental disturbances. First, the quadrotor UAV model with disturbances is considered, and a transformation function incorporating the prescribed time and accuracy via an auxiliary function is constructed to reformulate the problem as an optimal control problem. Subsequently, the control input and external disturbance are modeled as adversarial agents, and their interaction is analyzed using zero\u2010sum game theory, which results in the derivation of a modified Hamilton\u2013Jacobi\u2013Isaacs (HJI) equation. To implement the derived control policy, an online actor\u2010critic reinforcement learning algorithm is employed to efficiently approximate the solution of the otherwise intractable HJI equation in real time. Finally, numerical simulations are conducted to verify that prescribed\u2010time convergence, fast response, and robust flight performance under strong environmental disturbances are achieved by the proposed method.",
+      "venue": "International Journal of Adaptive Control and Signal Processing",
+      "found_in": [
+        "crossref"
+      ],
+      "query": "residual reinforcement learning adaptive control quadrotor"
+    },
+    {
+      "title": "Adaptive PID Gain Tuning for Quadrotor Hover Control via Deep Reinforcement Learning",
+      "authors": [
+        "Mohamed Amine Oumlik",
+        "WeiChen Dai"
+      ],
+      "year": 2026,
+      "ids": {
+        "doi": "10.1109/eecr69522.2026.11549405"
+      },
+      "url": "https://doi.org/10.1109/eecr69522.2026.11549405",
+      "abstract": "",
+      "venue": "2026 12th International Conference on Electrical Engineering, Control and Robotics (EECR)",
+      "found_in": [
+        "crossref"
+      ],
+      "query": "residual reinforcement learning adaptive control quadrotor"
+    },
+    {
+      "title": "Certifiable Safe Model-Based Reinforcement Learning with Control-Affine Dynamics Approximation",
+      "authors": [
+        "Hao Zhou",
+        "Yanze Zhang",
+        "Cameron Reid",
+        "Wenhao Luo"
+      ],
+      "year": 2026,
+      "ids": {
+        "arxiv": "2607.16501"
+      },
+      "url": "https://arxiv.org/abs/2607.16501",
+      "abstract": "Safe model-based reinforcement learning (RL) often bridges control-theoretic analysis and RL for robots to safely explore (partially) unknown system dynamics while deriving control actions for task efficiency. The control performance and safety assurance typically rely on prior knowledge of partially modeled nominal system dynamics and the data-driven models that compensate for residual model uncertainties. However, existing methods often overlook the structure of residual model uncertainties (e.g., components affine in control), which could lead to overly conservative robot behaviors or invalid safety guarantees under the safe learning-based controllers. This paper proposes a safe reinforcement learning framework that learns control-affine dynamics with a certifiable data-driven safe policy using control barrier functions (CBF). Specifically, we first use Control-Affine Random Fourier Features (ARFF) to model robot dynamics in a control-affine form, which offers computational efficiency that scales with dataset size and reduces potential model bias for model-based reinforcement learning. Then, a model-free, efficient uncertainty quantification method using adaptive conformal prediction (ACP) is applied to quantify the uncertainty in the safety constraint arising from the learned control-affine dynamics. This allows for data-driven safety assurance amenable to principled and efficient controller synthesis with CBF. Simulation results on the cartpole and the 3D quadrotor platforms demonstrate the effectiveness of the proposed framework.",
+      "venue": "arXiv preprint",
+      "found_in": [
+        "arxiv"
+      ],
+      "query": "residual reinforcement learning adaptive control quadrotor"
+    },
+    {
+      "title": "Integrated Fault-Tolerant Attitude Control of Quadrotor Using Reinforcement Learning",
+      "authors": [
+        "Sajad Roshanravan",
+        "Saeed Shamaghdari"
+      ],
+      "year": 2025,
+      "ids": {
+        "openalex": "W4413398525",
+        "doi": "10.61882/jiaeee.22.2.3"
+      },
+      "url": "https://doi.org/10.61882/jiaeee.22.2.3",
+      "abstract": "This paper deals with the optimal attitude control problem for quadrotor unmanned air vehicles (UAV) with unknown nonlinear dynamics subject to component and actuator faults.The proposed integrated optimal fault tolerant control (FTC) scheme is based on reinforcement learning (RL) algorithm, without requiring prior knowledge of the system dynamics.To solve the Hamilton-Jacobi-Bellman (HJB) equation, an identifier-critic-based online RL strategy is employed with a dual neural network (NN) approximation structure.The forgetting factor in the proposed identifier update law is variable and dependent on the state estimation errors and measurement noise estimation.Choosing this variable forgetting factor increases the convergence speed and decreases the estimation error of identifier NN weights compared to the constant one while maintaining its robustness.When a fault occurs, the system continues to operate under the former control policy until the fault is detected.On the other hand, the optimal control design in the RL framework requires the initial stabilizing control condition.In order to make it possible to initiate the control learning process from the former applied FTC, this condition is relaxed by leveraging a stabilizing term in the critic update law.The Uniformly Ultimately Boundedness (UUB) of identifier and critic NN weight errors and, as a result, the convergence of the control input to the neighborhood of the optimal solution are all proved by Lyapunov theory.In the proposed method, changes in the values of faults are detected by comparing the HJB error to a predefined threshold.Finally, the simulation results are given to validate the effectiveness of the developed method.",
+      "venue": "Journal of Association of Electrical and Electronics Engineers",
+      "found_in": [
+        "openalex"
+      ],
+      "query": "residual reinforcement learning adaptive control quadrotor"
+    },
+    {
+      "title": "Reinforcement Learning-Based PD Controller Gains Prediction for Quadrotor UAVs",
+      "authors": [
+        "Serhat S\u00f6nmez",
+        "Luca Montecchio",
+        "Simone Martini",
+        "Matthew J. Rutherford",
+        "Alessandro Rizzo",
+        "Margareta Stefanovic",
+        "Kimon P. Valavanis"
+      ],
+      "year": 2025,
+      "ids": {
+        "openalex": "W4413279260",
+        "doi": "10.3390/drones9080581"
+      },
+      "url": "https://doi.org/10.3390/drones9080581",
+      "abstract": "This paper presents a reinforcement learning (RL)-based methodology for the online fine-tuning of PD controller gains, with the goal of bridging the gap between simulation-trained controllers and real-world quadrotor applications. As a first step toward real-world implementation, the proposed approach applies a Deep Deterministic Policy Gradient (DDPG) algorithm\u2014an off-policy actor\u2013critic method\u2014to adjust the gains of a quadrotor attitude PD controller during flight. The RL agent was initially trained offline in a simulated environment, using MATLAB/Simulink 2024a and the UAV Toolbox Support Package for PX4 Autopilots v1.14.0. The trained controller was then validated through both simulation and experimental flight tests. Comparative performance analyses were conducted between the hand-tuned and RL-tuned controllers. Our results demonstrate that the RL-based tuning method successfully adapts the controller gains in real time, leading to improved attitude tracking and reduced steady-state error. This study constitutes the first stage of a broader research effort investigating RL-based PID, LQR, MRAC, and Koopman-integrated RL-based PID controllers for real-time quadrotor control.",
+      "venue": "Drones",
+      "found_in": [
+        "openalex"
+      ],
+      "query": "learning controller gain tuning quadrotor"
+    },
+    {
+      "title": "TACO: Trajectory-Aware Controller Optimization for Quadrotors",
+      "authors": [
+        "Hersh Sanghvi",
+        "Spencer Folk",
+        "Vijay Kumar",
+        "Camillo Jose Taylor"
+      ],
+      "year": 2025,
+      "ids": {
+        "arxiv": "2511.02060"
+      },
+      "url": "https://arxiv.org/abs/2511.02060",
+      "abstract": "Controller performance in quadrotor trajectory tracking depends heavily on parameter tuning, yet standard approaches often rely on fixed, manually tuned parameters that sacrifice task-specific performance. We present Trajectory-Aware Controller Optimization (TACO), a framework that adapts controller parameters online based on the upcoming reference trajectory and current quadrotor state. TACO employs a learned predictive model and a lightweight optimization scheme to optimize controller gains in real time with respect to a broad class of trajectories, and can also be used to adapt trajectories to improve dynamic feasibility while respecting smoothness constraints. To enable large-scale training, we also introduce a parallelized quadrotor simulator supporting fast data collection on diverse trajectories. Experiments on a variety of trajectory types show that TACO outperforms conventional, static parameter tuning while operating orders of magnitude faster than black-box optimization baselines, enabling practical real-time deployment on a physical quadrotor. Furthermore, we show that adapting trajectories using TACO significantly reduces the tracking error obtained by the quadrotor.",
+      "venue": "arXiv preprint",
+      "found_in": [
+        "arxiv"
+      ],
+      "query": "learning controller gain tuning quadrotor"
+    },
+    {
+      "title": "Methods for Multi-objective Optimization PID Controller for quadrotor UAVs",
+      "authors": [
+        "Andrea Vaiuso",
+        "Gabriele Immordino",
+        "Ludovica Onofri",
+        "Giuliano Coppotelli",
+        "Marcello Righi"
+      ],
+      "year": 2025,
+      "ids": {
+        "arxiv": "2509.17423"
+      },
+      "url": "https://arxiv.org/abs/2509.17423",
+      "abstract": "Integrating unmanned aerial vehicles into daily use requires controllers that ensure stable flight, efficient energy use, and reduced noise. Proportional integral derivative controllers remain standard but are highly sensitive to gain selection, with manual tuning often yielding suboptimal trade-offs. This paper studies different optimization techniques for the automated tuning of quadrotor proportional integral derivative gains under a unified simulation that couples a blade element momentum based aerodynamic model with a fast deep neural network surrogate, six degrees of freedom rigid body dynamics, turbulence, and a data driven acoustic surrogate model that predicts third octave spectra and propagates them to ground receivers. We compare three families of gradient-free optimizers: metaheuristics, Bayesian optimization, and deep reinforcement learning. Candidate controllers are evaluated using a composite cost function that incorporates multiple metrics, such as noise footprint and power consumption, simultaneously. Metaheuristics improve performance consistently, with Grey Wolf Optimization producing optimal results. Bayesian optimization is sample efficient but carries higher per iteration overhead and depends on the design domain. The reinforcement learning agents do not surpass the baseline in the current setup, suggesting the problem formulation requires further refinement. On unseen missions the best tuned controller maintains accurate tracking while reducing oscillations, power demand, and acoustic emissions. These results show that noise aware proportional integral derivative tuning through black box search can deliver quieter and more efficient flight without hardware changes.",
+      "venue": "arXiv preprint",
+      "found_in": [
+        "arxiv"
+      ],
+      "query": "learning controller gain tuning quadrotor"
+    },
+    {
+      "title": "Adaptive Control of Quadrotors in Uncertain Environments",
+      "authors": [
+        "Daniel Leit\u00e3o",
+        "Rita Cunha",
+        "Joao Miranda Lemos"
+      ],
+      "year": 2024,
+      "ids": {
+        "openalex": "W4393253533",
+        "doi": "10.3390/eng5020030"
+      },
+      "url": "https://doi.org/10.3390/eng5020030",
+      "abstract": "The problem addressed in this article consists of the motion control of a quadrotor affected by model disturbances and uncertainties. In order to tackle model uncertainty, adaptive control based on reinforcement learning is used. The distinctive feature of this article, in comparison with other works on quadrotor control using reinforcement learning, is the exploration of the underlying optimal control problem in which a quadratic cost and a linear dynamics allow for an algorithm that runs in real time. Instead of identifying a plant model, adaptation is obtained by approximating the performance index given by the Q-function using directional forgetting recursive least squares that rely on a linear regressor built from quadratic functions of input/output data. The adaptive algorithm proposed is tested in simulation in a cascade control structure that drives a quadrotor. Simulations show the improvement in performance that results when the proposed algorithm is turned on.",
+      "venue": "Eng\u2014Advances in Engineering",
+      "found_in": [
+        "openalex"
+      ],
+      "query": "residual reinforcement learning adaptive control quadrotor"
+    },
+    {
+      "title": "Why Change Your Controller When You Can Change Your Planner: Drag-Aware Trajectory Generation for Quadrotor Systems",
+      "authors": [
+        "Hanli Zhang",
+        "Anusha Srikanthan",
+        "Spencer Folk",
+        "Vijay Kumar",
+        "Nikolai Matni"
+      ],
+      "year": 2024,
+      "ids": {
+        "arxiv": "2401.04960"
+      },
+      "url": "https://arxiv.org/abs/2401.04960",
+      "abstract": "Motivated by the increasing use of quadrotors for payload delivery, we consider a joint trajectory generation and feedback control design problem for a quadrotor experiencing aerodynamic wrenches. Unmodeled aerodynamic drag forces from carried payloads can lead to catastrophic outcomes. Prior work model aerodynamic effects as residual dynamics or external disturbances in the control problem leading to a reactive policy that could be catastrophic. Moreover, redesigning controllers and tuning control gains on hardware platforms is a laborious effort. In this paper, we argue that adapting the trajectory generation component keeping the controller fixed can improve trajectory tracking for quadrotor systems experiencing drag forces. To achieve this, we formulate a drag-aware planning problem by applying a suitable relaxation to an optimal quadrotor control problem, introducing a tracking cost function which measures the ability of a controller to follow a reference trajectory. This tracking cost function acts as a regularizer in trajectory generation and is learned from data obtained from simulation. Our experiments in both simulation and on the Crazyflie hardware platform show that changing the planner reduces tracking error by as much as 83%. Evaluation on hardware demonstrates that our planned path, as opposed to a baseline, avoids controller saturation and catastrophic outcomes during aggressive maneuvers.",
+      "venue": "arXiv preprint",
+      "found_in": [
+        "arxiv"
+      ],
+      "query": "learning controller gain tuning quadrotor"
+    },
+    {
+      "title": "Adaptive PID gain-scheduling for 3D smart quadrotor flight controller",
+      "authors": [
+        "q"
+      ],
+      "year": 2023,
+      "ids": {
+        "doi": "10.22541/au.169371728.84040370/v1"
+      },
+      "url": "https://doi.org/10.22541/au.169371728.84040370/v1",
+      "abstract": "",
+      "venue": "",
+      "found_in": [
+        "crossref"
+      ],
+      "query": "learning controller gain tuning quadrotor"
+    },
+    {
+      "title": "A Systematic Method for Optimal Gain Auto-Tuning of Pid Control for Nonlinear Quadrotor System Using Deep Reinforcement Learning",
+      "authors": [
+        "Hassan Moin",
+        "Umer  Hameed Shah",
+        "M Jawad",
+        "Hasan Sajid"
+      ],
+      "year": 2023,
+      "ids": {
+        "doi": "10.2139/ssrn.4354052"
+      },
+      "url": "https://doi.org/10.2139/ssrn.4354052",
+      "abstract": "Quadcopters have under-actuated, highly nonlinear, and coupled dynamics, which makes their control a challenging endeavor. However, PID controllers have exhibited remarkable performance for such systems in a variety of circumstances, including obstacle avoidance, trajectory tracking, and route planning. The outer loop handles mission-level goals, while the inner loop is responsible for its stability and control. Nevertheless, gain optimization for nonlinear systems using heuristics or rule-based approaches is a laborious, time-consuming, and challenging task. Using a deep actor-critic Reinforcement Learning (RL) algorithm with continuous observation and action spaces, this study implements an optimal gain auto-tuning framework for the altitude, attitude, and position controllers of a 6 DoF nonlinear drone system. The state equations are determined using Lagrange&amp;apos;s (energy-based) technique, whilst the aerodynamic coefficients are computed numerically using Blade Element Momentum Theory (BEMT). In addition, the asymptotic stability of the cascaded closed loop nonlinear system is investigated using the theory of Lyapunov. The suggested technique is validated by simulations, which demonstrate that the quadcopter can closely follow a specified trajectory by using the optimized gains. Most notably, these optimal gains fulfil the constraints derived from Lyapunov&amp;apos;s stability analysis, suggesting that the RL technique is an incredibly powerful instrument that can evaluate the uncertainties present in any complicated nonlinear system.",
+      "venue": "",
+      "found_in": [
+        "crossref"
+      ],
+      "query": "learning controller gain tuning quadrotor"
+    },
+    {
+      "title": "Self-tuning Gains of a Quadrotor using a Simple Model for Policy Gradient Reinforcement Learning",
+      "authors": [
+        "Jaime Junell",
+        "Tommaso Mannucci",
+        "Ye Zhou",
+        "Erik-Jan Van Kampen"
+      ],
+      "year": 2016,
+      "ids": {
+        "openalex": "W2316548428",
+        "doi": "10.2514/6.2016-1387"
+      },
+      "url": "https://doi.org/10.2514/6.2016-1387",
+      "abstract": "Autonomous flight of Micro Aerial Vehicles (MAVs) faces many challenges in the realm of control.When approaching these problems it is usually advantageous to have an accurate mathematical model of the system to be controlled.However, this is not always possible to obtain due to the complex nature of MAV dynamics, inconsistency of manufacturing processes, and parameter adaptation over time.A model-free control approach such as model-free Reinforcement Learning (RL) requires a large number of real-life trials to learn desired actions.This paper presents the implementation of an approach which utilizes a simple model of a quadrotor system to reduce the number of real-life trials required to find the locally optimal gains.The concept is verified using 2 simulations: one for an F-16 aircraft and the other for a quadrotor.Finally, the approach is applied on a quadrotor's vertical controller to tune the PID gains during a takeoff maneuver of a real AR.drone 2 quadrotor. Nomenclature MDPMarkov decision process \u03c0 \u03b8 policy \u03b8 policy parameters \u03c1 performance measure V \u03c0 value function of policy, \u03c0 \u2207\u03b8\u03c1(\u03b8) derivative vector of \u03b4\u03c1 \u03b4\u03b8",
+      "venue": "AIAA Guidance, Navigation, and Control Conference and Exhibit",
+      "found_in": [
+        "openalex"
+      ],
+      "query": "learning controller gain tuning quadrotor"
+    },
+    {
+      "title": "Quadrotor cascade PID controller automatic tuning",
+      "authors": [
+        "Xi Chen",
+        "Liuping Wang"
+      ],
+      "year": 2016,
+      "ids": {
+        "doi": "10.1109/aucc.2016.7868208"
+      },
+      "url": "https://doi.org/10.1109/aucc.2016.7868208",
+      "abstract": "",
+      "venue": "2016 Australian Control Conference (AuCC)",
+      "found_in": [
+        "crossref"
+      ],
+      "query": "learning controller gain tuning quadrotor"
+    },
+    {
+      "title": "A novel PID controller gain tuning method for a quadrotor landing on a ship deck using the invariant ellipsoid technique",
+      "authors": [
+        "Chun Kiat Tan",
+        "Jianliang Wang"
+      ],
+      "year": 2014,
+      "ids": {
+        "doi": "10.1109/iccas.2014.6987764"
+      },
+      "url": "https://doi.org/10.1109/iccas.2014.6987764",
+      "abstract": "",
+      "venue": "2014 14th International Conference on Control, Automation and Systems (ICCAS 2014)",
+      "found_in": [
+        "crossref"
+      ],
+      "query": "learning controller gain tuning quadrotor"
+    },
+    {
+      "title": "Attitude Control of a Quadrotor with Optimized PID Controller",
+      "authors": [
+        "Hossein Bolandi",
+        "Mohammad Rezaei",
+        "Reza Mohsenipour",
+        "Hossein Nemati",
+        "S. M. Smailzadeh"
+      ],
+      "year": 2013,
+      "ids": {
+        "openalex": "W2013399423",
+        "doi": "10.4236/ica.2013.43039"
+      },
+      "url": "https://doi.org/10.4236/ica.2013.43039",
+      "abstract": "A new approach to control, stabilization and disturbance rejection of attitude subsystem of quadrotor is presented in this article. Analytical method is used to tune conventional structure of PID controller. SISO approach is implemented for control structure to achieve desired objectives. The performance of the designed control structure is evaluated through time domain factors such as overshoot, settling time and integral error index, and robustness. A comparison is done between designed controller and back-step controller applied to main model of quadrotor. The results of simulation show the effectiveness of designed control scheme.",
+      "venue": "Intelligent Control and Automation",
+      "found_in": [
+        "openalex"
+      ],
+      "query": "learning controller gain tuning quadrotor"
+    },
+    {
+      "title": "Learning-Based Adaptive Morphing Flight Control for Disturbance Resistance of Morphing Quadrotor UAVs via Meta Reinforcement Learning_supp1-3735975.pdf",
+      "authors": [
+        "Jun-Wei Wang"
+      ],
+      "year": null,
+      "ids": {
+        "doi": "10.1109/taes.2026.3735975/mm1"
+      },
+      "url": "https://doi.org/10.1109/taes.2026.3735975/mm1",
+      "abstract": "",
+      "venue": "",
+      "found_in": [
+        "crossref"
+      ],
+      "query": "residual reinforcement learning adaptive control quadrotor"
+    },
+    {
+      "title": "DEEP REINFORCEMENT LEARNING FOR QUADROTOR TRAJECTORY CONTROL IN VIRTUAL ENVIRONMENTS",
+      "authors": [
+        "GUILHERME SIQUEIRA EDUARDO"
+      ],
+      "year": null,
+      "ids": {
+        "doi": "10.17771/pucrio.acad.54178"
+      },
+      "url": "https://doi.org/10.17771/pucrio.acad.54178",
+      "abstract": "",
+      "venue": "",
+      "found_in": [
+        "crossref"
+      ],
+      "query": "residual reinforcement learning adaptive control quadrotor"
+    }
+  ]
+}

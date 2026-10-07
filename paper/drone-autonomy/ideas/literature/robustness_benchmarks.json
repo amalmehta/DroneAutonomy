@@ -1,0 +1,464 @@
+{
+  "queries": [
+    "quadrotor reinforcement learning unmodeled aerodynamics sim-to-real",
+    "benchmark meta reinforcement learning robotics"
+  ],
+  "services": {
+    "openalex": {
+      "ok": 2,
+      "cached": 0,
+      "errors": []
+    },
+    "crossref": {
+      "ok": 2,
+      "cached": 0,
+      "errors": []
+    },
+    "arxiv": {
+      "ok": 2,
+      "cached": 0,
+      "errors": []
+    },
+    "semanticscholar": {
+      "ok": 0,
+      "cached": 0,
+      "errors": [
+        "'quadrotor reinforcement learning unmodeled aerodynamics sim-to-real': 429",
+        "'benchmark meta reinforcement learning robotics': 429"
+      ]
+    }
+  },
+  "records": [
+    {
+      "title": "Meta-reinforcement learning for social robotics.",
+      "authors": [
+        "Anand Ballou"
+      ],
+      "year": 2024,
+      "ids": {
+        "openalex": "W7152088440",
+        "doi": "10.70675/0bbc4585z1f9fz4c2ez8866zd802d3f93cdb"
+      },
+      "url": "https://doi.org/10.70675/0bbc4585z1f9fz4c2ez8866zd802d3f93cdb",
+      "abstract": "M\u00e9ta-apprentissage par renforcement pour la robotique sociale Les syst\u00e8mes de robotique sociale visent \u00e0 fournir une assistance, \u00e0 coop\u00e9rer, \u00e0 participer \u00e0 des t\u00e2ches de collaboration et \u00e0 interagir avec les utilisateurs humains. Cela n\u00e9cessite que le syst\u00e8me robotique interagisse dans un environnement inconnu. La principale mani\u00e8re actuelle de relever ce d\u00e9fi repose sur des outils et des algorithmes d\u2019apprentissage automatique. Les approches d'apprentissage automatique permettent au robot d'apprendre des informations de son environnement. L\u2019apprentissage par renforcement est une approche d\u2019apprentissage automatique populaire pour la robotique sociale. L'apprentissage par renforcement (RL) est un cadre de r\u00e9solution de probl\u00e8mes de prise de d\u00e9cision dans lequel un agent apprend \u00e0 interagir avec son environnement par un processus d'essais et d'erreurs. En interagissant avec son environnement, l'agent recevra un feedback qui r\u00e9compensera ou p\u00e9nalisera l'action entreprise. L\u2019objectif des algorithmes d\u2019apprentissage par renforcement est d\u2019apprendre une strat\u00e9gie de s\u00e9lection d\u2019actions (politique) qui maximisera la r\u00e9compense que l\u2019agent recevra. RL est bien adapt\u00e9 pour r\u00e9soudre des probl\u00e8mes de d\u00e9cision tels que les environnements d\u2019interaction sociale des robots, o\u00f9 les ensembles de donn\u00e9es \u00e9tiquet\u00e9s ne sont g\u00e9n\u00e9ralement pas disponibles. Cependant, appliquer l\u2019apprentissage par renforcement directement \u00e0 l\u2019environnement social est difficile en raison de divers facteurs. L\u2019un de ces facteurs est la diversit\u00e9 des environnements auxquels un agent social sera confront\u00e9 lors de son d\u00e9ploiement et la n\u00e9cessit\u00e9 pour l\u2019agent de s\u2019adapter aux diff\u00e9rentes pr\u00e9f\u00e9rences des utilisateurs. Cependant, il est notoirement difficile pour les agents d\u2019apprentissage par renforcement de s\u2019adapter \u00e0 des environnements pr\u00e9sentant des dynamiques diff\u00e9rentes ou des fonctions de r\u00e9compense diff\u00e9rentes.Pour aider \u00e0 r\u00e9soudre ce probl\u00e8me, cette th\u00e8se \u00e9tudie deux mani\u00e8res diff\u00e9rentes d'am\u00e9liorer l'adaptabilit\u00e9 des agents d'apprentissage par renforcement. Dans la premi\u00e8re partie, nous \u00e9tudions l\u2019utilisabilit\u00e9 des approches d\u2019apprentissage par m\u00e9ta-renforcement dans un contexte de robotique sociale. Nous proposons une am\u00e9lioration par rapport \u00e0 un algorithme d'apprentissage par m\u00e9ta-renforcement de pointe dans l'espoir de g\u00e9n\u00e9rer des comportements plus diversifi\u00e9s. Dans la deuxi\u00e8me partie, nous proposons d'\u00e9tudier comment utiliser directement les retours des utilisateurs pour une adaptation rapide \u00e0 des fonctions de r\u00e9compense inconnues. Pour ce faire, nous proposons d'int\u00e9grer l'apprentissage par m\u00e9ta-renforcement dans le cadre classique d'apprentissage bas\u00e9 sur les pr\u00e9f\u00e9rences afin de construire un algorithme robuste et permettant de gagner du temps pour l'apprentissage bas\u00e9 sur les pr\u00e9f\u00e9rences dans le contexte de la robotique sociale. Pour comparer notre approche, nous proposons \u00e9galement une nouvelle suite d'environnements d'apprentissage par renforcement social, qui permettent de tester notre algorithme sur diverses t\u00e2ches sociales avec diff\u00e9rents param\u00e8tres et pr\u00e9f\u00e9rences utilisateur complexes.",
+      "venue": "",
+      "found_in": [
+        "crossref",
+        "openalex"
+      ],
+      "query": "benchmark meta reinforcement learning robotics"
+    },
+    {
+      "title": "Hypernetworks in Meta-Reinforcement Learning",
+      "authors": [
+        "Beck, Jacob",
+        "Matthew Thomas Jackson",
+        "Risto Vuorio",
+        "Shimon Whiteson"
+      ],
+      "year": 2022,
+      "ids": {
+        "openalex": "W4307078904",
+        "doi": "10.48550/arxiv.2210.11348",
+        "arxiv": "2210.11348"
+      },
+      "url": "https://doi.org/10.48550/arxiv.2210.11348",
+      "abstract": "Training a reinforcement learning (RL) agent on a real-world robotics task remains generally impractical due to sample inefficiency. Multi-task RL and meta-RL aim to improve sample efficiency by generalizing over a distribution of related tasks. However, doing so is difficult in practice: In multi-task RL, state of the art methods often fail to outperform a degenerate solution that simply learns each task separately. Hypernetworks are a promising path forward since they replicate the separate policies of the degenerate solution while also allowing for generalization across tasks, and are applicable to meta-RL. However, evidence from supervised learning suggests hypernetwork performance is highly sensitive to the initialization. In this paper, we 1) show that hypernetwork initialization is also a critical factor in meta-RL, and that naive initializations yield poor performance; 2) propose a novel hypernetwork initialization scheme that matches or exceeds the performance of a state-of-the-art approach proposed for supervised settings, as well as being simpler and more general; and 3) use this method to show that hypernetworks can improve performance in meta-RL by evaluating on multiple simulated robotics benchmarks.",
+      "venue": "arXiv (Cornell University)",
+      "found_in": [
+        "arxiv",
+        "openalex"
+      ],
+      "query": "benchmark meta reinforcement learning robotics"
+    },
+    {
+      "title": "Continual World: A Robotic Benchmark For Continual Reinforcement Learning",
+      "authors": [
+        "Maciej Wo\u0142czyk",
+        "Micha\u0142 Zaj\u0105c",
+        "Razvan Pascanu",
+        "\u0141ukasz Kuci\u0144ski",
+        "Piotr Mi\u0142o\u015b"
+      ],
+      "year": 2021,
+      "ids": {
+        "openalex": "W3165631200",
+        "doi": "10.48550/arxiv.2105.10919",
+        "arxiv": "2105.10919"
+      },
+      "url": "https://doi.org/10.48550/arxiv.2105.10919",
+      "abstract": "Continual learning (CL) -- the ability to continuously learn, building on previously acquired knowledge -- is a natural requirement for long-lived autonomous reinforcement learning (RL) agents. While building such agents, one needs to balance opposing desiderata, such as constraints on capacity and compute, the ability to not catastrophically forget, and to exhibit positive transfer on new tasks. Understanding the right trade-off is conceptually and computationally challenging, which we argue has led the community to overly focus on catastrophic forgetting. In response to these issues, we advocate for the need to prioritize forward transfer and propose Continual World, a benchmark consisting of realistic and meaningfully diverse robotic tasks built on top of Meta-World as a testbed. Following an in-depth empirical evaluation of existing CL methods, we pinpoint their limitations and highlight unique algorithmic challenges in the RL setting. Our benchmark aims to provide a meaningful and computationally inexpensive challenge for the community and thus help better understand the performance of existing and future solutions. Information about the benchmark, including the open-source code, is available at https://sites.google.com/view/continualworld.",
+      "venue": "arXiv (Cornell University)",
+      "found_in": [
+        "arxiv",
+        "openalex"
+      ],
+      "query": "benchmark meta reinforcement learning robotics"
+    },
+    {
+      "title": "Meta-World: A Benchmark and Evaluation for Multi-Task and Meta Reinforcement Learning",
+      "authors": [
+        "Tianhe Yu",
+        "Deirdre Quillen",
+        "Zhanpeng He",
+        "Ryan Julian",
+        "Avnish Narayan",
+        "Hayden Shively",
+        "Adithya Bellathur",
+        "Karol Hausman",
+        "Chelsea Finn",
+        "Sergey Levine"
+      ],
+      "year": 2019,
+      "ids": {
+        "openalex": "W2981344907",
+        "doi": "10.48550/arxiv.1910.10897",
+        "arxiv": "1910.10897"
+      },
+      "url": "https://doi.org/10.48550/arxiv.1910.10897",
+      "abstract": "Meta-reinforcement learning algorithms can enable robots to acquire new skills much more quickly, by leveraging prior experience to learn how to learn. However, much of the current research on meta-reinforcement learning focuses on task distributions that are very narrow. For example, a commonly used meta-reinforcement learning benchmark uses different running velocities for a simulated robot as different tasks. When policies are meta-trained on such narrow task distributions, they cannot possibly generalize to more quickly acquire entirely new tasks. Therefore, if the aim of these methods is to enable faster acquisition of entirely new behaviors, we must evaluate them on task distributions that are sufficiently broad to enable generalization to new behaviors. In this paper, we propose an open-source simulated benchmark for meta-reinforcement learning and multi-task learning consisting of 50 distinct robotic manipulation tasks. Our aim is to make it possible to develop algorithms that generalize to accelerate the acquisition of entirely new, held-out tasks. We evaluate 7 state-of-the-art meta-reinforcement learning and multi-task learning algorithms on these tasks. Surprisingly, while each task and its variations (e.g., with different object positions) can be learned with reasonable success, these algorithms struggle to learn with multiple tasks at the same time, even with as few as ten distinct training tasks. Our analysis and open-source environments pave the way for future research in multi-task learning and meta-learning that can enable meaningful generalization, thereby unlocking the full potential of these methods.",
+      "venue": "arXiv (Cornell University)",
+      "found_in": [
+        "arxiv",
+        "openalex"
+      ],
+      "query": "benchmark meta reinforcement learning robotics"
+    },
+    {
+      "title": "Learning Agile Quadrotor Flight in the Real World",
+      "authors": [
+        "Yunfan Ren",
+        "Zhiyuan Zhu",
+        "Jiaxu Xing",
+        "Davide Scaramuzza"
+      ],
+      "year": 2026,
+      "ids": {
+        "openalex": "W7128640261",
+        "doi": "10.15607/rss.2026.xxii.135"
+      },
+      "url": "https://doi.org/10.15607/rss.2026.xxii.135",
+      "abstract": "Learning-based controllers have achieved impressive performance in agile quadrotor flight but typically rely on massive training in simulation, necessitating accurate system identification for effective Sim2Real transfer. However, even with precise modeling, fixed policies remain susceptible to out-of-distribution scenarios, ranging from external aerodynamic disturbances to internal hardware degradation. To ensure safety under these evolving uncertainties, such controllers are forced to operate with conservative safety margins, inherently constraining their agility outside of controlled settings. While online adaptation offers a potential remedy, safely exploring physical limits remains a critical bottleneck due to data scarcity and safety risks. To bridge this gap, we propose a self-adaptive framework that eliminates the need for precise system identification or offline Sim2Real transfer. We introduce Adaptive Temporal Scaling (ATS) to actively explore platform physical limits, and employ online residual learning to augment a simple nominal model. {Based on the learned hybrid model, we further propose Real-world Anchored Short-horizon Backpropagation Through Time (RASH-BPTT) to achieve efficient and robust in-flight policy updates. Extensive experiments demonstrate that our quadrotor reliably executes agile maneuvers near actuator saturation limits. The system evolves a conservative base policy with a peak speed of 1.9 m/s to 7.3 m/s within approximately 100 seconds of flight time. These findings underscore that real-world adaptation serves not merely to compensate for modeling errors, but as a practical mechanism for sustained performance improvement in aggressive flight regimes.",
+      "venue": "",
+      "found_in": [
+        "openalex"
+      ],
+      "query": "quadrotor reinforcement learning unmodeled aerodynamics sim-to-real"
+    },
+    {
+      "title": "Learning-based quadrotor tracking control using Recursive Gaussian Processes",
+      "authors": [
+        "Alessandro LUPATINI",
+        "Marco Lovera"
+      ],
+      "year": 2026,
+      "ids": {
+        "openalex": "W7214560161",
+        "doi": "10.21203/rs.3.rs-10392133/v1"
+      },
+      "url": "https://doi.org/10.21203/rs.3.rs-10392133/v1",
+      "abstract": "",
+      "venue": "Research Square",
+      "found_in": [
+        "openalex"
+      ],
+      "query": "quadrotor reinforcement learning unmodeled aerodynamics sim-to-real"
+    },
+    {
+      "title": "E2E-Fly: An Integrated Training-to-Deployment System for End-to-End Quadrotor Autonomy",
+      "authors": [
+        "Fangyu Sun",
+        "Fanxing Li",
+        "Linzuo Zhang",
+        "Yu Hu",
+        "Renbiao Jin",
+        "Shuyu Wu",
+        "Wenxian Yu",
+        "Danping Zou"
+      ],
+      "year": 2026,
+      "ids": {
+        "openalex": "W7154486242",
+        "doi": "10.48550/arxiv.2604.12916"
+      },
+      "url": "https://doi.org/10.48550/arxiv.2604.12916",
+      "abstract": "Training and transferring learning-based policies for quadrotors from simulation to reality remains challenging due to inefficient visual rendering, physical modeling inaccuracies, unmodeled sensor discrepancies, and the absence of a unified platform integrating differentiable physics learning into end-to-end training. While recent work has demonstrated various end-to-end quadrotor control tasks, few systems provide a systematic, zero-shot transfer pipeline, hindering reproducibility and real-world deployment. To bridge this gap, we introduce E2E-Fly, an integrated framework featuring an agile quadrotor platform coupled with a full-stack training, validation, and deployment workflow. The training framework incorporates a high-performance simulator with support for differentiable physics learning and reinforcement learning, alongside structured reward design tailored to common quadrotor tasks. We further introduce a two-stage validation strategy using sim-to-sim transfer and hardware-in-the-loop testing, and deploy policies onto two physical quadrotor platforms via a dedicated low-level control interface and a comprehensive sim-to-real alignment methodology, encompassing system identification, domain randomization, latency compensation, and noise modeling. To the best of our knowledge, this is the first work to systematically unify differentiable physical learning with training, validation, and real-world deployment for quadrotors. Finally, we demonstrate the effectiveness of our framework for training six end-to-end control tasks and deploy them in the real world.",
+      "venue": "arXiv (Cornell University)",
+      "found_in": [
+        "openalex"
+      ],
+      "query": "quadrotor reinforcement learning unmodeled aerodynamics sim-to-real"
+    },
+    {
+      "title": "Recursive Least Squares-Informed Real-Time Reinforcement Learning for Resilient Adaptive Quadrotor Control",
+      "authors": [
+        "Nejat Tukenmez",
+        "Seta  O. Bogosyan"
+      ],
+      "year": 2026,
+      "ids": {
+        "doi": "10.2139/ssrn.6948784"
+      },
+      "url": "https://doi.org/10.2139/ssrn.6948784",
+      "abstract": "The deployment of quadrotors in dynamic and unpredictable environments requires intelligent control architectures capable of mitigating aerodynamic disturbances and unmodeled dynamics. Thus, there is a crucial need for robust, model-independent control frameworks, since deriving exact mathematical models for such complex operating conditions is often intractable. Reinforcement learning (RL) provides a powerful, data-driven alternative to classical methods, allowing control policies to adapt through environmental interaction rather than relying on rigid physical equations. However, transitioning these data-driven algorithms from theoretical simulation to physical hardware remains a significant gap between theory and practice. To bridge this gap, this paper introduces a hybrid architecture via Recursive Least Squares (RLS) by focusing on the principles of Dynamic Programming (DP). By coupling a computationally efficient RLS estimator with an RL policy, the framework continuously performs control strategy evaluation online without prior model knowledge. These real-time contextual data directly inform the learning agent, accelerating adaptation while remaining computationally viable for control loops. Crucially, this work transitions the proposed architecture from theoretical design to rigorous experimental validation. Physical flight tests conducted on a quadrotor platform demonstrate the real-time viability, substantial resilience, and promising results against induced disturbances when compared to the traditional control baseline, firmly establishing its utility for practical control engineering.",
+      "venue": "",
+      "found_in": [
+        "crossref"
+      ],
+      "query": "quadrotor reinforcement learning unmodeled aerodynamics sim-to-real"
+    },
+    {
+      "title": "TRANSFER LEARNING TECHNIQUES FOR ACCELERATING REINFORCEMENT LEARNING IN ROBOTICS",
+      "authors": [
+        "V Anitha",
+        "Sridhar Sridhar",
+        "K Manikandan"
+      ],
+      "year": 2026,
+      "ids": {
+        "openalex": "W7196959258",
+        "doi": "10.71443/9789349552050-10"
+      },
+      "url": "https://doi.org/10.71443/9789349552050-10",
+      "abstract": "Reinforcement learning has become a prominent learning paradigm for enabling autonomous robotic systems to acquire intelligent decision-making capabilities through continuous interaction with dynamic environments. Practical deployment of reinforcement learning in robotics remains constrained by high sample complexity, prolonged training duration, computational overhead, and safety limitations associated with extensive trial-and-error learning. Transfer learning has emerged as an effective solution by enabling the reuse of previously acquired knowledge across related tasks, environments, and robotic platforms, thereby improving learning efficiency and accelerating policy optimization. Recent advances in deep learning, representation learning, policy transfer, and domain adaptation have further strengthened the capability of transfer learning to improve generalization, reduce training cost, and support rapid adaptation in complex robotic sapplications. This chapter presents a comprehensive overview of transfer learning techniques designed to accelerate reinforcement learning in robotics. Fundamental concepts of reinforcement learning and transfer learning are introduced before examining knowledge transfer mechanisms, policy transfer strategies, representation learning methods, hybrid transfer learning frameworks, and deep transfer learning architectures. The discussion further explores simulation-to-real transfer, domain adaptation, meta-learning, continual learning, and emerging intelligent learning frameworks that enhance robotic autonomy across diverse operational environments. Benchmark simulation platforms, evaluation metrics, robotic application domains, current research challenges, and future research directions are also examined to provide a structured understanding of recent developments. The presented discussion highlights the role of transfer learning in improving sample efficiency, accelerating convergence, enhancing policy generalization, and reducing computational complexity. The chapter serves as a valuable reference for researchers, academicians, and practitioners seeking efficient knowledge transfer methodologies for developing scalable, adaptive, and reliable reinforcement learning systems for next-generation intelligent robotics.",
+      "venue": "",
+      "found_in": [
+        "openalex"
+      ],
+      "query": "benchmark meta reinforcement learning robotics"
+    },
+    {
+      "title": "Mechanisms and Control Strategies for Morphing Structures in Quadrotors: A Review and Future Prospects",
+      "authors": [
+        "Osman Acar",
+        "Eija Honkavaara",
+        "Ruxandra Mihaela Botez",
+        "Deniz \u00c7\u0131nar Bayburt"
+      ],
+      "year": 2025,
+      "ids": {
+        "openalex": "W4414406564",
+        "doi": "10.3390/drones9090663"
+      },
+      "url": "https://doi.org/10.3390/drones9090663",
+      "abstract": "This review explores recent advancements in morphing structures for Unmanned Ariel Vehicles (UAVs), focusing on mechanical designs and control strategies of quadrotors that enable real-time geometric reconfiguration. Morphing mechanisms, ranging from closed-loop linkages to bioinspired and compliant structures, are evaluated in terms of adaptability, actuation simplicity, and flight stability. Control approaches, including model predictive control, reinforcement learning, and sliding mode control, are analyzed for their effectiveness in handling dynamic morphology. The review also highlights key morphing wing concepts such as GNATSpar and Zigzag Wingbox, which enhance aerodynamic efficiency and structural flexibility. A novel concept featuring an inverted slider-crank mechanism (ISCM) is introduced, enabling dual-mode UAV operation for both aerial and terrestrial missions, which is particularly useful in scenarios like wildfire suppression where stability and operation longevity are crucial. This study emphasizes the importance of integrated design approaches that align mechanical transformation with adaptive control. Critical gaps in real-world testing, swarm coordination, and scalable morphing architectures are identified, suggesting future research directions for developing robust, mission-adaptive UAV systems.",
+      "venue": "Drones",
+      "found_in": [
+        "openalex"
+      ],
+      "query": "quadrotor reinforcement learning unmodeled aerodynamics sim-to-real"
+    },
+    {
+      "title": "Quantifying Statistical Heterogeneity and Reproducibility in Cooperative Multi-Agent Reinforcement Learning: A Meta-Analysis of the SMAC Benchmark",
+      "authors": [
+        "Rex Li",
+        "Chunyu Liu"
+      ],
+      "year": 2025,
+      "ids": {
+        "doi": "10.3390/a18100653"
+      },
+      "url": "https://doi.org/10.3390/a18100653",
+      "abstract": "This study presents the first quantitative meta-analysis in cooperative multi-agent reinforcement learning (MARL). Undertaken on the StarCraft Multi-Agent Challenge (SMAC) benchmark, we quantify reproducibility and statistical heterogeneity across studies using the five algorithms introduced in the original SMAC paper (IQL, VDN, QMIX, COMA, QTRAN) on five widely used maps at a fixed 2M-step budget. The analysis pools win rates via multilevel mixed-effects meta-regression with cluster-robust variance and reports Algorithm \u00d7 Map cell-specific heterogeneity and 95% prediction intervals. Results show that heterogeneity is pervasive: 17/25 cells exhibit high heterogeneity (I2 \u2265 80%), indicating between-study variance dominates sampling error. Moderator analyses find publication year significantly explains part of residual variance, consistent with secular drift in tooling and defaults. Prediction intervals are broad across most cells, implying a new study can legitimately exhibit substantially lower or higher performance than pooled means. The study underscores the need for standardized reporting (SC2 versioning, evaluation episode counts, hyperparameters), preregistered map panels, open code/configurations, and machine-readable curves to enable robust, heterogeneity-aware synthesis and more reproducible SMAC benchmarking.",
+      "venue": "Algorithms",
+      "found_in": [
+        "crossref"
+      ],
+      "query": "benchmark meta reinforcement learning robotics"
+    },
+    {
+      "title": "Unsupervised Meta-Testing with Conditional Neural Processes for Hybrid Meta-Reinforcement Learning",
+      "authors": [
+        "Suzan Ece Ada",
+        "Emre Ugur"
+      ],
+      "year": 2025,
+      "ids": {
+        "arxiv": "2506.04399"
+      },
+      "url": "https://arxiv.org/abs/2506.04399",
+      "abstract": "We introduce Unsupervised Meta-Testing with Conditional Neural Processes (UMCNP), a novel hybrid few-shot meta-reinforcement learning (meta-RL) method that uniquely combines, yet distinctly separates, parameterized policy gradient-based (PPG) and task inference-based few-shot meta-RL. Tailored for settings where the reward signal is missing during meta-testing, our method increases sample efficiency without requiring additional samples in meta-training. UMCNP leverages the efficiency and scalability of Conditional Neural Processes (CNPs) to reduce the number of online interactions required in meta-testing. During meta-training, samples previously collected through PPG meta-RL are efficiently reused for learning task inference in an offline manner. UMCNP infers the latent representation of the transition dynamics model from a single test task rollout with unknown parameters. This approach allows us to generate rollouts for self-adaptation by interacting with the learned dynamics model. We demonstrate our method can adapt to an unseen test task using significantly fewer samples during meta-testing than the baselines in 2D-Point Agent and continuous control meta-RL benchmarks, namely, cartpole with unknown angle sensor bias, walker agent with randomized dynamics parameters.",
+      "venue": "arXiv preprint",
+      "found_in": [
+        "arxiv"
+      ],
+      "query": "benchmark meta reinforcement learning robotics"
+    },
+    {
+      "title": "The Power of Input: Benchmarking Zero-Shot Sim-to-Real Transfer of Reinforcement Learning Control Policies for Quadrotor Control",
+      "authors": [
+        "Alberto Dionigi",
+        "Gabriele Costante",
+        "Giuseppe Loianno"
+      ],
+      "year": 2024,
+      "ids": {
+        "doi": "10.1109/iros58592.2024.10802831"
+      },
+      "url": "https://doi.org/10.1109/iros58592.2024.10802831",
+      "abstract": "",
+      "venue": "2024 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)",
+      "found_in": [
+        "crossref"
+      ],
+      "query": "quadrotor reinforcement learning unmodeled aerodynamics sim-to-real"
+    },
+    {
+      "title": "QuadSwarm: A Modular Multi-Quadrotor Simulator for Deep Reinforcement Learning with Direct Thrust Control",
+      "authors": [
+        "Zhehui Huang",
+        "Sumeet Batra",
+        "Tao Chen",
+        "Rahul Krupani",
+        "Tushar Kumar",
+        "Artem Molchanov",
+        "Petrenko, Aleksei",
+        "James A. Preiss",
+        "Zhaojing Yang",
+        "Gaurav S. Sukhatme"
+      ],
+      "year": 2023,
+      "ids": {
+        "openalex": "W4381245790",
+        "doi": "10.48550/arxiv.2306.09537"
+      },
+      "url": "https://doi.org/10.48550/arxiv.2306.09537",
+      "abstract": "Reinforcement learning (RL) has shown promise in creating robust policies for robotics tasks. However, contemporary RL algorithms are data-hungry, often requiring billions of environment transitions to train successful policies. This necessitates the use of fast and highly-parallelizable simulators. In addition to speed, such simulators need to model the physics of the robots and their interaction with the environment to a level acceptable for transferring policies learned in simulation to reality. We present QuadSwarm, a fast, reliable simulator for research in single and multi-robot RL for quadrotors that addresses both issues. QuadSwarm, with fast forward-dynamics propagation decoupled from rendering, is designed to be highly parallelizable such that throughput scales linearly with additional compute. It provides multiple components tailored toward multi-robot RL, including diverse training scenarios, and provides domain randomization to facilitate the development and sim2real transfer of multi-quadrotor control policies. Initial experiments suggest that QuadSwarm achieves over 48,500 simulation samples per second (SPS) on a single quadrotor and over 62,000 SPS on eight quadrotors on a 16-core CPU. The code can be found in https://github.com/Zhehui-Huang/quad-swarm-rl.",
+      "venue": "arXiv (Cornell University)",
+      "found_in": [
+        "openalex"
+      ],
+      "query": "quadrotor reinforcement learning unmodeled aerodynamics sim-to-real"
+    },
+    {
+      "title": "Meta-reinforcement learning",
+      "authors": [
+        "Lan Zou"
+      ],
+      "year": 2023,
+      "ids": {
+        "doi": "10.1016/b978-0-323-89931-4.00011-0"
+      },
+      "url": "https://doi.org/10.1016/b978-0-323-89931-4.00011-0",
+      "abstract": "",
+      "venue": "Meta-Learning",
+      "found_in": [
+        "crossref"
+      ],
+      "query": "benchmark meta reinforcement learning robotics"
+    },
+    {
+      "title": "Safe-Control-Gym: A Unified Benchmark Suite for Safe Learning-Based Control and Reinforcement Learning in Robotics",
+      "authors": [
+        "Zhaocong Yuan",
+        "Adam W. Hall",
+        "Siqi Zhou",
+        "Lukas Brunke",
+        "Melissa Greeff",
+        "Jacopo Panerati",
+        "Angela P. Schoellig"
+      ],
+      "year": 2022,
+      "ids": {
+        "doi": "10.1109/lra.2022.3196132"
+      },
+      "url": "https://doi.org/10.1109/lra.2022.3196132",
+      "abstract": "",
+      "venue": "IEEE Robotics and Automation Letters",
+      "found_in": [
+        "crossref"
+      ],
+      "query": "benchmark meta reinforcement learning robotics"
+    },
+    {
+      "title": "Learning to Drive (L2D) as a Low-Cost Benchmark for Real-World Reinforcement Learning",
+      "authors": [
+        "Ari Viitala",
+        "Rinu Boney",
+        "Yi Zhao",
+        "Alexander Ilin",
+        "Juho Kannala"
+      ],
+      "year": 2021,
+      "ids": {
+        "doi": "10.1109/icar53236.2021.9659342"
+      },
+      "url": "https://doi.org/10.1109/icar53236.2021.9659342",
+      "abstract": "",
+      "venue": "2021 20th International Conference on Advanced Robotics (ICAR)",
+      "found_in": [
+        "crossref"
+      ],
+      "query": "benchmark meta reinforcement learning robotics"
+    },
+    {
+      "title": "Multi-task Maximum Entropy Inverse Reinforcement Learning",
+      "authors": [
+        "Adam Gleave",
+        "Oliver Habryka"
+      ],
+      "year": 2018,
+      "ids": {
+        "arxiv": "1805.08882"
+      },
+      "url": "https://arxiv.org/abs/1805.08882",
+      "abstract": "Multi-task Inverse Reinforcement Learning (IRL) is the problem of inferring multiple reward functions from expert demonstrations. Prior work, built on Bayesian IRL, is unable to scale to complex environments due to computational constraints. This paper contributes a formulation of multi-task IRL in the more computationally efficient Maximum Causal Entropy (MCE) IRL framework. Experiments show our approach can perform one-shot imitation learning in a gridworld environment that single-task IRL algorithms need hundreds of demonstrations to solve. We outline preliminary work using meta-learning to extend our method to the function approximator setting of modern MCE IRL algorithms. Evaluating on multi-task variants of common simulated robotics benchmarks, we discover serious limitations of these IRL algorithms, and conclude with suggestions for further work.",
+      "venue": "arXiv preprint",
+      "found_in": [
+        "arxiv"
+      ],
+      "query": "benchmark meta reinforcement learning robotics"
+    },
+    {
+      "title": "Squint: Fast Visual Reinforcement Learning for Sim-to-Real Robotics_supp1-3730387.mp4",
+      "authors": [
+        "Abdulaziz Almuzairee"
+      ],
+      "year": null,
+      "ids": {
+        "doi": "10.1109/lra.2026.3730387/mm1"
+      },
+      "url": "https://doi.org/10.1109/lra.2026.3730387/mm1",
+      "abstract": "",
+      "venue": "",
+      "found_in": [
+        "crossref"
+      ],
+      "query": "quadrotor reinforcement learning unmodeled aerodynamics sim-to-real"
+    },
+    {
+      "title": "Reinforcement learning and sim-to-real transfer for adaptive control of AUV",
+      "authors": [
+        "Thomas Chaffre"
+      ],
+      "year": null,
+      "ids": {
+        "doi": "10.70675/80702f26z2d56z43d3zb869z31231c2c3425"
+      },
+      "url": "https://doi.org/10.70675/80702f26z2d56z43d3zb869z31231c2c3425",
+      "abstract": "Apprentissage par renforcement et transfert de la simulation au r\u00e9el pour la commande adaptative d'un AUV\n                Les pilotes automatiques pour syst\u00e8mes sans pilote sont g\u00e9n\u00e9ralement con\u00e7us sur la base des retours fournis par les capteurs de vitesse et d'orientation. Dans le cas des syst\u00e8mes de pilotage automatique pour v\u00e9hicules sous-marins autonomes (AUV), l'objectif principal de la conception est de compenser les forces perturbatrices induites par les vagues et le courant agissant sur leur corps. Les pilotes automatiques AUV existants ne sont cependant capables de compenser que les composantes basse fr\u00e9quence des perturbations induites par la mer. Il semble naturel de supposer que les performances de l'AUV pourraient \u00eatre am\u00e9lior\u00e9es en prenant en compte la nature des perturbations dans la conception du pilote automatique. Le contr\u00f4le adaptatif fournit ce qui semble \u00eatre un cadre id\u00e9al \u00e0 cette fin. L'objectif de cette technique est d'ajuster automatiquement les param\u00e8tres de contr\u00f4le face \u00e0 des processus inconnus ou variables dans le temps, de mani\u00e8re \u00e0 atteindre le seuil de performance souhait\u00e9. D\u00e9velopp\u00e9s \u00e0 la fin des ann\u00e9es 1950, les cadres de contr\u00f4le adaptatifs ont \u00e9t\u00e9 consid\u00e9rablement \u00e9tendus et utilis\u00e9s dans divers domaines [...] et les contr\u00f4leurs adaptatifs ont commenc\u00e9 \u00e0 \u00eatre largement adopt\u00e9s dans l\u2019industrie au d\u00e9but des ann\u00e9es 1980. Il \u00e9tait alors \u00e9tabli que les conceptions robustes avec des param\u00e8tres fixes \u00e9taient trop limit\u00e9es pour g\u00e9rer des r\u00e9gimes complexes. L'\u00e9tude des contr\u00f4leurs adaptatifs pour les man\u0153uvres des AUV est associ\u00e9e \u00e0 divers d\u00e9fis, et cette th\u00e8se s'est concentr\u00e9e sur les perturbations externes parmi lesquelles : - Dynamique inconnue : l'incertitude associ\u00e9e \u00e0 la description pr\u00e9cise des \u00e9tats des vagues ou des courants est \u00e9lev\u00e9e. Ceci, combin\u00e9 \u00e0 sa nature dynamique, emp\u00eache les m\u00e9thodes de contr\u00f4le par r\u00e9troaction lin\u00e9aire d'atteindre des performances optimales de l'installation. Cela devient plus critique en pr\u00e9sence de changements dans les conditions m\u00e9t\u00e9orologiques qui imposent un facteur multiplicatif dans la composante des forces induites. La p\u00e9riode de perturbation variera \u00e9galement avec la vitesse du v\u00e9hicule et son orientation par rapport aux vagues ; - Non-lin\u00e9arit\u00e9 : la r\u00e9ponse du contr\u00f4leur \u00e0 certains points de fonctionnement doit \u00eatre trop conservatrice pour satisfaire aux sp\u00e9cifications \u00e0 d'autres points de fonctionnement. Ceci est difficile \u00e0 r\u00e9aliser pour des param\u00e8tres fixes obtenus par lin\u00e9arisation locale, qui n\u2019englobent pas la totalit\u00e9 de l\u2019enveloppe du r\u00e9gime. Dans cette th\u00e8se, nous avons consid\u00e9r\u00e9 le cas o\u00f9 les AUV ont une observabilit\u00e9 limit\u00e9e du processus et donc les incertitudes susmentionn\u00e9es ne sont pas mesur\u00e9es par le syst\u00e8me. Une classe de m\u00e9thodes de contr\u00f4le adaptatif, connues sous le nom de contr\u00f4leurs adaptatifs bas\u00e9s sur l'apprentissage, a \u00e9t\u00e9 d\u00e9velopp\u00e9e pour rem\u00e9dier \u00e0 certaines de ces limitations. Cette famille de solutions utilise des m\u00e9thodes d'optimisation sans mod\u00e8le capables de compenser la partie inconnue d'un processus tout en maintenant un contr\u00f4le optimal de sa partie connue \u00e0 l'aide de structures de contr\u00f4le traditionnelles bas\u00e9es sur des mod\u00e8les. Parmi les diff\u00e9rentes m\u00e9thodes sans mod\u00e8le, l\u2019apprentissage par renforcement profond est actuellement en t\u00eate. Ils exploitent des outils statistiques puissants qui donnent aux syst\u00e8mes de contr\u00f4le la capacit\u00e9 d\u2019apprendre et de s\u2019am\u00e9liorer automatiquement \u00e0 partir de l\u2019exp\u00e9rience sans qu\u2019on leur indique explicitement comment le faire. L'objectif de cette th\u00e8se \u00e9tait de formaliser un nouveau contr\u00f4le adaptatif bas\u00e9 sur l'apprentissage utilisant l'apprentissage par renforcement profond et le contr\u00f4le adaptatif de placement de p\u00f4les. De plus, nous avons propos\u00e9 un nouveau m\u00e9canisme de relecture d\u2019exp\u00e9rience qui prend en compte les caract\u00e9ristiques du m\u00e9canisme de relecture biologique. Les m\u00e9thodes ont \u00e9t\u00e9 valid\u00e9es en simulation et en situation r\u00e9elle, d\u00e9montrant les b\u00e9n\u00e9fices de combiner les deux th\u00e9ories plut\u00f4t que de les utiliser s\u00e9par\u00e9ment.",
+      "venue": "",
+      "found_in": [
+        "crossref"
+      ],
+      "query": "quadrotor reinforcement learning unmodeled aerodynamics sim-to-real"
+    },
+    {
+      "title": "What Matters in Learning a Zero-Shot Sim-to-Real RL Policy for Quadrotor Control? a Comprehensive Study_supp1-3575011.mp4",
+      "authors": [
+        "Jiayu Chen"
+      ],
+      "year": null,
+      "ids": {
+        "doi": "10.1109/lra.2025.3575011/mm1"
+      },
+      "url": "https://doi.org/10.1109/lra.2025.3575011/mm1",
+      "abstract": "",
+      "venue": "",
+      "found_in": [
+        "crossref"
+      ],
+      "query": "quadrotor reinforcement learning unmodeled aerodynamics sim-to-real"
+    }
+  ]
+}

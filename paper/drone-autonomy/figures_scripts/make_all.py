@@ -5,7 +5,7 @@ import sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-SCRIPTS = ["make_values.py", "task_table.py", "tracking_table.py", "navigation_table.py",
+SCRIPTS = ["make_values.py", "task_table.py", "tracking_table.py", "navigation_table.py", "step_size_table.py",
            "adaptation_curves.py", "example_flights.py"]
 
 

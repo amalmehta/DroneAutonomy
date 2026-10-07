@@ -31,3 +31,10 @@
 | `panerati2021pybullet` | Learning to Fly---a Gym Environment with {PyBullet} Physics  | arXiv:2103.02142 | Learning to Fly -- a Gym Environment with PyBullet Physics f | 1.00 | verified |
 | `foehn2022agilicious` | Agilicious: Open-Source and Open-Hardware Agile Quadrotor fo | arXiv:2307.06100 | Agilicious: Open-Source and Open-Hardware Agile Quadrotor fo | 1.00 | verified |
 | `meier2015px4` | {PX4}: A Node-Based Multithreaded Open Source Robotics Frame | doi.org 10.1109/ICRA.2015.7140074 | PX4: A node-based multithreaded open source robotics framewo | 1.00 | verified |
+| `zhou2026maven` | {MAVEN}: A Meta-Reinforcement Learning Framework for Varying | arXiv:2603.10714 | MAVEN: A Meta-Reinforcement Learning Framework for Varying-D | 1.00 | verified |
+| `eschmann2025raptor` | {RAPTOR}: A Foundation Policy for Quadrotor Control | arXiv:2509.11481 | RAPTOR: A Foundation Policy for Quadrotor Control | 1.00 | verified |
+| `sonmez2025pid` | Reinforcement Learning Based Prediction of {PID} Controller  | arXiv:2502.04552 | Reinforcement Learning Based Prediction of PID Controller Ga | 1.00 | verified |
+| `xing2024multitask` | Multi-Task Reinforcement Learning for Quadrotors | arXiv:2412.12442 | Multi-Task Reinforcement Learning for Quadrotors | 1.00 | verified |
+| `yuan2022safecontrolgym` | Safe-Control-Gym: A Unified Benchmark Suite for Safe Learnin | doi.org 10.1109/LRA.2022.3196132 | Safe-Control-Gym: A Unified Benchmark Suite for Safe Learnin | 1.00 | verified |
+| `yu2019metaworld` | Meta-World: A Benchmark and Evaluation for Multi-Task and Me | arXiv:1910.10897 | Meta-World: A Benchmark and Evaluation for Multi-Task and Me | 1.00 | verified |
+| `beck2025tutorial` | A Tutorial on Meta-Reinforcement Learning | doi.org 10.1561/2200000080 | A Tutorial on Meta-Reinforcement Learning | 1.00 | verified |

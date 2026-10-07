@@ -165,6 +165,7 @@ def summary(problem):
             row[f"{split}_pre"], row[f"{split}_post"] = float(mu[0]), float(mu[-1])
             row[f"{split}_post_ci"] = float(hi[-1] - mu[-1])
             row[f"{split}_episodes"] = int(x[-1])
+            row[f"{split}_curve"] = [float(v) for v in mu]
             if "crashed" in runs[0][split][-1]:
                 row[f"{split}_crash"] = float(np.mean([np.mean(r[split][-1]["crashed"]) for r in runs]))
             if "collision" in runs[0][split][-1]:
