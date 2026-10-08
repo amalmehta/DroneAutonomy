@@ -1,0 +1,208 @@
+{
+  "queries": [
+    "recurrent meta reinforcement learning task inference hidden state"
+  ],
+  "services": {
+    "openalex": {
+      "ok": 1,
+      "cached": 0,
+      "errors": []
+    },
+    "crossref": {
+      "ok": 1,
+      "cached": 0,
+      "errors": []
+    },
+    "arxiv": {
+      "ok": 1,
+      "cached": 0,
+      "errors": []
+    },
+    "semanticscholar": {
+      "ok": 0,
+      "cached": 0,
+      "errors": [
+        "'recurrent meta reinforcement learning task inference hidden state': 429"
+      ]
+    }
+  },
+  "records": [
+    {
+      "title": "Off-Policy Meta-Reinforcement Learning With Belief-Based Task Inference",
+      "authors": [
+        "Takahisa Imagawa",
+        "Takuya Hiraoka",
+        "Yoshimasa Tsuruoka"
+      ],
+      "year": 2022,
+      "ids": {
+        "openalex": "W4226463308",
+        "doi": "10.1109/access.2022.3170582"
+      },
+      "url": "https://doi.org/10.1109/access.2022.3170582",
+      "abstract": "Meta-reinforcement learning (RL) addresses the problem of sample inefficiency in deep RL by using experience obtained in past tasks for solving a new task. However, most existing meta-RL methods require partially or fully on-policy data, which hinders the improvement of sample efficiency. To alleviate this problem, we propose a novel off-policy meta-RL method,embedding learning and uncertainty evaluation(ELUE). An ELUE agent is characterized by the learning of what we call a task embedding space, an embedding space for representing the features of tasks. The agent learns a belief model over the task embedding space and trains a belief-conditional policy and Q-function. The belief model is designed to be agnostic to the order in which task information is obtained, thereby reducing the difficulty of task embedding learning. For a new task, the ELUE agent collects data by the pretrained policy, and updates its belief on the basis of the belief model. Thanks to the belief update, the performance of the agent improves with a small amount of data. In addition, the agent updates the parameters of its policy and Q-function so that it can adjust the pretrained relationships when there are enough data. We demonstrate that ELUE outperforms state-of-the-art meta RL methods through experiments on meta-RL benchmarks.",
+      "venue": "IEEE Access",
+      "found_in": [
+        "crossref",
+        "openalex"
+      ],
+      "query": "recurrent meta reinforcement learning task inference hidden state"
+    },
+    {
+      "title": "Interpretable Meta-Reinforcement Learning : Explicit Task Inference and Epistemic Exploration in Procedural Environments",
+      "authors": [
+        "Pol Puig Puy",
+        "Universitat Aut\u00f2noma de Barcelona. Escola d'Enginyeria"
+      ],
+      "year": 2026,
+      "ids": {
+        "openalex": "W7214137018"
+      },
+      "url": "https://openalex.org/W7214137018",
+      "abstract": "Deep Reinforcement Learning (DRL) struggles to generalise across varying environments, often memorising trajectories rather than inferring underlying causal rules. Meta-Reinforcement Learning (Meta-RL) addresses this by treating adaptation as an optimisation problem, yet standard recurrent agents act as opaque black boxes. This opacity makes it difficult to distinguish Bayes-adaptive epistemic exploration from blind statistical heuristics. This thesis introduces an interpretable Meta-RL architecture: a recurrent Proximal Policy Optimisation (PPO) agent augmented with a supervised ''Scientist Head''. Operating within ''RuleSalad'', a novel and computationally lightweight Gym-MiniGrid benchmark featuring progressive levels of parametric and non-parametric procedural randomisation, the agent explicitly infers and classifies the hidden rules and reward objectives of the Partially Observable Markov Decision Process (POMDP) at each time step. By decoding the agent's internal belief state and measuring its Shannon entropy, we map mathematical uncertainty directly onto human-understandable metrics. Our framework visualises the exact moment the agent resolves epistemic uncertainty, empirically showing when it shifts from hypothesis-driven exploration to optimal exploitation. We empirically evaluate seven experimental conditions and find evidence of epistemic exploration at lower complexity levels, where within-episode belief entropy collapses to \u22480.55 nats within the first calibration steps. At higher combinatorial limits, we identify and diagnose two structural architectural boundaries: a grounding problem in semantic decoding, and an exploration-inference gap, arising from single-episode amnesiac resets under destructive probing.",
+      "venue": "Dip\u00f2sit Digital de Documents de la UAB (Universitat Aut\u00f2noma de Barcelona)",
+      "found_in": [
+        "openalex"
+      ],
+      "query": "recurrent meta reinforcement learning task inference hidden state"
+    },
+    {
+      "title": "A Tutorial on Meta-Reinforcement Learning",
+      "authors": [
+        "Jacob Beck",
+        "Risto Vuorio",
+        "Evan Zheran Liu",
+        "Zheng Xiong",
+        "Luisa Zintgraf",
+        "Chelsea Finn",
+        "Shimon Whiteson"
+      ],
+      "year": 2025,
+      "ids": {
+        "openalex": "W4409116005",
+        "doi": "10.1561/2200000080"
+      },
+      "url": "https://doi.org/10.1561/2200000080",
+      "abstract": "While deep reinforcement learning (RL) has fueled multiple high-profile successes in machine learning, it is held back from more widespread adoption by its often poor data efficiency and the limited generality of the policies it produces. A promising approach for alleviating these limitations is to cast the development of better RL algorithms as a machine learning problem itself in a process called meta-RL. Meta-RL is most commonly studied in a problem setting where, given a distribution of tasks, the goal is to learn a policy that is capable of adapting to any new task from the task distribution with as little data as possible. In this survey, we describe the meta-RL problem setting in detail as well as its major variations. We discuss how, at a high level, meta-RL research can be clustered based on the presence of a task distribution and the learning budget available for each individual task. Using these clusters, we then survey meta-RL algorithms and applications. We conclude by presenting the open problems on the path to making meta-RL part of the standard toolbox for a deep RL practitioner.",
+      "venue": "Foundations and Trends\u00ae in Machine Learning",
+      "found_in": [
+        "openalex"
+      ],
+      "query": "recurrent meta reinforcement learning task inference hidden state"
+    },
+    {
+      "title": "Meta Learning Task Representation in Multiagent Reinforcement Learning: From Global Inference to Local Inference",
+      "authors": [
+        "Zijie Zhao",
+        "Yuqian Fu",
+        "Jiajun Chai",
+        "Yuanheng Zhu",
+        "Dongbin Zhao"
+      ],
+      "year": 2025,
+      "ids": {
+        "doi": "10.1109/tnnls.2025.3540758"
+      },
+      "url": "https://doi.org/10.1109/tnnls.2025.3540758",
+      "abstract": "",
+      "venue": "IEEE Transactions on Neural Networks and Learning Systems",
+      "found_in": [
+        "crossref"
+      ],
+      "query": "recurrent meta reinforcement learning task inference hidden state"
+    },
+    {
+      "title": "Meta-ETI: Meta-Reinforcement Learning With Explicit Task Inference for AAV-IoT Coverage",
+      "authors": [
+        "Songjun Huang",
+        "Chuanneng Sun",
+        "Dario Pompili"
+      ],
+      "year": 2025,
+      "ids": {
+        "doi": "10.1109/jiot.2025.3553808"
+      },
+      "url": "https://doi.org/10.1109/jiot.2025.3553808",
+      "abstract": "",
+      "venue": "IEEE Internet of Things Journal",
+      "found_in": [
+        "crossref"
+      ],
+      "query": "recurrent meta reinforcement learning task inference hidden state"
+    },
+    {
+      "title": "Meta-Learning Dynamics Forecasting Using Task Inference",
+      "authors": [
+        "Rui Wang",
+        "Robin Walters",
+        "Rose Yu"
+      ],
+      "year": 2021,
+      "ids": {
+        "openalex": "W3129756284",
+        "doi": "10.48550/arxiv.2102.10271"
+      },
+      "url": "https://doi.org/10.48550/arxiv.2102.10271",
+      "abstract": "Current deep learning models for dynamics forecasting struggle with generalization. They can only forecast in a specific domain and fail when applied to systems with different parameters, external forces, or boundary conditions. We propose a model-based meta-learning method called DyAd which can generalize across heterogeneous domains by partitioning them into different tasks. DyAd has two parts: an encoder which infers the time-invariant hidden features of the task with weak supervision, and a forecaster which learns the shared dynamics of the entire domain. The encoder adapts and controls the forecaster during inference using adaptive instance normalization and adaptive padding. Theoretically, we prove that the generalization error of such procedure is related to the task relatedness in the source domain, as well as the domain differences between source and target. Experimentally, we demonstrate that our model outperforms state-of-the-art approaches on both turbulent flow and real-world ocean data forecasting tasks.",
+      "venue": "arXiv (Cornell University)",
+      "found_in": [
+        "openalex"
+      ],
+      "query": "recurrent meta reinforcement learning task inference hidden state"
+    },
+    {
+      "title": "An Introduction to Deep Reinforcement Learning",
+      "authors": [
+        "Vincent Fran\u00e7ois-Lavet",
+        "Peter B. Henderson",
+        "Riashat Islam",
+        "Marc G. Bellemare",
+        "Jo\u00eblle Pineau"
+      ],
+      "year": 2018,
+      "ids": {
+        "openalex": "W3100366369",
+        "doi": "10.1561/2200000071"
+      },
+      "url": "https://doi.org/10.1561/2200000071",
+      "abstract": "Deep reinforcement learning is the combination of reinforcement learning (RL) and deep learning. This field of research has been able to solve a wide range of complex decision making tasks that were previously out of reach for a machine. Thus, deep RL opens up many new applications in domains such as healthcare, robotics, smart grids, finance, and many more. This manuscript provides an introduction to deep reinforcement learning models, algorithms and techniques. Particular focus is on the aspects related to generalization and how deep RL can be used for practical applications. We assume the reader is familiar with basic machine learning concepts.",
+      "venue": "Foundations and Trends\u00ae in Machine Learning",
+      "found_in": [
+        "openalex"
+      ],
+      "query": "recurrent meta reinforcement learning task inference hidden state"
+    },
+    {
+      "title": "Recurrent Reinforcement Learning Strategy with a Parameterized Agent for Online Scheduling of a State Task Network Under Uncertainty",
+      "authors": [],
+      "year": null,
+      "ids": {
+        "doi": "10.1021/acs.iecr.4c04900.s001"
+      },
+      "url": "https://doi.org/10.1021/acs.iecr.4c04900.s001",
+      "abstract": "",
+      "venue": "",
+      "found_in": [
+        "crossref"
+      ],
+      "query": "recurrent meta reinforcement learning task inference hidden state"
+    },
+    {
+      "title": "Deep Reinforcement Learning Data Collection for Bayesian Inference of Hidden Markov Models_supp1-3515939.pdf",
+      "authors": [
+        "Mohammad Alali"
+      ],
+      "year": null,
+      "ids": {
+        "doi": "10.1109/tai.2024.3515939/mm1"
+      },
+      "url": "https://doi.org/10.1109/tai.2024.3515939/mm1",
+      "abstract": "",
+      "venue": "",
+      "found_in": [
+        "crossref"
+      ],
+      "query": "recurrent meta reinforcement learning task inference hidden state"
+    }
+  ]
+}

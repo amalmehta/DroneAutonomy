@@ -1,19 +1,19 @@
 \section{Introduction}
 
-Small aerial robots rarely fly the vehicle they were tuned on. A delivery adds payload, a propeller chips, the wind picks up and the companion computer adds latency. Classical control handles part of this: a geometric tracking controller~\cite{lee2010geometric} with integral action rejects slow disturbances, and L1 adaptive augmentation estimates and cancels a lumped disturbance online~\cite{wu2022l1quad}. Learning-based adaptation goes further: meta-learning trains a model that adapts from a few samples of a new task~\cite{finn2017maml}, and learned adaptation has produced agile flight in strong winds~\cite{oconnell2022neuralfly} and a single controller for very different quadrotors~\cite{zhang2022nearhover}.
+Small aerial robots rarely fly the vehicle they were tuned on. A delivery adds payload, a propeller chips, the wind picks up and the companion computer adds latency. Classical control handles part of this: a geometric tracking controller~\cite{lee2010geometric} with integral action rejects slow disturbances, and L1 adaptive augmentation estimates and cancels a lumped disturbance online~\cite{wu2022l1quad}. Learning-based adaptation promises more: meta-learning trains a model that adapts from a few samples of a new task~\cite{finn2017maml}, and learned adaptation has produced agile flight in strong winds~\cite{oconnell2022neuralfly} and single controllers for very different quadrotors~\cite{zhang2022nearhover,eschmann2025raptor}.
 
-Two gaps motivate this work. First, meta-reinforcement-learning algorithms are usually compared with each other on locomotion benchmarks, not against classical controllers and planners that run in the same loop. Second, a deployed autonomy stack has several places where learning could enter (the low-level controller, its gains, the local planner), and it is not clear which one benefits.
+Two questions remain open. First, meta-reinforcement-learning algorithms are typically evaluated against each other on simulated robot benchmarks such as locomotion and manipulation suites~\cite{yu2019metaworld,beck2025tutorial}, rather than against the classical controllers and planners that would run in the same loop. Second, a deployed autonomy stack has several places where learning could enter (the low-level controller, its gains, the local planner), and it is not clear which of them benefits from meta-learning.
 
-We study both in one simulation suite. A batched quadrotor model parameterised after a Holybro X500 V2 runs a classical stack: a geometric controller with collective-thrust and body-rate (CTBR) output, a simulated RealSense D435i depth camera, a log-odds occupancy map and an A* planner (Fig.~\ref{fig:pipeline}). Meta-learning plugs into three places: a residual on the controller (Combination 1), the controller's gains (Combination 2) and the local planner (Combination 3). Each must adapt to a new task drawn from payload, motor wear, drag, wind, gusts and latency (Table~\ref{tab:tasks}).
+We study both questions in one simulation suite. A batched quadrotor model parameterised after a Holybro X500 V2 runs a classical stack: a geometric controller with collective-thrust and body-rate (CTBR) output, a simulated RealSense D435i depth camera, a log-odds occupancy map and an A* planner (Fig.~\ref{fig:pipeline}). Meta-learning plugs into three places: a residual on the controller, the controller's gains, and the local planner. Each must adapt to a new task drawn from payload, motor wear, drag, wind, gusts and latency.
 
 Our contributions are:
 \begin{itemize}
-\item an open simulation suite with the three classical+meta combinations (Sec.~\ref{sec:system});
-\item a benchmark of seven meta-learning algorithms against nominal, L1-adaptive, domain-randomised (DR) and fine-tuning baselines on held-out and out-of-distribution (OOD) tasks (Sec.~\ref{sec:results});
-\item findings on where adaptation helps and where it hurts: it helps most when tuning classical gains, adds little to a learned residual, degrades learned navigation planners except RL$^2$, and none of the methods survives the OOD tasks;
+\item an open simulation suite with three classical+meta combinations and a reproducible benchmark protocol (Secs.~\ref{sec:problem}--\ref{sec:protocol});
+\item a comparison of seven meta-learning algorithms with nominal, L1-adaptive, domain-randomised (DR) and fine-tuning baselines on held-out and out-of-distribution (OOD) tasks (Sec.~\ref{sec:results});
+\item four findings: a learned residual beats tuned classical adaptation; meta-learning helps most when it adapts classical gains; gradient-based adaptation at the meta-trained step size degrades learned navigation planners, and the classical planner stays the most reliable on the full stack; and no method survives the OOD tasks;
 \item a hardware recommendation and staged sim-to-real plan for testing the stack (Sec.~\ref{sec:platform}).
 \end{itemize}
-Code, results and a replay of recorded flights are at \url{https://github.com/amalmehta/DroneAutonomy}.
+Code, results and a replay of recorded flights are available at \url{https://github.com/amalmehta/DroneAutonomy}.
 
 \begin{figure*}[t]
 \centering

@@ -1,0 +1,21 @@
+{'a_s': 5.0, 'cutoff': 2.0, 'train_rmse': 0.15508842537431422, 'train_crash': 0.0}
+{'a_s': 5.0, 'cutoff': 5.0, 'train_rmse': 0.1541236094288827, 'train_crash': 0.0}
+{'a_s': 5.0, 'cutoff': 10.0, 'train_rmse': 0.14853575065440114, 'train_crash': 0.0}
+{'a_s': 5.0, 'cutoff': 20.0, 'train_rmse': 0.14375518130995035, 'train_crash': 0.0}
+{'a_s': 5.0, 'cutoff': 40.0, 'train_rmse': 0.14033792561138536, 'train_crash': 0.0}
+{'a_s': 10.0, 'cutoff': 2.0, 'train_rmse': 0.15499312887700772, 'train_crash': 0.0}
+{'a_s': 10.0, 'cutoff': 5.0, 'train_rmse': 0.1529141958922972, 'train_crash': 0.0}
+{'a_s': 10.0, 'cutoff': 10.0, 'train_rmse': 0.1474649027466694, 'train_crash': 0.0}
+{'a_s': 10.0, 'cutoff': 20.0, 'train_rmse': 0.14292310139301817, 'train_crash': 0.0}
+{'a_s': 10.0, 'cutoff': 40.0, 'train_rmse': 0.1401614100081861, 'train_crash': 0.0}
+{'a_s': 20.0, 'cutoff': 2.0, 'train_rmse': 0.15624919724337466, 'train_crash': 0.0}
+{'a_s': 20.0, 'cutoff': 5.0, 'train_rmse': 0.15266305599569388, 'train_crash': 0.0}
+{'a_s': 20.0, 'cutoff': 10.0, 'train_rmse': 0.1474441243924169, 'train_crash': 0.0}
+{'a_s': 20.0, 'cutoff': 20.0, 'train_rmse': 0.14337745799756701, 'train_crash': 0.0}
+{'a_s': 20.0, 'cutoff': 40.0, 'train_rmse': 0.14113035227736132, 'train_crash': 0.0}
+{'a_s': 40.0, 'cutoff': 2.0, 'train_rmse': 0.16228119352775222, 'train_crash': 0.0}
+{'a_s': 40.0, 'cutoff': 5.0, 'train_rmse': 0.15746194882930734, 'train_crash': 0.0}
+{'a_s': 40.0, 'cutoff': 10.0, 'train_rmse': 0.15290588337550515, 'train_crash': 0.0}
+{'a_s': 40.0, 'cutoff': 20.0, 'train_rmse': 0.1496991108007275, 'train_crash': 0.0}
+{'a_s': 40.0, 'cutoff': 40.0, 'train_rmse': 0.14791006023077766, 'train_crash': 0.0}
+{'best': {'a_s': 10.0, 'cutoff': 40.0, 'train_rmse': 0.1401614100081861, 'train_crash': 0.0}, 'wall_s': 79.21653580665588, 'default_test_rmse': 0.14926940358192936, 'default_test_crash': 0.0, 'default_ood_rmse': 0.668704430478479, 'default_ood_crash': 0.4375, 'tuned_test_rmse': 0.13965441732791384, 'tuned_test_crash': 0.0, 'tuned_ood_rmse': 0.6351034590972571, 'tuned_ood_crash': 0.4453125}

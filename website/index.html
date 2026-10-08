@@ -41,6 +41,9 @@
 * { box-sizing: border-box; }
 body { background: var(--bg); color: var(--ink); font: 15px/1.6 var(--body); margin: 0; }
 .wrap { max-width: 1180px; margin: 0 auto; padding-inline: 20px; padding-block: 28px 56px; display: grid; gap: 44px; }
+.wrap > * { min-width: 0; }
+img { max-width: 100%; height: auto; }
+.block > * { min-width: 0; }
 h1, h2, h3 { font-family: var(--display); line-height: 1.1; text-wrap: balance; margin: 0; }
 h1 { font-size: clamp(2.2rem, 5vw, 3.4rem); font-weight: 700; letter-spacing: -0.01em; }
 h2 { font-size: 1.6rem; font-weight: 600; }
@@ -112,7 +115,18 @@ td .na { color: var(--muted); }
 .spec { display: grid; grid-template-columns: auto 1fr; gap: 6px 16px; font-size: 0.88rem; margin: 0; }
 .spec dt { color: var(--muted); font-family: var(--mono); font-size: 0.78rem; padding-top: 2px; }
 .spec dd { margin: 0; }
-.findings { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+.subtitle { font-family: var(--display); font-size: 1.25rem; font-weight: 500; color: var(--muted); margin: 0; }
+.byline { font-family: var(--mono); font-size: 0.85rem; margin: 0; }
+.links { display: flex; flex-wrap: wrap; gap: 8px; }
+.btn { font: 500 0.85rem/1 var(--mono); padding: 10px 14px; border-radius: 3px; border: 1px solid var(--line); background: var(--panel); color: var(--ink); text-decoration: none; }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+.btn:hover { border-color: var(--accent); }
+pre.bib { background: var(--panel); border: 1px solid var(--line); border-radius: 4px; padding: 14px; overflow-x: auto; font: 0.8rem/1.5 var(--mono); margin: 0; }
+.bibhead { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+.findings { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 12px; }
+.findings > .finding { grid-column: span 2; }
+.findings > .finding:nth-child(n+4) { grid-column: span 3; }
+@media (max-width: 860px) { .findings { grid-template-columns: 1fr; } .findings > .finding, .findings > .finding:nth-child(n+4) { grid-column: auto; } }
 .finding { background: var(--panel); border: 1px solid var(--line); border-radius: 4px; padding: 12px 14px; display: grid; gap: 6px; align-content: start; }
 .finding p { font-size: 0.9rem; }
 .tabs { display: flex; flex-wrap: wrap; gap: 6px; }
@@ -136,9 +150,16 @@ footer { border-top: 1px solid var(--line); padding-top: 18px; display: flex; fl
 
 <div class="wrap">
   <header>
-    <span class="eyebrow">Quadrotor research · simulation · Holybro X500 V2 target</span>
-    <h1>Drone Autonomy</h1>
-    <p class="lede">A quadrotor that sees with a depth camera, maps a room it has never been in, plans a route with A*, and flies it under payload, wind and motor wear. The study compares seven meta-learning algorithms combined with classical control and planning.</p>
+    <span class="eyebrow">Drone Autonomy · simulation study · Holybro X500 V2 target</span>
+    <h1>Where Does Meta-Learning Help a Quadrotor?</h1>
+    <p class="subtitle">A simulation study of seven algorithms with classical control and planning</p>
+    <p class="byline">Amal Mehta · Independent Researcher</p>
+    <div class="links">
+      <a class="btn primary" href="paper.pdf">Paper (PDF)</a>
+      <a class="btn" href="https://github.com/amalmehta/DroneAutonomy">Code and data</a>
+      <a class="btn" href="#cite">Cite</a>
+    </div>
+    <p class="lede">A quadrotor that sees with a depth camera, maps a room it has never been in, plans a route with A*, and flies it under payload, wind and motor wear. We plug seven meta-learning algorithms into three places of this classical stack and ask where adapting actually helps.</p>
     <div class="chips">
       <span class="chip"><b>Simulated</b> 500 Hz rigid-body physics</span>
       <span class="chip"><b>Camera</b> RealSense D435i model</span>
@@ -241,11 +262,12 @@ footer { border-top: 1px solid var(--line); padding-top: 18px; display: flex; fl
   <section class="block" aria-labelledby="results-h">
     <span class="eyebrow">Results</span>
     <h2 id="results-h">What seven meta-learning algorithms bought, and where they broke</h2>
-    <p class="note">Every method adapts to new dynamics: payload ×0.85–1.3, one motor down to 75%, drag ×0.5–2, wind up to 2.5 m/s with gusts, and 0–30 ms latency. Scores are on 32 held-out tasks (navigation: 24, in rooms never seen in training) and on out-of-distribution tasks beyond every range. Adaptation data is flight episodes on the new task: gradient methods take up to 3 updates of 10 episodes each; PEARL and RL² use up to 3 episodes of experience. Tracking uses 2 training seeds, navigation 1.</p>
+    <p class="note">Every method adapts to new dynamics: payload ×0.85–1.3, one motor down to 75%, drag ×0.5–2, wind up to 2.5 m/s with gusts, and 0–30 ms latency. Scores are on 32 held-out tasks for tracking and 24 for navigation, each navigation episode in its own room never seen in training, plus out-of-distribution tasks beyond every range. Gradient methods adapt with up to 3 updates of 10 episodes each; PEARL and RL² with up to 3 episodes of experience. Training seeds: 2 for the residual, 5 for gains, 2 for navigation. The full navigation stack is scored on 48 unseen rooms per seed.</p>
     <div class="findings">
       <div class="finding"><span class="eyebrow">Combo 1 · residual on controller</span><p id="f1"></p></div>
       <div class="finding"><span class="eyebrow">Combo 2 · controller gains</span><p id="f2"></p></div>
       <div class="finding"><span class="eyebrow">Combo 3 · local planner</span><p id="f3"></p></div>
+      <div class="finding"><span class="eyebrow">Why adaptation hurt navigation</span><p id="f5"></p></div>
       <div class="finding"><span class="eyebrow">Out of distribution</span><p id="f4"></p></div>
     </div>
     <div class="tabs" role="tablist" aria-label="Choose a result table">
@@ -255,8 +277,8 @@ footer { border-top: 1px solid var(--line); padding-top: 18px; display: flex; fl
     </div>
     <div class="table-wrap"><table id="results-table"></table></div>
     <figure class="resfig">
-      <img id="results-fig" src="images/adaptation_tracking_residual.png" alt="Adaptation curves for every method on held-out and out-of-distribution tasks">
-      <figcaption id="results-cap"></figcaption>
+      <img src="images/adaptation_curves.png" alt="Adaptation curves for the residual, gain and navigation problems, from the paper's Fig. 2">
+      <figcaption>Fig. 2 of the paper. Adaptation pays off when it tunes classical gains (b), barely moves a learned residual (a), and at the meta-trained step size degrades learned navigation planners (c). Held-out tasks; mean and 95% interval over tasks and seeds; horizontal lines are methods that don't adapt.</figcaption>
     </figure>
   </section>
 
@@ -285,10 +307,25 @@ footer { border-top: 1px solid var(--line); padding-top: 18px; display: flex; fl
     </div>
   </section>
 
+  <section class="block" id="cite" aria-labelledby="cite-h">
+    <div class="bibhead">
+      <h2 id="cite-h">Cite</h2>
+      <button class="btn" id="copybib" type="button">Copy BibTeX</button>
+    </div>
+<pre class="bib" id="bib">@misc{mehta2026metaquadrotor,
+  title  = {Where Does Meta-Learning Help a Quadrotor? A Simulation Study of
+            Seven Algorithms with Classical Control and Planning},
+  author = {Mehta, Amal},
+  year   = {2026},
+  note   = {Preprint},
+  url    = {https://github.com/amalmehta/DroneAutonomy}
+}</pre>
+  </section>
+
   <footer>
     <span>Drone Autonomy · simulation study, October 2026</span>
     <a href="https://github.com/amalmehta/DroneAutonomy">Code on GitHub</a>
-    <span>Paper: coming with the results</span>
+    <a href="paper.pdf">Paper (PDF)</a>
   </footer>
 </div>
 
@@ -485,11 +522,6 @@ footer { border-top: 1px solid var(--line); padding-top: 18px; display: flex; fl
     e2e_dr: "Non-meta learned", e2e_dr_finetune: "Non-meta learned", maml: "Gradient meta-learning", fomaml: "Gradient meta-learning",
     anil: "Gradient meta-learning", metasgd: "Gradient meta-learning", reptile: "Gradient meta-learning", pearl: "Context meta-learning", rl2: "Context meta-learning" };
   const ORDER = ["classical", "l1", "classical_l1", "dr", "dr_finetune", "e2e_dr", "e2e_dr_finetune", "maml", "fomaml", "anil", "metasgd", "reptile", "pearl", "rl2"];
-  const CAPS = {
-    tracking_residual: "Tracking error against adaptation data, mean and 95% interval over tasks and seeds. Lower is better. Flat lines don't adapt.",
-    tracking_gains: "Tracking error when meta-learning tunes the classical controller's seven gains. Lower is better.",
-    navigation: "Success rate with the privileged planner against adaptation data. Higher is better. Gradient methods lose ground as they adapt; RL² gains.",
-  };
   let R = null;
   const cm = (v) => (v * 100).toFixed(1);
   const pc = (v) => Math.round(v * 100) + "%";
@@ -500,7 +532,9 @@ footer { border-top: 1px solid var(--line); padding-top: 18px; display: flex; fl
   }
   function showResults(problem) {
     document.querySelectorAll(".tabs button").forEach((b) => b.setAttribute("aria-selected", String(b.id === "tab-" + problem)));
-    const rows = (R[problem] || []).slice().sort((a, b) => ORDER.indexOf(a.method) - ORDER.indexOf(b.method));
+    let rows = (R[problem] || []).slice().sort((a, b) => ORDER.indexOf(a.method) - ORDER.indexOf(b.method));
+    // the nominal controller has no learned part: show one set of numbers for it in both tracking tabs
+    if (problem === "tracking_gains") rows = rows.map((r) => (r.method === "classical" ? R.tracking_residual.find((x) => x.method === "classical") : r));
     const nav = problem === "navigation";
     let head = nav
       ? `<tr><th>Method</th><th class="num">Before</th><th class="num">After adapting</th><th class="num">Data</th><th class="num">Full stack, unseen rooms</th><th class="num">Full stack collisions</th><th class="num">OOD success</th></tr>`
@@ -518,18 +552,26 @@ footer { border-top: 1px solid var(--line); padding-top: 18px; display: flex; fl
              <td class="num">${cm(r.ood_post)}</td><td class="num">${pc(r.ood_crash || 0)}</td></tr>`;
     });
     $("results-table").innerHTML = `<thead>${head}</thead><tbody>${body}</tbody>`;
-    $("results-fig").src = `images/adaptation_${problem}.png`;
-    $("results-cap").textContent = CAPS[problem];
   }
   function findings() {
     const g = (p, m) => (R[p] || []).find((r) => r.method === m) || {};
     const tr = (m) => g("tracking_residual", m), tg = (m) => g("tracking_gains", m), nv = (m) => g("navigation", m);
-    $("f1").innerHTML = `A learned residual cuts tracking error from ${cm(tr("classical").test_post)} cm (classical) and ${cm(tr("l1").test_post)} cm (L1 adaptive) to ${cm(tr("dr").test_post)} cm. Meta-learners adapt by about a centimetre (MAML ${cm(tr("maml").test_pre)} → ${cm(tr("maml").test_post)} cm) but don't beat the non-meta baseline.`;
-    $("f2").innerHTML = `Here meta-learning pays off. Meta-SGD tunes the seven gains from ${cm(tg("metasgd").test_pre)} to ${cm(tg("metasgd").test_post)} cm, against ${cm(tg("dr_finetune").test_post)} cm for the best non-meta tuning.`;
-    $("f3").innerHTML = `On the full stack in unseen rooms, the classical planner is most reliable: ${pc(nv("classical").full_test_success_post)} success with ${pc(nv("classical").full_test_collision_post)} collisions. Gradient adaptation makes learned planners worse (MAML ${pc(nv("maml").test_pre)} → ${pc(nv("maml").test_post)}). RL² is the only one that improves with experience (${pc(nv("rl2").test_pre)} → ${pc(nv("rl2").test_post)}).`;
-    $("f4").innerHTML = `Beyond the training ranges every method fails: tracking error above ${cm(Math.min(...R.tracking_residual.map((r) => r.ood_post)))} cm and near-zero navigation success. Learned residuals crash more often (${pc(tr("maml").ood_crash)} for MAML) than the plain controller (${pc(tr("classical").ood_crash)}).`;
+    const X = R.extras || {};
+    $("f1").innerHTML = `A learned residual cuts tracking error from ${cm(tr("classical").test_post)} cm (classical) and ${cm(tr("l1").test_post)} cm (L1 adaptive) to ${cm(tr("dr").test_post)} cm${X.l1_tuned ? `, about twice as good as even a tuned L1 (${cm(X.l1_tuned.tuned_test_rmse)} cm)` : ""}. Meta-learners adapt by about a centimetre (MAML ${cm(tr("maml").test_pre)} → ${cm(tr("maml").test_post)} cm) and end where the non-meta baseline starts.`;
+    $("f2").innerHTML = `This is where meta-learning pays off. Meta-SGD tunes the seven gains from ${cm(tg("metasgd").test_pre)} to ${cm(tg("metasgd").test_post)} cm, against ${cm(tg("dr_finetune").test_post)} cm for the best non-meta tuning${X.gain_paired ? `: ${cm(X.gain_paired.improvement)} cm better on paired tasks (95% CI ${cm(X.gain_paired.ci[0])}–${cm(X.gain_paired.ci[1])} cm), winning ${pc(X.gain_paired.win_rate)} of ${X.gain_paired.pairs} pairs` : ""}.`;
+    $("f3").innerHTML = `On the full stack in unseen rooms the classical planner is the most reliable: ${pc(nv("classical").full_test_success_post)} success with ${pc(nv("classical").full_test_collision_post)} collisions. Learned planners reach ${pc(Math.min(...R.navigation.filter((r) => !r.method.startsWith("classical")).map((r) => r.full_test_success_post)))}–${pc(Math.max(...R.navigation.filter((r) => !r.method.startsWith("classical")).map((r) => r.full_test_success_post)))}, and lose far more than the classical planner when the perfect map is replaced by the one built in flight.`;
+    const st = X.stepsize || {}, sm = (k) => st[k] && pc(st[k].success[st[k].success.length - 1]);
+    $("f5").innerHTML = `With the step size learned in meta-training, gradient adaptation makes learned planners worse (MAML ${pc(nv("maml").test_pre)} → ${pc(nv("maml").test_post)}).${st["maml_scale1.0_E10"] ? ` It's the step, not adaptation itself: in a sweep, MAML fell to ${sm("maml_scale1.0_E10")} at the learned step but held ${sm("maml_scale0.1_E10")} with a 10× smaller one, or ${sm("maml_scale1.0_E30")} with 3× more data per update.` : ""} RL² did not improve with experience (${pc(nv("rl2").test_pre)} → ${pc(nv("rl2").test_post)}).`;
+    $("f4").innerHTML = `Beyond the training ranges every method fails: tracking error above ${cm(Math.min(...R.tracking_residual.map((r) => r.ood_post)))} cm and navigation success at most ${pc(Math.max(...R.navigation.map((r) => r.ood_post)))}. Learned residuals crash more often (${pc(tr("maml").ood_crash)} for MAML) than the plain controller (${pc(tr("classical").ood_crash)}).`;
   }
   document.querySelectorAll(".tabs button").forEach((b) => b.addEventListener("click", () => showResults(b.id.slice(4))));
+  $("copybib").addEventListener("click", () => {
+    const text = $("bib").textContent;
+    const done = () => { $("copybib").textContent = "Copied"; setTimeout(() => ($("copybib").textContent = "Copy BibTeX"), 1500); };
+    (navigator.clipboard ? navigator.clipboard.writeText(text) : Promise.reject()).then(done).catch(() => {
+      const r = document.createRange(); r.selectNodeContents($("bib")); const sel = getSelection(); sel.removeAllRanges(); sel.addRange(r);
+    });
+  });
   fetch("data/results.json").then((r) => r.json()).then((d) => { R = d; findings(); showResults("tracking_residual"); })
     .catch(() => { $("f1").textContent = "Results didn't load. Run `drone-autonomy figures` to write website/data/results.json, then reload."; });
 })();

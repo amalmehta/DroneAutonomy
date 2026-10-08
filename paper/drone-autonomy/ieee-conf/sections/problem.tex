@@ -1,0 +1,13 @@
+\section{Problem Formulation}\label{sec:problem}
+
+A task $\tau$ fixes physical parameters $\xi_\tau \in \Xi$ (payload, motor efficiencies, drag, wind, gust intensity and latency) drawn from a distribution $p(\xi)$, and the vehicle evolves as $x_{t+1} = f(x_t, u_t; \xi_\tau)$. A classical controller $u_t = \kappa(x_t, r_t; k)$ tracks a reference $r_t$ with gains $k$. Learning enters in one of three ways:
+\begin{align}
+&\text{(C1, residual)} && u_t = \kappa(x_t, r_t; k_0) + \delta_\theta(o_t), \\
+&\text{(C2, gains)} && u_t = \kappa(x_t, r_t; k_0 \odot e^{z}), \quad z \sim \pi_\theta, \\
+&\text{(C3, planner)} && v_t = \pi_\theta(o_t), \ \text{tracked by } \kappa(\cdot\,; k_0),
+\end{align}
+where $k_0$ are nominal gains, $o_t$ the policy's observation and $v_t$ a velocity command. An adaptation rule $U$ maps the shared parameters $\theta$ and experience $\mathcal{D}_\tau$ on a new task to task-specific parameters, $\theta_\tau = U(\theta, \mathcal{D}_\tau)$, and meta-learning chooses $\theta$ (and, for some methods, $U$) to maximise post-adaptation return,
+\begin{equation}
+\max_{\theta}\ \mathbb{E}_{\tau \sim p}\big[ J_\tau\big(U(\theta, \mathcal{D}_\tau)\big) \big].
+\end{equation}
+For MAML, $U(\theta, \mathcal{D}) = \theta + \alpha \nabla_\theta \hat{J}_\tau(\theta; \mathcal{D})$ with a policy-gradient estimate $\hat{J}_\tau$; for PEARL and RL$^2$, $U$ is inference in a latent variable or recurrent state, with no gradient step. Non-adapting baselines use $U(\theta, \mathcal{D}) = \theta$. We evaluate $J_\tau$ on held-out tasks from $p$ and on OOD tasks beyond its support.

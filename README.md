@@ -6,9 +6,9 @@ A quadrotor that maps unknown rooms with a depth camera, plans with A*, and adap
 
 ![The same figure-eight with extra payload, wind and a worn motor: fixed gains vs L1 adaptive control](docs/images/tracking.png)
 
-![Tracking error against adaptation data for every method, on held-out and out-of-distribution tasks](docs/images/adaptation_tracking_residual.png)
+![Adaptation curves for the residual, gain and navigation problems (paper Fig. 2)](docs/images/adaptation_curves.png)
 
-**[Live demo: replay the recorded flights and browse the results](https://amalmehta.github.io/DroneAutonomy/)**
+**[Project page: replay the recorded flights and browse the results](https://amalmehta.github.io/DroneAutonomy/)** · **[Paper (PDF)](paper/Where%20Does%20Meta-Learning%20Help%20a%20Quadrotor.pdf)**
 
 | | |
 |---|---|
@@ -18,4 +18,4 @@ A quadrotor that maps unknown rooms with a depth camera, plans with A*, and adap
 | [Drone selection](docs/DRONE-SELECTION.md) | which drone to fly the stack on, and the test plan |
 | [Paper (PDF)](paper/Where%20Does%20Meta-Learning%20Help%20a%20Quadrotor.pdf) | IEEE conference-format write-up of the study |
 
-Status: simulator, navigation stack, seven meta-learning algorithms and baselines are built, trained and benchmarked (numbers in `results/summary.json` and on the website). The paper draft is in `paper/`.
+Findings, in simulation: a learned residual roughly halves the error of tuned L1 adaptation; meta-learning pays off when it adapts the classical controller's gains (Meta-SGD, 3.5 cm better than non-meta tuning on paired tasks); gradient adaptation at meta-trained step sizes degrades learned navigation planners, and the classical planner is the most reliable on the full stack (73% success over 96 unseen-room flights); every method fails out of distribution.

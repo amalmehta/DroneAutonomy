@@ -36,3 +36,10 @@ before collision or 30 s timeout. Means are over tasks × seeds; ± is a 95% nor
 - **"Domain-randomised PPO" on the gains problem** is a parameter-exploring policy gradient with a PPO-clipped surrogate over the 7 gains, not PPO over a step policy. The paper should name it accordingly.
 - **Simulator parameters** for the X500 are partly estimated (thrust-to-weight, motor lag, drag) — DRONE-SELECTION.md marks them.
 - **Seeds:** tracking 2, navigation 1; classical and L1 baselines are deterministic controllers evaluated once.
+
+## Status after the corrected benchmark (2026-10-08)
+- C3: **firm** — 5 seeds; paired improvement 3.5 cm (95% bootstrap 2.8–4.3), Meta-SGD better on 83% of pairs.
+- C5: **firm** — classical planner 73% success / 7% collisions over 96 unseen-room flights (48 rooms × 2 seeds); learned 31–55%.
+- C6: **restated** — degradation holds at the meta-trained step size with 10 episodes/update (I-02 step-size sweep); RL² part **dropped** (60 → 55%, no improvement).
+- C7: **revised** — carrot/planner helps a learned planner with the privileged planner (72 vs 52%) but not on the online map (44 vs 51%).
+- C1: confirmed against a tuned L1 baseline (14.0 cm).
