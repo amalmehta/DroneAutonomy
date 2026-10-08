@@ -10,5 +10,5 @@
 | ✅ PASS | value macros | 82 macros, all defined and listed |
 | ✅ PASS | figures have scripts | all figures have a generating script |
 | ✅ PASS | figures and values match the data | 9 generated files reproduce exactly from the data |
-| ✅ PASS | citations verified | 36/36 verified |
-| ⚠️ WARN | open TODOs | main.tex: affiliation |
+| ✅ PASS | citations | 36 entries (run with --verify-citations to check them online) |
+| ✅ PASS | open TODOs | none |

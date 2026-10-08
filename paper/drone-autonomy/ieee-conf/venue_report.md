@@ -12,7 +12,7 @@
 | ✅ PASS | figures have scripts | all figures have a generating script |
 | ✅ PASS | figures and values match the data | 9 generated files reproduce exactly from the data |
 | ✅ PASS | citations verified | 36/36 verified |
-| ⚠️ WARN | open TODOs | main.tex: affiliation |
+| ✅ PASS | open TODOs | none |
 
 Compiled PDF: 8 pages with references (last page balanced). Citations: 36/36 verified against
 arXiv/Crossref (`citations_verification.md`). One entry (Lee et al. 2010) first pointed at the wrong arXiv
@@ -24,7 +24,7 @@ class (CTAN, V1.8b). The only template-related change is `\RequirePackage[T1]{fo
 `main.tex` (style file untouched), so XeTeX uses Times shapes instead of falling back.
 
 ## 3. Open TODOs and facts still needed
-- `\TODO{affiliation}` in `main.tex`.
+- None. Affiliation set to Independent Researcher (2026-10-08).
 
 ## 4. Statements
 - **Acknowledgment / AI-use disclosure** (in `sections/conclusion.tex`): states that the simulator,
