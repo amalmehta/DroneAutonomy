@@ -19,9 +19,9 @@ A geometric controller~\cite{lee2010geometric} runs at 100\,Hz: a PID position l
 
 \textbf{Tracking.} Combinations 1 and 2 are scored on trajectory tracking: each episode follows a smooth random reference (a sum of two cosines per axis, at most 2\,m/s horizontally; 15\% of episodes are pure hover) for 4\,s. The reward is $\exp(-\|e\|/0.25)$ for position error $e$ in metres, minus a small action penalty. An episode ends early if the error exceeds 1.5\,m or the tilt exceeds 70$^\circ$.
 
-\textbf{Combination 1: residual on the controller.} At 50\,Hz a policy adds a bounded correction to the controller's output: up to 25\% of hover thrust, and up to 1\,rad/s in roll and pitch rate (0.5\,rad/s in yaw). It observes tracking errors, velocity, attitude, body rates, the reference acceleration, its previous action and the controller's own command.
+\textbf{Combination 1: residual on the controller.} At 50\,Hz the residual $\delta_\theta$ adds a bounded correction to the controller's output: up to 25\% of hover thrust, and up to 1\,rad/s in roll and pitch rate (0.5\,rad/s in yaw). It observes tracking errors, velocity, attitude, body rates, the reference acceleration, its previous action and the controller's own command.
 
-\textbf{Combination 2: controller gains.} The policy is a Gaussian over the logarithm of the seven gain scales relative to nominal. One gain vector is drawn per episode and the controller flies the whole episode with it.
+\textbf{Combination 2: controller gains.} The policy $\pi_\theta$ is a Gaussian over the logarithm $z$ of the seven gain scales relative to nominal. One gain vector is drawn per episode and the controller flies the whole episode with it.
 
 \subsection{Navigation stack (Combination 3)}
 Rooms measure 14$\times$8$\times$3\,m and contain randomly placed pillars and boxes; a quarter of the boxes hang from the ceiling with their lowest edge at 1.9\,m or higher, so the map and planner work in three dimensions. Start and goal sit at opposite ends. The drone is a 0.35\,m sphere for collision checks.

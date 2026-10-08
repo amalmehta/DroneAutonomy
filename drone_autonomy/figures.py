@@ -180,6 +180,29 @@ def summary(problem):
     return rows
 
 
+def extras():
+    """Headline numbers from the paper's follow-up experiments, for the website (empty if absent)."""
+    out = {}
+    exp = Path("paper/drone-autonomy/ideas/experiments")
+    step = exp / "02_nav_step_size" / "results"
+    if step.exists():
+        out["stepsize"] = {f.stem: json.loads(f.read_text()) for f in sorted(step.glob("*.json"))}
+    l1 = exp / "05_l1_tuning" / "results" / "l1_tuning.json"
+    if l1.exists():
+        d = json.loads(l1.read_text())
+        out["l1_tuned"] = {"default_test_rmse": d["default_test_rmse"], "tuned_test_rmse": d["tuned_test_rmse"]}
+    runs = {m: {r["seed"]: np.asarray(r["test"][-1]["rmse"], float) for r in load_results("tracking_gains").get(m, [])}
+            for m in ("metasgd", "dr_finetune")}
+    pairs = [runs["metasgd"][s] - runs["dr_finetune"][s] for s in runs["metasgd"] if s in runs["dr_finetune"]]
+    if pairs:
+        d = np.concatenate(pairs)
+        rng = np.random.default_rng(0)
+        boots = np.array([rng.choice(d, len(d)).mean() for _ in range(10000)])
+        out["gain_paired"] = {"improvement": float(-d.mean()), "ci": [float(-np.percentile(boots, 97.5)), float(-np.percentile(boots, 2.5))],
+                              "win_rate": float((d < 0).mean()), "pairs": int(len(d))}
+    return out
+
+
 def make_results():
     PAPER_FIGS.mkdir(parents=True, exist_ok=True)
     IMAGES.mkdir(parents=True, exist_ok=True)
@@ -189,7 +212,8 @@ def make_results():
         if f:
             adaptation_figure(problem, IMAGES / f"adaptation_{problem}.png")
             out[problem] = summary(problem)
+    out["extras"] = extras()
     (RESULTS / "summary.json").write_text(json.dumps(out, indent=1))
     Path("website/data").mkdir(parents=True, exist_ok=True)
     Path("website/data/results.json").write_text(json.dumps(out))
-    print("results figures:", ", ".join(out) or "none yet")
+    print("results figures:", ", ".join(k for k in out if k != "extras") or "none yet")

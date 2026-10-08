@@ -10,7 +10,7 @@
 | I-01 | Position against MAVEN, RAPTOR and RL gain-tuning work missing from Related Work | reviewer | High | 1 h | none | related work | applied |
 | I-02 | Is "adaptation hurts navigation" a step-size artefact? Sweep the inner step at test time | evidence | High | 2 h | ≈ 30 min | related work | done |
 | I-03 | Report training samples per method; check that DR didn't simply see more data | reviewer | High | 1 h | none | not applicable (presentation) | applied |
-| I-04 | Paired per-task test for C3 instead of overlapping intervals | evidence | High | 1 h | < 1 min | not applicable (presentation) | waiting for the extra C3 seeds |
+| I-04 | Paired per-task test for C3 instead of overlapping intervals | evidence | High | 1 h | < 1 min | not applicable (presentation) | done |
 | I-05 | Tune the L1 baseline as carefully as the learners | reviewer | High | 1.5 h | ≈ 5 min | related work | done |
 | I-06 | Add a "mild OOD" split just beyond the training ranges | evidence | Medium | 2 h | ≈ 40 min | no close match | done |
 | I-07 | Say in the text that MAML-family methods were meta-trained for one inner step, and report stage 1 separately | writing | Medium | 0.5 h | none | not applicable (presentation) | applied |
@@ -56,7 +56,7 @@
 - **Why it matters:** a paired test removes between-task variance, which dominates these intervals; it can settle C3 with the same data.
 - **What would change the conclusion:** a paired CI excluding zero makes C3 a firm claim; one including zero means it should stay hedged or be dropped.
 - **Literature:** not applicable (presentation)
-- **Status:** waiting for the extra C3 seeds
+- **Status:** done — with 5 seeds, Meta-SGD improves on fine-tuned DR gains by 3.5 cm (95% bootstrap 2.8–4.3 cm; wins on 83% of 160 task–seed pairs); C3 now stated firmly via `\valGainPaired…` macros
 
 ### I-05 · Tune the L1 baseline as carefully as the learners
 - **Type:** reviewer · **Impact:** High · **Effort:** 1.5 h · **Compute:** ≈ 5 min (pilot: one L1 configuration on 32 tasks = 9.8 s)
@@ -157,6 +157,7 @@ Services: arXiv, Semantic Scholar, Crossref and OpenAlex answered for every grou
 | robustness_benchmarks | "quadrotor reinforcement learning unmodeled aerodynamics sim-to-real"; "benchmark meta reinforcement learning robotics" | [literature/robustness_benchmarks.md](literature/robustness_benchmarks.md) |
 
 ## Log
+- 2026-10-08 — extra seeds and corrected-room benchmarks landed. I-04 done (C3 firm). Corrected benchmark: RL² does not improve (60→55%), so its claim was dropped as agreed; C5 firm (classical 73% over 96 unseen-room flights); C7 revised (planner helps only with a good map).
 - 2026-10-06 — I-02, I-06, I-11 finished. I-02 and I-11 undercut parts of C6; reported to the user before any claim edit. User chose: restate C6 with the step-size table; let the corrected re-benchmark decide the RL² claim. Folded I-02 (Table V), I-05 and I-06 into Results via generated values.
 - 2026-10-06 — user approved I-01–I-11 edits and experiments (I-12–I-14 not selected). Applied I-01, I-03, I-07, I-08, I-09, I-10; ran I-05; launched I-02, I-06, I-11; I-04 waits for the extra seeds. The I-02 sweep first failed to start (shell word-splitting) and was relaunched.
 - 2026-10-06 — generated 14 ideas; pilots timed for I-02 (89 s for 4 tasks × 1 stage) and I-05 (9.8 s per L1 configuration).

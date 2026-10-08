@@ -70,3 +70,4 @@ Author: Amal Mehta (\TODO affiliation). Format: IEEEtran conference, two columns
 ## Changelog
 - 2026-10-06 — first outline.
 - 2026-10-06 — first full draft compiled (7 pages); reviewer read fixed Fig. 1 label overlap, Fig. 3 caption overclaim, "planner must use height" wording, OOD-change claim now from data (`\valOodAdaptMaxDelta`); Crazyflie status "listed" (stock not verified).
+- 2026-10-08 — final revision for top-tier polish: problem formulation section, results organised by research question, claims rewritten against the corrected benchmark (5 gain seeds, 2 navigation seeds, distinct rooms), training-budget table, Table II shows one set of numbers for the classical controller, reference capitalisation, balanced last page. 8 pages, all checks pass except the affiliation TODO.

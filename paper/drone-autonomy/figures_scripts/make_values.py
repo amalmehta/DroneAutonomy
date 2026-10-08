@@ -1,4 +1,5 @@
 """Write generated/values.tex (every number used in the prose) and sources.md (where each comes from)."""
+import json
 import sys
 
 from common import RESULTS, ROOT, VENUE_DIR, rows, summary
@@ -161,24 +162,47 @@ def main():
             put(f"valNav{METH[m]}StageOne", fmt_pc(r["test_curve"][1]), "held-out success after 1 adaptation stage, %",
                 f"results/summary.json -> navigation / {m} test_curve[1]")
 
-    # training budgets in environment steps (millions): iterations x env steps per iteration.
-    # Per-iteration steps follow each learner's rollouts (all envs run the full horizon):
-    #   DR: 16 tasks x 10 episodes; MAML family: 2 x that (pre + post); Reptile: 3 x that;
-    #   PEARL: 2 episodes x 8 tasks (+ one warm-up episode on 32 tasks); RL2: 48 trials x 3 episodes.
-    H = {"tracking_residual": 200, "tracking_gains": 200, "navigation": 300}
-    per_iter = {"dr": 160, "e2e_dr": 160, "maml": 320, "fomaml": 320, "anil": 320, "metasgd": 320,
-                "reptile": 480, "pearl": 16, "rl2": 144}
+    # training budgets in environment steps (millions), shared with budget_table.py
+    from common import train_steps
     for problem, P in PROB.items():
         for m in ("dr", "maml", "reptile", "pearl", "rl2"):
-            if m not in ITERS[problem]:
-                continue
-            steps = ITERS[problem][m] * per_iter[m] * H[problem] + (32 * H[problem] if m == "pearl" else 0)
-            put(f"valSteps{P}{METH[m]}", "%.1f" % (steps / 1e6), f"{problem} {m} training budget, million env steps",
-                f"drone_autonomy/methods.py ITERS[{problem}][{m}]={ITERS[problem][m]} x {per_iter[m]} episodes/iter x horizon {H[problem]}"
-                + (" + 32-task warm-up" if m == "pearl" else "") + " (rl/meta/*.py rollout sizes)")
+            if m in ITERS[problem]:
+                put(f"valSteps{P}{METH[m]}", "%.1f" % (train_steps(problem, m, ITERS[problem][m]) / 1e6),
+                    f"{problem} {m} training budget, million env steps",
+                    f"methods.py ITERS[{problem}][{m}] x figures_scripts/common.py EPISODES_PER_ITER x HORIZON")
+
+    # seeds per problem (learned methods) and evaluation sizes
+    for problem, P in PROB.items():
+        put(f"valSeeds{P}", "%d" % max(r["seeds"] for r in summary()[problem] if r["method"] not in ("classical", "l1", "classical_l1")),
+            f"training seeds per learned method, {problem}", f"results/summary.json -> {problem} seeds")
+    from drone_autonomy.benchmark import FULLSTACK_TASKS, N_TASKS
+    nav_seeds = max(r["seeds"] for r in summary()["navigation"])
+    put("valNavFullRooms", "%d" % FULLSTACK_TASKS["test"], "unseen rooms per seed, full-stack evaluation", "drone_autonomy/benchmark.py FULLSTACK_TASKS['test']")
+    put("valNavFullFlights", "%d" % (FULLSTACK_TASKS["test"] * nav_seeds), "full-stack evaluation flights per method (rooms x seeds)", "benchmark.py FULLSTACK_TASKS['test'] x seeds in results/navigation")
+    put("valNavPrivRooms", "%d" % (N_TASKS["navigation"] * 4), "distinct unseen rooms per seed, privileged-planner evaluation (tasks x 4 episodes)", "benchmark.py N_TASKS['navigation'] x E_eval=4")
+
+    # C3 paired comparison: Meta-SGD vs DR gains + fine-tuning, same tasks and seeds
+    import glob as _glob
+    import numpy as _np
+    def _per_task(m):
+        out = {}
+        for f in sorted(_glob.glob(str(RESULTS / "tracking_gains" / f"{m}_seed*.json"))):
+            r = json.loads(open(f).read())
+            out[r["seed"]] = _np.asarray(r["test"][-1]["rmse"], float)
+        return out
+    a, b = _per_task("metasgd"), _per_task("dr_finetune")
+    diff = _np.concatenate([a[k] - b[k] for k in sorted(a) if k in b])
+    rng_b = _np.random.default_rng(0)
+    boots = _np.array([rng_b.choice(diff, len(diff)).mean() for _ in range(10000)])
+    lo_ci, hi_ci = _np.percentile(boots, [2.5, 97.5])
+    src_c3 = "results/tracking_gains/{metasgd,dr_finetune}_seed*.json test[-1].rmse; paired by seed and task; 10,000 bootstrap resamples (rng seed 0)"
+    put("valGainPairedDiff", "%.1f" % (-100 * diff.mean()), "Meta-SGD minus DR+fine-tune held-out RMSE, mean paired improvement, cm", src_c3)
+    put("valGainPairedLo", "%.1f" % (-100 * hi_ci), "paired improvement, 95% bootstrap CI lower end, cm", src_c3)
+    put("valGainPairedHi", "%.1f" % (-100 * lo_ci), "paired improvement, 95% bootstrap CI upper end, cm", src_c3)
+    put("valGainPairedWin", fmt_pc((diff < 0).mean()), "share of task-seed pairs where Meta-SGD has lower RMSE, %", src_c3)
+    put("valGainPairedN", "%d" % len(diff), "number of task-seed pairs in the paired comparison", src_c3)
 
     # idea experiments (paper/drone-autonomy/ideas/experiments/*/results)
-    import json
     from common import HERE
     exp = HERE.parent / "ideas" / "experiments"
     l1 = json.loads((exp / "05_l1_tuning" / "results" / "l1_tuning.json").read_text())
@@ -213,6 +237,7 @@ def main():
            "| generated/tables/tracking.tex | figures_scripts/tracking_table.py | results/summary.json |",
            "| generated/tables/navigation.tex | figures_scripts/navigation_table.py | results/summary.json |",
            "| generated/tables/tasks.tex | figures_scripts/task_table.py | drone_autonomy/tasks.py RANGES |",
+           "| generated/tables/budget.tex | figures_scripts/budget_table.py | drone_autonomy/methods.py ITERS, common.py budget constants |",
            "| generated/tables/stepsize.tex | figures_scripts/step_size_table.py | ideas/experiments/02_nav_step_size/results/*.json |",
            "| figures/adaptation_curves.pdf | figures_scripts/adaptation_curves.py | results/<problem>/*_seed*.json |",
            "| figures/example_flights.pdf | figures_scripts/example_flights.py | website/data/demo.json |",

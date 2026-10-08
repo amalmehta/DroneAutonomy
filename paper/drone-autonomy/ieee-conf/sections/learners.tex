@@ -12,6 +12,14 @@ All step policies are Gaussian MLPs (64--64 units for tracking, 128--64 for navi
 
 \textbf{Baselines.} \emph{Classical} uses nominal gains and no learning; \emph{Classical + L1} adds L1 augmentation. \emph{DR} trains one policy with PPO over the whole task distribution (domain randomisation) and never adapts; \emph{DR + fine-tune} adapts it at test time with the same per-task PPO rounds as Reptile. For Combination 2 the DR baseline is the same Gaussian over gains, trained over all tasks without a meta objective. For navigation we add \emph{end-to-end DR}, a DR planner that sees the goal direction instead of the carrot, with no map or planner.
 
-\textbf{Training budgets.} In environment steps, the tracking residual learners used \valStepsResDr\,M (DR), \valStepsResMaml\,M (each MAML-family method), \valStepsResReptile\,M (Reptile), \valStepsResPearl\,M (PEARL) and \valStepsResRltwo\,M (RL$^2$); the gain learners \valStepsGainDr\,M (DR), \valStepsGainMaml\,M (MAML family) and \valStepsGainReptile\,M (Reptile); and the navigation planners \valStepsNavDr\,M (DR, also the starting point of the warm-started methods), \valStepsNavMaml\,M more for each MAML-family method, \valStepsNavReptile\,M more for Reptile, \valStepsNavPearl\,M (PEARL) and \valStepsNavRltwo\,M (RL$^2$). DR and the MAML family therefore saw the same data on tracking, while PEARL and RL$^2$ saw less.
+\textbf{Training budgets.} Table~\ref{tab:budget} lists the training budget of each learner. DR and the MAML family saw the same data on tracking, while PEARL and RL$^2$ saw less.
+
+\begin{table}[t]
+\centering
+\caption{Training budget in millions of environment steps.}
+\label{tab:budget}
+\footnotesize
+\input{generated/tables/budget.tex}
+\end{table}
 
 \textbf{Navigation specifics.} Training navigation planners from scratch is the most expensive part of the study, so to fit our CPU budget the gradient-based meta-learners start from the trained DR planner and meta-train from there. PEARL and RL$^2$ use different networks and train from scratch, so their comparison with the others is confounded by starting point. With the tracking step size (Adam, 3e-3), per-task PPO adaptation wrecked the warm-started navigation planner (Reptile reached 0\% success), so navigation uses 3e-4 for both Reptile and DR + fine-tune; the diverged run is kept in the released results.

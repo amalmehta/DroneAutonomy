@@ -7,7 +7,10 @@ GROUP = {"classical": "Classical", "dr": "Non-meta learned", "maml": "Gradient m
 
 def main():
     s = {p: {r["method"]: r for r in summary()[p]} for p in ("tracking_residual", "tracking_gains")}
-    res, gain = s["tracking_residual"], s["tracking_gains"]
+    res, gain = s["tracking_residual"], dict(s["tracking_gains"])
+    # The nominal controller has no learned part, so it is the same method in both blocks;
+    # show one set of numbers (the residual benchmark's) rather than two rollouts of it.
+    gain["classical"] = res["classical"]
     cols = [  # (dict, key, lower_is_better, formatter)
         (res, "test_pre", True), (res, "test_post", True), (res, "ood_post", True), (res, "ood_crash", True),
         (gain, "test_pre", True), (gain, "test_post", True), (gain, "ood_post", True),

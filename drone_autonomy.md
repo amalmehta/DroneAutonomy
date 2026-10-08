@@ -83,6 +83,7 @@ CHANGELOG:
 - 2026-10-06 — built the simulator, stack, learners, website demo; pushed to GitHub with Pages
 - 2026-10-06 — trained and benchmarked all methods; website results section; navigation Reptile rerun with a smaller inner step
 - 2026-10-06 — IEEE conference-format paper drafted (paper/), all checks passing except the affiliation TODO
+- 2026-10-08 — corrected navigation evaluation (distinct rooms, 48-room full stack), extra seeds, improvement-ideas pass with four experiments; paper and website polished to submission quality
 - 2026-09-15 — added meta-instruction: built-out applications include a small feedback tab
 - 2026-09-15 — added meta-instruction: no "Claude" attribution in commits, PRs, or branches
 - 2026-09-16 — added meta-instruction: always include a README when adding to GitHub
