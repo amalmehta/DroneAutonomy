@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <!-- Drone Autonomy: a quadrotor seen from above, front rotors marked in orange. -->
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0.3" y2="1">
+      <stop offset="0" stop-color="#F8F6F0"/>
+      <stop offset="1" stop-color="#D9E6E5"/>
+    </linearGradient>
+  </defs>
+  <rect width="1024" height="1024" rx="230" fill="url(#bg)"/>
+  <g stroke="#33414D" stroke-width="44" stroke-linecap="round">
+    <path d="M330 330 L694 694 M694 330 L330 694"/>
+  </g>
+  <g stroke-width="26" fill="#FBFAF6">
+    <circle cx="300" cy="300" r="128" stroke="#EE8A3C"/>
+    <circle cx="724" cy="300" r="128" stroke="#EE8A3C"/>
+    <circle cx="300" cy="724" r="128" stroke="#33414D"/>
+    <circle cx="724" cy="724" r="128" stroke="#33414D"/>
+  </g>
+  <g fill="#33414D">
+    <circle cx="300" cy="300" r="26" fill="#EE8A3C"/>
+    <circle cx="724" cy="300" r="26" fill="#EE8A3C"/>
+    <circle cx="300" cy="724" r="26"/>
+    <circle cx="724" cy="724" r="26"/>
+    <rect x="432" y="432" width="160" height="160" rx="48"/>
+  </g>
+</svg>
