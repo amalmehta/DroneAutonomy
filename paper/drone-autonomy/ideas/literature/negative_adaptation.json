@@ -1,0 +1,536 @@
+{
+  "queries": [
+    "MAML adaptation degrades performance reinforcement learning",
+    "safe meta reinforcement learning adaptation"
+  ],
+  "services": {
+    "openalex": {
+      "ok": 2,
+      "cached": 0,
+      "errors": []
+    },
+    "crossref": {
+      "ok": 2,
+      "cached": 0,
+      "errors": []
+    },
+    "arxiv": {
+      "ok": 2,
+      "cached": 0,
+      "errors": []
+    },
+    "semanticscholar": {
+      "ok": 1,
+      "cached": 0,
+      "errors": [
+        "'MAML adaptation degrades performance reinforcement learning': 429"
+      ]
+    }
+  },
+  "records": [
+    {
+      "title": "Safe Meta-Reinforcement Learning via Information Space Reachability",
+      "authors": [
+        "Zeyang Li",
+        "Sunbochen Tang",
+        "Navid Azizan"
+      ],
+      "year": 2026,
+      "ids": {
+        "openalex": "W7213300035",
+        "doi": "10.48550/arxiv.2609.15915",
+        "arxiv": "2609.15915",
+        "s2": "99934c5dad180405b2d205aa515298a08aaf5db5"
+      },
+      "url": "https://doi.org/10.48550/arxiv.2609.15915",
+      "abstract": "Meta-reinforcement learning (meta-RL) enables agents to adapt to unseen tasks with limited experience. Despite its promise, the application of meta-RL in real-world tasks is hindered by safety requirements, which have been underexplored in prior work. In this paper, we propose a safe meta-RL framework that explicitly accounts for safety during adaptation. Our key insight is to reason about safety in the information space, which captures both the physical state and the agent's belief over the underlying task. Within this space, we introduce a safety value function that measures the probability of the agent avoiding unsafe regions indefinitely. We show that this function satisfies a self-consistency condition and a Bellman equation, which make it learnable via meta-RL. Based on this formulation, we develop a safe meta-RL algorithm that learns the safety value function and leverages it for safety filtering and constrained policy optimization. Experiments on meta-RL benchmarks demonstrate the effectiveness of the proposed method.",
+      "venue": "arXiv (Cornell University)",
+      "found_in": [
+        "arxiv",
+        "openalex",
+        "semanticscholar"
+      ],
+      "query": "safe meta reinforcement learning adaptation"
+    },
+    {
+      "title": "Cost-aware Offline Safe Meta Reinforcement Learning with Robust In-Distribution Online Task Adaptation",
+      "authors": [
+        "Cong Guan",
+        "Ruiqi Xue",
+        "Ziqian Zhang",
+        "Lihe Li",
+        "Yi-Chen Li",
+        "Lei Yuan",
+        "Yang Yu"
+      ],
+      "year": 2024,
+      "ids": {
+        "openalex": "W7124262094",
+        "doi": "10.5555/3635637.3662927",
+        "s2": "0d5f39e2d6a77b2f1d28fe5ea7ead32950f133c8"
+      },
+      "url": "https://doi.org/10.65109/brmm7038",
+      "abstract": "Despite the gained prominence made by reinforcement learning (RL) in various domains, ensuring safety in real-world applications remains a significant challenge. Offline safe RL, which learns safe policies from pre-collected data, has emerged to address these concerns. However, existing approaches assume a single constraint mode and lack adaptability to diverse safety constraints. In real-world scenarios, we often find ourselves working with datasets gathered from various tasks, with the aim of developing a generalized policy capable of handling unknown tasks during testing. To deal with such offline safe meta RL problem, we introduce a novel framework called COSTA, which is designed to facilitate the learning of a safe generalized policy that can adapt and be transferred to unknown tasks during testing. COSTA addresses two key challenges in offline safe meta RL: First, it develops a cost-aware task inference module using contrastive learning to distinguish tasks based on safety constraints, mitigating the MDP ambiguity problem. Second, COSTA introduces a novel metric, Safe In-Distribution Score (SIDS), to assess the in-distribution degree of trajectories, out of the consideration of both reward maximization and cost constraint satisfaction. Trajectories collected with a safe exploration policy are filtered using SIDS for robust online task adaptation. Experimental results in a tailored benchmark suite within the Mujoco environments demonstrate that COSTA consistently balances safety and reward maximization, outperforming multiple baselines.",
+      "venue": "Adaptive Agents and Multi-Agents Systems",
+      "found_in": [
+        "openalex",
+        "semanticscholar"
+      ],
+      "query": "safe meta reinforcement learning adaptation"
+    },
+    {
+      "title": "Complementary Meta-Reinforcement Learning for Fault-Adaptive Control",
+      "authors": [
+        "Ibrahim H. Ahmed",
+        "Marcos Qui\u00f1ones-Grueiro",
+        "Gautam Biswas"
+      ],
+      "year": 2020,
+      "ids": {
+        "openalex": "W3088902549",
+        "doi": "10.36001/phmconf.2020.v12i1.1289",
+        "arxiv": "2009.12634"
+      },
+      "url": "https://doi.org/10.36001/phmconf.2020.v12i1.1289",
+      "abstract": "Faults are endemic to all systems. Adaptive fault-tolerant control accepts degraded performance under faults in exchange for continued operation. In systems with abrupt faults and strict time constraints, it is imperative for control to adapt fast to system changes. We present a meta-reinforcement learning approach that quickly adapts control policy. The approach builds upon model-agnostic meta learning (MAML). The controller maintains a complement of prior policies learned under system faults. This ``library\" is evaluated on a system after a new fault to initialize the new policy. This contrasts with MAML where the controller samples new policies from a distribution of similar systems at each update step to achieve the new policy. Our approach improves sample efficiency of the reinforcement learning process. We evaluate this on a model of fuel tanks under abrupt faults.",
+      "venue": "Annual Conference of the PHM Society",
+      "found_in": [
+        "arxiv",
+        "openalex"
+      ],
+      "query": "MAML adaptation degrades performance reinforcement learning"
+    },
+    {
+      "title": "Safe Reinforcement Learning through Meta-learned Instincts",
+      "authors": [
+        "Djordje Grbic",
+        "Sebastian Risi"
+      ],
+      "year": 2020,
+      "ids": {
+        "doi": "10.1162/isal_a_00318",
+        "arxiv": "2005.03233"
+      },
+      "url": "https://doi.org/10.1162/isal_a_00318",
+      "abstract": "An important goal in reinforcement learning is to create agents that can quickly adapt to new goals while avoiding situations that might cause damage to themselves or their environments. One way agents learn is through exploration mechanisms, which are needed to discover new policies. However, in deep reinforcement learning, exploration is normally done by injecting noise in the action space. While performing well in many domains, this setup has the inherent risk that the noisy actions performed by the agent lead to unsafe states in the environment. Here we introduce a novel approach called Meta-Learned Instinctual Networks (MLIN) that allows agents to safely learn during their lifetime while avoiding potentially hazardous states. At the core of the approach is a plastic network trained through reinforcement learning and an evolved \"instinctual\" network, which does not change during the agent's lifetime but can modulate the noisy output of the plastic network. We test our idea on a simple 2D navigation task with no-go zones, in which the agent has to learn to approach new targets during deployment. MLIN outperforms standard meta-trained networks and allows agents to learn to navigate to new targets without colliding with any of the no-go zones. These results suggest that meta-learning augmented with an instinctual network is a promising new approach for safe AI, which may enable progress in this area on a variety of different domains.",
+      "venue": "The 2020 Conference on Artificial Life",
+      "found_in": [
+        "arxiv",
+        "crossref"
+      ],
+      "query": "safe meta reinforcement learning adaptation"
+    },
+    {
+      "title": "MAML-Integrated multi-agent reinforcement learning for adaptive coalition-based UAV coordination in disaster scenarios",
+      "authors": [
+        "Sabitri Poudel",
+        "Sangman Moh"
+      ],
+      "year": 2026,
+      "ids": {
+        "doi": "10.1016/j.iot.2026.101930"
+      },
+      "url": "https://doi.org/10.1016/j.iot.2026.101930",
+      "abstract": "",
+      "venue": "Internet of Things",
+      "found_in": [
+        "crossref"
+      ],
+      "query": "MAML adaptation degrades performance reinforcement learning"
+    },
+    {
+      "title": "Application of MAML Meta-Learning in Rapid Adaptation and Effectiveness Evaluation of Personalized Nursing Plans",
+      "authors": [
+        "R. R. Wang",
+        "K. Chen"
+      ],
+      "year": 2026,
+      "ids": {
+        "doi": "10.7716/aem.v15i3.3594"
+      },
+      "url": "https://doi.org/10.7716/aem.v15i3.3594",
+      "abstract": "Personalized nursing plans are important for improving patient outcomes, satisfaction, and efficient use of medical resources, yet significant individual differences make rapid plan adaptation and early effectiveness evaluation difficult. Existing methods usually require long-term follow-up or large numbers of labeled samples, limiting practical deployment. To address these issues, this paper adopts a framework based on Model-Agnostic Meta-Learning to model personalized nursing adjustment as a few-shot learning task. A multi-nursing dataset is constructed, a shared network generation scheme is designed, and cross-task features are extracted through MAML. A dynamic weight module is introduced to fuse short-term and long-term data for real-time prediction. Simulation experiments show that MAML achieves a median improvement rate of 75.0% in key physiological indicators, which is 12.7% higher than CNN, and more than 60% of patients obtain scores above 8 points. The prediction accuracy based on 24-hour early data reaches 89.7%, and that based on 48-hour data reaches 92.8%, outperforming comparative methods. These results demonstrate that MAML enables rapid adaptation and efficient evaluation of personalized nursing plans under limited data conditions.",
+      "venue": "Advanced Electromagnetics",
+      "found_in": [
+        "crossref"
+      ],
+      "query": "MAML adaptation degrades performance reinforcement learning"
+    },
+    {
+      "title": "Safe Continual Reinforcement Learning Methods for Nonstationary Environments. Towards a Survey of the State of the Art",
+      "authors": [
+        "Timofey Tomashevskiy"
+      ],
+      "year": 2026,
+      "ids": {
+        "arxiv": "2601.05152"
+      },
+      "url": "https://arxiv.org/abs/2601.05152",
+      "abstract": "This work provides a state-of-the-art survey of continual safe online reinforcement learning (COSRL) methods. We discuss theoretical aspects, challenges, and open questions in building continual online safe reinforcement learning algorithms. We provide the taxonomy and the details of continual online safe reinforcement learning methods based on the type of safe learning mechanism that takes adaptation to nonstationarity into account. We categorize safety constraints formulation for online reinforcement learning algorithms, and finally, we discuss prospects for creating reliable, safe online learning algorithms. Keywords: safe RL in nonstationary environments, safe continual reinforcement learning under nonstationarity, HM-MDP, NSMDP, POMDP, safe POMDP, constraints for continual learning, safe continual reinforcement learning review, safe continual reinforcement learning survey, safe continual reinforcement learning, safe online learning under distribution shift, safe continual online adaptation, safe reinforcement learning, safe exploration, safe adaptation, constrained Markov decision processes, safe reinforcement learning, partially observable Markov decision process, safe reinforcement learning and hidden Markov decision processes, Safe Online Reinforcement Learning, safe online reinforcement learning, safe online reinforcement learning, safe meta-learning, safe meta-reinforcement learning, safe context-based reinforcement learning, formulating safety constraints for continual learning",
+      "venue": "arXiv preprint",
+      "found_in": [
+        "arxiv"
+      ],
+      "query": "safe meta reinforcement learning adaptation"
+    },
+    {
+      "title": "Reinforcement Learning Based Adaptation for Enhanced Point-to-Point Optical Link Performance",
+      "authors": [
+        "Praveen Kumar Pal",
+        "Jagdish Jangid"
+      ],
+      "year": 2025,
+      "ids": {
+        "doi": "10.20944/preprints202511.1031.v1"
+      },
+      "url": "https://doi.org/10.36227/techrxiv.176306428.85921550/v1",
+      "abstract": "With introduction of 5G, fiber to home, IoTs and growing data centers, world needs higher bandwidth to keep the world moving and connected. Along with high speed, reliability of data transfer is most important factor because of VoIP applications, Banking transactions, Stock Exchange live updates etc. All this communication needs low latency, fast and reliable data transfer. High speed connectivity is achieved by strong backhaul optical network. Fiber capacity is increased by higher rate modulations. In past decade it has been witnessed that bandwidth per wave has increased from 10G per wave to 100G, 200G, 400G, 800G, 1200G, 1600G per wave. Higher baud rates are prone to errors and reach is shorter. We propose a reinforcement-learning (RL) based framework to enhance the performance of a point-to-point optical link by dynamically adapting link parameters in response to varying channel conditions and system impairments. This method will increase the quality of signals and go for longer reach. We model the optical link as an environment in which an RL agent chooses actions (e.g., modulation format, forward errorcorrection rate, launch power) based on observations of current link state (e.g., Q-Factor, Signal-to-Noise Ratio, Dispersion/ Polarized Mode Dispersion (PMD) metrics, BER estimate). Through simulation and real-world emulation, we show that the RL agent converges to a policy that improves throughput and reliability compared to fixed or heuristically tuned parameter settings. This work demonstrates the potential of model-free learning methods in optical communication links, providing a path toward self-optimizing optical systems.",
+      "venue": "",
+      "found_in": [
+        "crossref"
+      ],
+      "query": "MAML adaptation degrades performance reinforcement learning"
+    },
+    {
+      "title": "Privacy-Preserving Federated Reinforcement Learning for Chronic Disease Management in IoT Healthcare Using MAML and Graph Neural Networks",
+      "authors": [],
+      "year": 2025,
+      "ids": {
+        "doi": "10.22266/inassexpress.2025.006"
+      },
+      "url": "https://doi.org/10.22266/inassexpress.2025.006",
+      "abstract": "",
+      "venue": "INASS express",
+      "found_in": [
+        "crossref"
+      ],
+      "query": "MAML adaptation degrades performance reinforcement learning"
+    },
+    {
+      "title": "Safe In-Context Reinforcement Learning",
+      "authors": [
+        "Moeini, Amir",
+        "Minjae Kwon",
+        "Alper Kamil Bozkurt",
+        "Yuichi Motai",
+        "Rohan Chandra",
+        "Feng, Lu",
+        "Shangtong Zhang"
+      ],
+      "year": 2025,
+      "ids": {
+        "openalex": "W4415338135",
+        "doi": "10.48550/arxiv.2509.25582"
+      },
+      "url": "https://doi.org/10.48550/arxiv.2509.25582",
+      "abstract": "In-context reinforcement learning (ICRL) is an emerging RL paradigm where an agent, after pretraining, can adapt to out-of-distribution test tasks without any parameter updates, instead relying on an expanding context of interaction history. While ICRL has shown impressive generalization, safety during this adaptation process remains unexplored, limiting its applicability in real-world deployments where test-time behavior is expected to be safe. In this work, we propose SCARED: Safe Contextual Adaptive Reinforcement via Exact-penalty Dual, the first method that promotes safe adaptation of ICRL under the constrained Markov decision process framework. During the parameter-update-free adaptation process, our agent not only maximizes the reward but also keeps the accumulated cost within a user-specified safety budget. We also demonstrate that the agent actively reacts to the safety budget; with a higher safety budget, the agent behaves more aggressively, and with a lower safety budget the agent behaves more conservatively. Across challenging benchmarks, SCARED consistently enables safe and robust in-context adaptation, outperforming existing ICRL and safe meta-RL baselines.",
+      "venue": "arXiv (Cornell University)",
+      "found_in": [
+        "openalex"
+      ],
+      "query": "safe meta reinforcement learning adaptation"
+    },
+    {
+      "title": "All-time safety and sample-efficient meta update for online safe meta reinforcement learning under Markov task transition",
+      "authors": [
+        "Zhenyuan Yuan",
+        "Siyuan Xu",
+        "Minghui Zhu"
+      ],
+      "year": 2025,
+      "ids": {
+        "doi": "10.1007/s10994-025-06810-4"
+      },
+      "url": "https://doi.org/10.1007/s10994-025-06810-4",
+      "abstract": "Abstract\n          This paper studies the issues of ensuring all-time safety and sample-efficient meta update in online safe meta reinforcement learning (MRL) on physical agents (e.g., mobile robots). We propose a novel masked Follow-the-Last-Parameter-Policy (FTLPP) framework, which is composed of a policy masking framework and a sample-efficient online meta update method. The policy masking framework applies a masking function over the learned control policy and ensures all-time safety by suppressing the probability of executing unsafe actions to a sufficiently small value. To enhance sample efficiency, the problem of online update of the meta parameter is transformed into a policy optimization problem, where the tasks are the states and the meta parameters for the next task are the actions, and then is solved using an off-policy reinforcement learning algorithm. We evaluate our method on Frozen Lake, Acrobot, Half Cheetah and Hopper from OpenAI gym and compare it with baseline methods Meta SRL and the variants of FTML and SAILR.",
+      "venue": "Machine Learning",
+      "found_in": [
+        "crossref"
+      ],
+      "query": "safe meta reinforcement learning adaptation"
+    },
+    {
+      "title": "Efficient Safe Meta-Reinforcement Learning: Provable Near-Optimality and Anytime Safety",
+      "authors": [
+        "Siyuan Xu",
+        "Minghui Zhu"
+      ],
+      "year": 2025,
+      "ids": {
+        "s2": "a422caead0f02d328a3fb2fc399e8cf6b267b9f6",
+        "doi": "10.52202/085713-1053"
+      },
+      "url": "https://www.semanticscholar.org/paper/a422caead0f02d328a3fb2fc399e8cf6b267b9f6",
+      "abstract": "This paper studies the problem of safe meta-reinforcement learning (safe meta-RL), where an agent efficiently adapts to unseen tasks while satisfying safety constraints at all times during adaptation. We propose a framework consisting of two complementary modules: safe policy adaptation and safe meta-policy training. The first module introduces a novel one-step safe policy adaptation method that admits a closed-form solution, ensuring monotonic improvement, constraint satisfaction at every step, and high computational efficiency. The second module develops a Hessian-free meta-training algorithm that incorporates safety constraints on the meta-policy and leverages the analytical form of the adapted policy to enable scalable optimization. Together, these modules yield three key advantages over existing safe meta-RL methods: (i) superior optimality, (ii) anytime safety guarantee, and (iii) high computational efficiency. Beyond existing safe meta-RL analyses, we prove the anytime safety guarantee of policy adaptation and provide a lower bound of the expected total reward of the adapted policies compared with the optimal policies, which shows that the adapted policies are nearly optimal. Empirically, our algorithm achieves superior optimality, strict safety compliance, and substantial computational gains\u2014up to 70% faster training and 50% faster testing\u2014across diverse locomotion and navigation benchmarks.",
+      "venue": "Neural Information Processing Systems",
+      "found_in": [
+        "semanticscholar"
+      ],
+      "query": "safe meta reinforcement learning adaptation"
+    },
+    {
+      "title": "Meta-Reinforcement Learning for Fast and Data-Efficient Spectrum Allocation in Dynamic Wireless Networks",
+      "authors": [
+        "Oluwaseyi Giwa",
+        "Tobi Ebenezer Awodumila",
+        "M. Mohsin",
+        "Ahsan Bilal",
+        "M. A. Jamshed"
+      ],
+      "year": 2025,
+      "ids": {
+        "s2": "e198400b5de938471ae24a837ef4510bf3aa5a1d",
+        "arxiv": "2507.10619",
+        "doi": "10.1109/LWC.2026.3668310"
+      },
+      "url": "https://www.semanticscholar.org/paper/e198400b5de938471ae24a837ef4510bf3aa5a1d",
+      "abstract": "Efficient spectrum allocation is vital for 5G/6G networks, yet traditional deep reinforcement learning (DRL) methods suffer from high sample complexity and unsafe exploration that can disrupt network stability. To address these challenges, we propose a meta-learning framework that learns a robust initial policy capable of rapid and safe adaptation to changing wireless conditions. We implement three meta-learning architectures using model-agnostic techniques\u2014model-agnostic meta-learning (MAML), recurrent neural network (RNN), and RNN with a self-attention mechanism\u2014and compare them against a DRL baseline and classical heuristic approaches in a dynamic integrated access/backhaul (IAB) environment. The attention-based agent achieves a peak throughput of $\\approx 49$ Mbps, reducing SINR and latency violations by over 60% relative to PPO, and attains 97% of the fairness level of the exhaustive-search upper bound. These results demonstrate that meta-learning enables data-efficient, reliable, and scalable spectrum management for next-generation wireless systems.",
+      "venue": "IEEE Wireless Communications Letters",
+      "found_in": [
+        "semanticscholar"
+      ],
+      "query": "safe meta reinforcement learning adaptation"
+    },
+    {
+      "title": "A meta reinforcement learning account of behavioral adaptation to volatility in recurrent neural networks",
+      "authors": [
+        "D. Tuzsus",
+        "I. Pappas",
+        "J. Peters"
+      ],
+      "year": 2024,
+      "ids": {
+        "doi": "10.1101/2024.05.09.593363"
+      },
+      "url": "https://doi.org/10.1101/2024.05.09.593363",
+      "abstract": "Abstract\n                Natural environments often exhibit various degrees of volatility, ranging from slowly changing to rapidly changing contingencies. How learners adapt to changing environments is a central issue in both reinforcement learning theory and psychology. For example, learners may adapt to changes in volatility by increasing learning if volatility increases, and reducing it if volatility decreases. Computational neuroscience and neural network modeling work suggests that this adaptive capacity may result from a meta-reinforcement learning process (implemented for example in the prefrontal cortex), where past experience endows the system with the capacity to rapidly adapt to environmental conditions in new situations. Here we provide direct evidence for a meta-reinforcement learning account of adaptation to environmental volatility. Recurrent neural networks (RNNs) were trained on a restless four-armed bandit reinforcement learning problem under three different training regimes (low volatility training only, medium volatility training only, or meta-volatility training across a range of volatilities). We show that, in contrast to RNNs trained in the low volatility regime, RNNs trained under the medium or meta-volatility regimes exhibited a superior adaption to environmental volatility. This was reflected in a better performance, and computational modeling of the network\u2019s behavior revealed a more adaptive adjustment of learning and exploration to varying levels of volatility during test. Results extend the meta-RL account to volatility adaptation and confirm past experience as a crucial factor of adaptive decision-making.",
+      "venue": "",
+      "found_in": [
+        "crossref"
+      ],
+      "query": "safe meta reinforcement learning adaptation"
+    },
+    {
+      "title": "Offline Meta Reinforcement Learning with In-Distribution Online Adaptation",
+      "authors": [
+        "Jianhao Wang",
+        "Jin Zhang",
+        "Haozhe Jiang",
+        "Junyu Zhang",
+        "Liwei Wang",
+        "Chongjie Zhang"
+      ],
+      "year": 2023,
+      "ids": {
+        "openalex": "W4379251374",
+        "doi": "10.48550/arxiv.2305.19529"
+      },
+      "url": "https://doi.org/10.48550/arxiv.2305.19529",
+      "abstract": "Recent offline meta-reinforcement learning (meta-RL) methods typically utilize task-dependent behavior policies (e.g., training RL agents on each individual task) to collect a multi-task dataset. However, these methods always require extra information for fast adaptation, such as offline context for testing tasks. To address this problem, we first formally characterize a unique challenge in offline meta-RL: transition-reward distribution shift between offline datasets and online adaptation. Our theory finds that out-of-distribution adaptation episodes may lead to unreliable policy evaluation and that online adaptation with in-distribution episodes can ensure adaptation performance guarantee. Based on these theoretical insights, we propose a novel adaptation framework, called In-Distribution online Adaptation with uncertainty Quantification (IDAQ), which generates in-distribution context using a given uncertainty quantification and performs effective task belief inference to address new tasks. We find a return-based uncertainty quantification for IDAQ that performs effectively. Experiments show that IDAQ achieves state-of-the-art performance on the Meta-World ML1 benchmark compared to baselines with/without offline adaptation.",
+      "venue": "arXiv (Cornell University)",
+      "found_in": [
+        "openalex"
+      ],
+      "query": "MAML adaptation degrades performance reinforcement learning"
+    },
+    {
+      "title": "Neurosymbolic Meta-Reinforcement Lookahead Learning Achieves Safe Self-Driving in Non-Stationary Environments",
+      "authors": [
+        "Haozhe Lei",
+        "Quan-Yan Zhu"
+      ],
+      "year": 2023,
+      "ids": {
+        "s2": "8e1da86dfc15ca33199c12698870b76abf13f363",
+        "arxiv": "2309.02328",
+        "doi": "10.48550/arXiv.2309.02328"
+      },
+      "url": "https://www.semanticscholar.org/paper/8e1da86dfc15ca33199c12698870b76abf13f363",
+      "abstract": "In the area of learning-driven artificial intelligence advancement, the integration of machine learning (ML) into self-driving (SD) technology stands as an impressive engineering feat. Yet, in real-world applications outside the confines of controlled laboratory scenarios, the deployment of self-driving technology assumes a life-critical role, necessitating heightened attention from researchers towards both safety and efficiency. To illustrate, when a self-driving model encounters an unfamiliar environment in real-time execution, the focus must not solely revolve around enhancing its anticipated performance; equal consideration must be given to ensuring its execution or real-time adaptation maintains a requisite level of safety. This study introduces an algorithm for online meta-reinforcement learning, employing lookahead symbolic constraints based on \\emph{Neurosymbolic Meta-Reinforcement Lookahead Learning} (NUMERLA). NUMERLA proposes a lookahead updating mechanism that harmonizes the efficiency of online adaptations with the overarching goal of ensuring long-term safety. Experimental results demonstrate NUMERLA confers the self-driving agent with the capacity for real-time adaptability, leading to safe and self-adaptive driving under non-stationary urban human-vehicle interaction scenarios.",
+      "venue": "arXiv.org",
+      "found_in": [
+        "semanticscholar"
+      ],
+      "query": "safe meta reinforcement learning adaptation"
+    },
+    {
+      "title": "A Survey on Deep Reinforcement Learning-based Approaches for Adaptation and Generalization",
+      "authors": [
+        "Pamul Yadav",
+        "Ashutosh Mishra",
+        "Junyong Lee",
+        "Shiho Kim"
+      ],
+      "year": 2022,
+      "ids": {
+        "openalex": "W4226342598",
+        "doi": "10.48550/arxiv.2202.08444"
+      },
+      "url": "https://doi.org/10.48550/arxiv.2202.08444",
+      "abstract": "Deep Reinforcement Learning (DRL) aims to create intelligent agents that can learn to solve complex problems efficiently in a real-world environment. Typically, two learning goals: adaptation and generalization are used for baselining DRL algorithm's performance on different tasks and domains. This paper presents a survey on the recent developments in DRL-based approaches for adaptation and generalization. We begin by formulating these goals in the context of task and domain. Then we review the recent works under those approaches and discuss future research directions through which DRL algorithms' adaptability and generalizability can be enhanced and potentially make them applicable to a broad range of real-world problems.",
+      "venue": "arXiv (Cornell University)",
+      "found_in": [
+        "openalex"
+      ],
+      "query": "MAML adaptation degrades performance reinforcement learning"
+    },
+    {
+      "title": "Fast adaptation via meta reinforcement learning",
+      "authors": [
+        "Luisa Zintgraf"
+      ],
+      "year": 2022,
+      "ids": {
+        "openalex": "W7116956745",
+        "doi": "10.5287/ora-kz4qqpo9b"
+      },
+      "url": "https://doi.org/10.5287/ora-kz4qqpo9b",
+      "abstract": "Reinforcement Learning (RL) is a way to train artificial agents to autonomously interact with the world. In practice however, RL still has limitations that prohibit the deployment of RL agents in many real world settings. This is because RL takes long, typically requires human oversight, and produces specialised agents that can behave unexpected in unfamiliar situations. This thesis is motivated by the goal of making RL agents more flexible, robust, and safe to deploy in the real world. We develop agents capable of Fast Adaptation, i.e., agents that can learn new tasks efficiently. To this end, we use Meta Reinforcement Learning (Meta-RL), where we teach agents not only to act autonomously, but to learn autonomously. We propose four novel Meta-RL methods based on the intuition that adapting fast can be divided into \"task inference\" (understanding the task) and \"task solving\" (solving the task). We hypothesise that this split can simplify optimisation and thus improve performance, and is more amenable to downstream tasks. To implement this, we propose a context-based approach, where the agent conditions on a context that represents its current knowledge about the task. The agent can then use this to decide whether to learn more about the task, or try and solve it. In Chapter 5, we use a deterministic context and establish that this can indeed improve performance and adequately captures the task. In the subsequent chapters, we then introduce Bayesian reasoning over the context, to enable decision-making under task uncertainty. By combining Meta-RL, context-based learning, and approximate variational inference, we develop methods to compute approximately Bayes-optimal agents for single-agent settings (Chapter 6) and multi-agent settings (Chapter 7). Finally, Chapter 8 addresses the challenge of meta-learning with sparse rewards, which is an important setting for many real-world applications. We observe that existing Meta-RL methods can fail entirely if rewards are sparse, and propose a way to overcome this by encouraging the agent to explore during meta-training. We conclude the thesis with a reflection on the work presented in the context of current developments, and a discussion of open questions. In summary, the contributions in this thesis significantly advance the field of Fast Adaptation via Meta-RL. The agents develop in this thesis can adapt faster than any previous methods across a variety of tasks, and we can compute approximately Bayes-optimal policies for much more complex task distributions than previously possible. We hope that this helps drive forward Meta-RL research and, in the long term, using RL to address important real world challenges.",
+      "venue": "Oxford University Research Archive (ORA) (University of Oxford)",
+      "found_in": [
+        "openalex"
+      ],
+      "query": "safe meta reinforcement learning adaptation"
+    },
+    {
+      "title": "Sign-MAML: Efficient Model-Agnostic Meta-Learning by SignSGD",
+      "authors": [
+        "Fan Chen",
+        "Parikshit Ram",
+        "Sijia Liu"
+      ],
+      "year": 2021,
+      "ids": {
+        "openalex": "W3199539481",
+        "doi": "10.48550/arxiv.2109.07497"
+      },
+      "url": "https://doi.org/10.48550/arxiv.2109.07497",
+      "abstract": "We propose a new computationally-efficient first-order algorithm for Model-Agnostic Meta-Learning (MAML). The key enabling technique is to interpret MAML as a bilevel optimization (BLO) problem and leverage the sign-based SGD(signSGD) as a lower-level optimizer of BLO. We show that MAML, through the lens of signSGD-oriented BLO, naturally yields an alternating optimization scheme that just requires first-order gradients of a learned meta-model. We term the resulting MAML algorithm Sign-MAML. Compared to the conventional first-order MAML (FO-MAML) algorithm, Sign-MAML is theoretically-grounded as it does not impose any assumption on the absence of second-order derivatives during meta training. In practice, we show that Sign-MAML outperforms FO-MAML in various few-shot image classification tasks, and compared to MAML, it achieves a much more graceful tradeoff between classification accuracy and computation efficiency.",
+      "venue": "arXiv (Cornell University)",
+      "found_in": [
+        "openalex"
+      ],
+      "query": "MAML adaptation degrades performance reinforcement learning"
+    },
+    {
+      "title": "MESA: Offline Meta-RL for Safe Adaptation and Fault Tolerance",
+      "authors": [
+        "Michael Luo",
+        "Ashwin Balakrishna",
+        "Brijen Thananjeyan",
+        "Suraj Nair",
+        "Julian Ibarz",
+        "Jie Tan",
+        "Chelsea Finn",
+        "Ion Stoica",
+        "Ken Goldberg"
+      ],
+      "year": 2021,
+      "ids": {
+        "arxiv": "2112.03575"
+      },
+      "url": "https://arxiv.org/abs/2112.03575",
+      "abstract": "Safe exploration is critical for using reinforcement learning (RL) in risk-sensitive environments. Recent work learns risk measures which measure the probability of violating constraints, which can then be used to enable safety. However, learning such risk measures requires significant interaction with the environment, resulting in excessive constraint violations during learning. Furthermore, these measures are not easily transferable to new environments. We cast safe exploration as an offline meta-RL problem, where the objective is to leverage examples of safe and unsafe behavior across a range of environments to quickly adapt learned risk measures to a new environment with previously unseen dynamics. We then propose MEta-learning for Safe Adaptation (MESA), an approach for meta-learning a risk measure for safe RL. Simulation experiments across 5 continuous control domains suggest that MESA can leverage offline data from a range of different environments to reduce constraint violations in unseen environments by up to a factor of 2 while maintaining task performance. See https://tinyurl.com/safe-meta-rl for code and supplementary material.",
+      "venue": "arXiv preprint",
+      "found_in": [
+        "arxiv"
+      ],
+      "query": "safe meta reinforcement learning adaptation"
+    },
+    {
+      "title": "Quick Learner Automated Vehicle Adapting its Roadmanship to Varying Traffic Cultures with Meta Reinforcement Learning",
+      "authors": [
+        "Songan Zhang",
+        "Lu Wen",
+        "Huei Peng",
+        "H. Eric Tseng"
+      ],
+      "year": 2021,
+      "ids": {
+        "arxiv": "2104.08876"
+      },
+      "url": "https://arxiv.org/abs/2104.08876",
+      "abstract": "It is essential for an automated vehicle in the field to perform discretionary lane changes with appropriate roadmanship - driving safely and efficiently without annoying or endangering other road users - under a wide range of traffic cultures and driving conditions. While deep reinforcement learning methods have excelled in recent years and been applied to automated vehicle driving policy, there are concerns about their capability to quickly adapt to unseen traffic with new environment dynamics. We formulate this challenge as a multi-Markov Decision Processes (MDPs) adaptation problem and developed Meta Reinforcement Learning (MRL) driving policies to showcase their quick learning capability. Two types of distribution variation in environments were designed and simulated to validate the fast adaptation capability of resulting MRL driving policies which significantly outperform a baseline RL.",
+      "venue": "arXiv preprint",
+      "found_in": [
+        "arxiv"
+      ],
+      "query": "safe meta reinforcement learning adaptation"
+    },
+    {
+      "title": "Meta Reinforcement Learning for Sim-to-real Domain Adaptation",
+      "authors": [
+        "Karol Arndt",
+        "Murtaza Hazara",
+        "Ali Ghadirzadeh",
+        "Ville Kyrki"
+      ],
+      "year": 2020,
+      "ids": {
+        "openalex": "W2976047560",
+        "doi": "10.1109/icra40945.2020.9196540"
+      },
+      "url": "https://doi.org/10.1109/icra40945.2020.9196540",
+      "abstract": "Modern reinforcement learning methods suffer from low sample efficiency and unsafe exploration, making it infeasible to train robotic policies entirely on real hardware. In this work, we propose to address the problem of sim-to-real domain transfer by using meta learning to train a policy that can adapt to a variety of dynamic conditions, and using a task-specific trajectory generation model to provide an action space that facilitates quick exploration. We evaluate the method by performing domain adaptation in simulation and analyzing the structure of the latent space during adaptation. We then deploy this policy on a KUKA LBR 4+ robot and evaluate its performance on a task of hitting a hockey puck to a target. Our method shows more consistent and stable domain adaptation than the baseline, resulting in better overall performance.",
+      "venue": "Proceedings - IEEE International Conference on Robotics and Automation/Proceedings",
+      "found_in": [
+        "openalex"
+      ],
+      "query": "safe meta reinforcement learning adaptation"
+    },
+    {
+      "title": "Challenges of Real-World Reinforcement Learning",
+      "authors": [
+        "Gabriel Dulac-Arnold",
+        "Daniel J. Mankowitz",
+        "Todd Hester"
+      ],
+      "year": 2019,
+      "ids": {
+        "openalex": "W2942608247",
+        "doi": "10.48550/arxiv.1904.12901"
+      },
+      "url": "https://doi.org/10.48550/arxiv.1904.12901",
+      "abstract": "Reinforcement learning (RL) has proven its worth in a series of artificial domains, and is beginning to show some successes in real-world scenarios. However, much of the research advances in RL are often hard to leverage in real-world systems due to a series of assumptions that are rarely satisfied in practice. We present a set of nine unique challenges that must be addressed to productionize RL to real world problems. For each of these challenges, we specify the exact meaning of the challenge, present some approaches from the literature, and specify some metrics for evaluating that challenge. An approach that addresses all nine challenges would be applicable to a large number of real world problems. We also present an example domain that has been modified to present these challenges as a testbed for practical RL research.",
+      "venue": "arXiv (Cornell University)",
+      "found_in": [
+        "openalex"
+      ],
+      "query": "MAML adaptation degrades performance reinforcement learning"
+    },
+    {
+      "title": "META REINFORCEMENT LEARNING APPLIED ON QUADRUPEDAL ROBOTS  FOR BLIND LOCOMOTION AND FAST ADAPTATION ON UNKNOWN  TERRAINS",
+      "authors": [
+        "PEDRO LEON FONTES CARDOSO BAZAN"
+      ],
+      "year": null,
+      "ids": {
+        "doi": "10.17771/pucrio.acad.75552"
+      },
+      "url": "https://doi.org/10.17771/pucrio.acad.75552",
+      "abstract": "",
+      "venue": "",
+      "found_in": [
+        "crossref"
+      ],
+      "query": "safe meta reinforcement learning adaptation"
+    },
+    {
+      "title": "Safe and transferable multi-task bandit learning with shared representations and safe reinforcement learning",
+      "authors": [
+        "Jiabin Lin"
+      ],
+      "year": null,
+      "ids": {
+        "doi": "10.31274/td-20260804-251"
+      },
+      "url": "https://doi.org/10.31274/td-20260804-251",
+      "abstract": "",
+      "venue": "",
+      "found_in": [
+        "crossref"
+      ],
+      "query": "safe meta reinforcement learning adaptation"
+    }
+  ]
+}

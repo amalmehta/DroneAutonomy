@@ -1,0 +1,440 @@
+{
+  "queries": [
+    "meta reinforcement learning quadrotor adaptation",
+    "meta-learning adaptive control quadrotor wind"
+  ],
+  "services": {
+    "openalex": {
+      "ok": 2,
+      "cached": 0,
+      "errors": []
+    },
+    "crossref": {
+      "ok": 2,
+      "cached": 0,
+      "errors": []
+    },
+    "arxiv": {
+      "ok": 2,
+      "cached": 0,
+      "errors": []
+    },
+    "semanticscholar": {
+      "ok": 0,
+      "cached": 0,
+      "errors": [
+        "'meta reinforcement learning quadrotor adaptation': 429",
+        "'meta-learning adaptive control quadrotor wind': 429"
+      ]
+    }
+  },
+  "records": [
+    {
+      "title": "MAVEN: A Meta-Reinforcement Learning Framework for Varying-Dynamics Expertise in Agile Quadrotor Maneuvers",
+      "authors": [
+        "Jin Zhou",
+        "Dongcheng Cao",
+        "Xian Yu Wang",
+        "Shuo Li"
+      ],
+      "year": 2026,
+      "ids": {
+        "openalex": "W7135130318",
+        "doi": "10.48550/arxiv.2603.10714",
+        "arxiv": "2603.10714"
+      },
+      "url": "https://doi.org/10.48550/arxiv.2603.10714",
+      "abstract": "Reinforcement learning (RL) has emerged as a powerful paradigm for achieving online agile navigation with quadrotors. Despite this success, policies trained via standard RL typically fail to generalize across significant dynamic variations, exhibiting a critical lack of adaptability. This work introduces MAVEN, a meta-RL framework that enables a single policy to achieve robust end-to-end navigation across a wide range of quadrotor dynamics. Our approach features a novel predictive context encoder, which learns to infer a latent representation of the system dynamics from interaction history. We demonstrate our method in agile waypoint traversal tasks under two challenging scenarios: large variations in quadrotor mass and severe single-rotor thrust loss. We leverage a GPU-vectorized simulator to distribute tasks across thousands of parallel environments, overcoming the long training times of meta-RL to converge in less than an hour. Through extensive experiments in both simulation and the real world, we validate that MAVEN achieves superior adaptation and agility. The policy successfully executes zero-shot sim-to-real transfer, demonstrating robust online adaptation by performing high-speed maneuvers despite mass variations of up to 66.7% and single-rotor thrust losses as severe as 70%.",
+      "venue": "arXiv (Cornell University)",
+      "found_in": [
+        "arxiv",
+        "openalex"
+      ],
+      "query": "meta reinforcement learning quadrotor adaptation"
+    },
+    {
+      "title": "Meta-Learning Augmented Model Predictive Control for Quadrotor UAV Flight in Strong Wind",
+      "authors": [
+        "Bin Wang",
+        "Kong Chuixu",
+        "Mutian Yu",
+        "Chang Liu"
+      ],
+      "year": 2026,
+      "ids": {
+        "openalex": "W7214302182",
+        "doi": "10.3390/drones10100731"
+      },
+      "url": "https://doi.org/10.3390/drones10100731",
+      "abstract": "The growing demand for precise unmanned aerial vehicle (UAV) operations in dynamic environments is often compromised by unmodeled wind disturbances, calling for robust and adaptive control strategies to ensure accurate trajectory tracking. This paper presents a meta-learning augmented model predictive control (ML-MPC) framework for quadrotor trajectory tracking under strong and horizontal wind disturbances with different nominal wind-speed settings. The framework uses a meta-learned basis function to capture shared nonlinear features of aerodynamic disturbances across different wind-speed conditions, while an online adaptation mechanism continuously estimates the corresponding coefficients from flight data. Their combination provides a real-time estimate of the residual aerodynamic force, which is incorporated into the MPC prediction model to compensate for wind disturbances. Extensive flight experiments validate the effectiveness of the ML-MPC framework, showing consistent gains in tracking accuracy across multiple trajectory types and under nominal wind-speed settings of up to 16 m/s, defined by measurements 1 m downstream of the fan array. Compared to a baseline GP-MPC controller, the approach achieves average performance improvements of 73.5% in simulation and 50.6% in real-world flight tests, with maximum reductions of 86.5% and 59.7%, respectively.",
+      "venue": "Drones",
+      "found_in": [
+        "crossref",
+        "openalex"
+      ],
+      "query": "meta-learning adaptive control quadrotor wind"
+    },
+    {
+      "title": "RAPTOR: A Foundation Policy for Quadrotor Control",
+      "authors": [
+        "Jonas Eschmann",
+        "Dario Albani",
+        "Giuseppe Loianno"
+      ],
+      "year": 2025,
+      "ids": {
+        "arxiv": "2509.11481",
+        "openalex": "W4415088405",
+        "doi": "10.1126/scirobotics.aec1481"
+      },
+      "url": "https://arxiv.org/abs/2509.11481",
+      "abstract": "Humans are remarkably data-efficient when adapting to new unseen conditions, like driving a new car. In contrast, modern robotic control systems, like neural network policies trained using Reinforcement Learning (RL), are highly specialized for single environments. Because of this overfitting, they are known to break down even under small differences like the Simulation-to-Reality (Sim2Real) gap and require system identification and retraining for even minimal changes to the system. In this work, we present RAPTOR, a method for training a highly adaptive foundation policy for quadrotor control. Our method enables training a single, end-to-end neural-network policy to control a wide variety of quadrotors. We test 10 different real quadrotors from 32 g to 2.4 kg that also differ in motor type (brushed vs. brushless), frame type (soft vs. rigid), propeller type (2/3/4-blade), and flight controller (PX4/Betaflight/Crazyflie/M5StampFly). We find that a tiny, three-layer policy with only 2084 parameters is sufficient for zero-shot adaptation to a wide variety of platforms. The adaptation through in-context learning is made possible by using a recurrence in the hidden layer. The policy is trained through our proposed Meta-Imitation Learning algorithm, where we sample 1000 quadrotors and train a teacher policy for each of them using RL. Subsequently, the 1000 teachers are distilled into a single, adaptive student policy. We find that within milliseconds, the resulting foundation policy adapts zero-shot to unseen quadrotors. We extensively test the capabilities of the foundation policy under numerous conditions (trajectory tracking, indoor/outdoor, wind disturbance, poking, different propellers).",
+      "venue": "arXiv preprint",
+      "found_in": [
+        "arxiv",
+        "openalex"
+      ],
+      "query": "meta reinforcement learning quadrotor adaptation"
+    },
+    {
+      "title": "Proto-MPC: An Encoder-Prototype-Decoder Approach for Quadrotor Control in Challenging Winds",
+      "authors": [
+        "Yuliang Gu",
+        "Cheng Sheng",
+        "Naira Hovakimyan"
+      ],
+      "year": 2024,
+      "ids": {
+        "openalex": "W4391376116",
+        "doi": "10.48550/arxiv.2401.15508",
+        "arxiv": "2401.15508"
+      },
+      "url": "https://doi.org/10.48550/arxiv.2401.15508",
+      "abstract": "Quadrotors are increasingly used in the evolving field of aerial robotics for their agility and mechanical simplicity. However, inherent uncertainties, such as aerodynamic effects coupled with quadrotors' operation in dynamically changing environments, pose significant challenges for traditional, nominal model-based control designs. We propose a multi-task meta-learning method called Encoder-Prototype-Decoder (EPD), which has the advantage of effectively balancing shared and distinctive representations across diverse training tasks. Subsequently, we integrate the EPD model into a model predictive control problem (Proto-MPC) to enhance the quadrotor's ability to adapt and operate across a spectrum of dynamically changing tasks with an efficient online implementation. We validate the proposed method in simulations, which demonstrates Proto-MPC's robust performance in trajectory tracking of a quadrotor being subject to static and spatially varying side winds.",
+      "venue": "arXiv (Cornell University)",
+      "found_in": [
+        "arxiv",
+        "openalex"
+      ],
+      "query": "meta-learning adaptive control quadrotor wind"
+    },
+    {
+      "title": "Autonomous Aerial Manipulation via Contextual Contrastive Meta Reinforcement Learning",
+      "authors": [
+        "Lixuan Jin",
+        "Bingxuan Lan",
+        "Xinyi Bao",
+        "Xiangyuan Xie",
+        "Chunjie Zhang",
+        "Zheng Chen",
+        "Tianshuo Liu",
+        "Ruijie Tian",
+        "Jinyu Ru",
+        "Gang Wang",
+        "Lei Yuan",
+        "Yang Yu"
+      ],
+      "year": 2026,
+      "ids": {
+        "arxiv": "2606.08533"
+      },
+      "url": "https://arxiv.org/abs/2606.08533",
+      "abstract": "Unmanned aerial vehicles (UAVs) are increasingly being deployed in logistics, service robotics, and other real-world applications, creating a growing demand for autonomous payload acquisition and delivery. Existing approaches typically assume pre-attached payloads or rely on specialized grippers, leaving versatile end-to-end aerial delivery largely unresolved, where different payloads induce highly variable flight dynamics, requiring a single policy to adapt online without manual calibration or explicit system identification. To this end, we study \\textbf{A}utonomous \\textbf{A}erial Manipulation via \\textbf{Co}ntextual \\textbf{Co}ntrastive Meta Reinforcement Learning (\\textbf{\\textit{Aco2}}), a fully autonomous aerial delivery setting in which a quadrotor equipped with a lightweight hook continuously picks up, transports, and delivers diverse handle-equipped objects between randomized locations, all without human intervention. First, we design a contextual observation encoder that infers a compact latent context from recent interaction history, enabling the policy to adapt online to payload-dependent dynamics. To further improve the quality of this context, we introduce a contrastive objective that structures the context embedding around task-relevant variations, improving generalization across diverse payloads without requiring explicit system identification. Trained entirely in simulation with extensive domain randomization, \\textit{Aco2} can be directly deployed on a physical quadrotor without real-world fine-tuning.",
+      "venue": "arXiv preprint",
+      "found_in": [
+        "arxiv"
+      ],
+      "query": "meta reinforcement learning quadrotor adaptation"
+    },
+    {
+      "title": "Reinforcement Learning-based Hover Control of a Quadrotor with Model Reference Adaptation",
+      "authors": [
+        "Harinee Kannan",
+        "Karishma Patnaik",
+        "Wenlong Zhang"
+      ],
+      "year": 2025,
+      "ids": {
+        "doi": "10.23919/acc63710.2025.11107552"
+      },
+      "url": "https://doi.org/10.23919/acc63710.2025.11107552",
+      "abstract": "",
+      "venue": "2025 American Control Conference (ACC)",
+      "found_in": [
+        "crossref"
+      ],
+      "query": "meta reinforcement learning quadrotor adaptation"
+    },
+    {
+      "title": "Meta-Learning Enhanced Model Predictive Contouring Control for Agile and Precise Quadrotor Flight",
+      "authors": [
+        "Mingxin Wei",
+        "Lanxiang Zheng",
+        "Ying Wu",
+        "Ruidong Mei",
+        "Hui Cheng"
+      ],
+      "year": 2025,
+      "ids": {
+        "openalex": "W4410114545",
+        "doi": "10.1109/tro.2025.3567491"
+      },
+      "url": "https://doi.org/10.1109/tro.2025.3567491",
+      "abstract": "In agile quadrotor flight, accurately modeling the varying aerodynamic drag forces encountered at different speeds is critical. These drag forces significantly impact the performance and maneuverability of the UAV, especially during high-speed maneuvers. Traditional control models based on first principles struggle to capture these dynamics due to the complexity and variability of aerodynamic effects, which are challenging to model accurately. To address these challenges, this study proposes a meta-learning-based control strategy for accurately modeling quadrotor dynamics under varying speeds, treating each velocity condition as an independent learning task with a specifically trained neural network to ensure precise dynamic predictions. The meta-learning framework rapidly generates task-specific parameters adapted to speed variations by solving an optimization problem and employs an online incremental learning strategy to integrate real-time data for continuous model updates, enhancing system robustness. Regularization is introduced to prevent overfitting and improve generalizability. The integration of the meta-learned model into Model Predictive Contouring Control (MPCC) allows the system to achieve optimal control across different velocity levels, ensuring efficient and accurate flight control even during sharp turns and high-speed maneuvers. Extensive simulations and real-world experiments confirm that the proposed algorithm maintains a high level of control precision despite the nonlinear effects of rapid speed changes, complex flight trajectories and wind disturbances. The results highlight the advantages of combining meta-learning with adaptive control strategies, providing a robust framework for quadrotors operating in diverse and dynamic environments.",
+      "venue": "IEEE Transactions on Robotics",
+      "found_in": [
+        "openalex"
+      ],
+      "query": "meta-learning adaptive control quadrotor wind"
+    },
+    {
+      "title": "Autonomous Landing of the Quadrotor on the Mobile Platform via Meta Reinforcement Learning",
+      "authors": [
+        "Qianqian Cao",
+        "Ziyi Liu",
+        "Hai Ying Yu",
+        "Xiao Liang",
+        "Yongchun Fang"
+      ],
+      "year": 2024,
+      "ids": {
+        "openalex": "W4393144926",
+        "doi": "10.1109/tase.2024.3377810"
+      },
+      "url": "https://doi.org/10.1109/tase.2024.3377810",
+      "abstract": "Landing a quadrotor on a mobile platform moving with various unknown trajectories presents special challenges, including the requirements of fast trajectory planning/replanning, accurate control, and the adaptability for different target trajectories, especially when the platform is non-cooperative. However, previous works either assume the platform moves along a predefined trajectory or decouple planning from control which may cause a delay in tracking. In this work, we integrate planning and control into a unified framework and present an efficient off-policy Meta-Reinforcement Learning (Meta-RL) algorithm that enables a quadrotor (agent) to land on a mobile platform with various unknown trajectories autonomously. In our approach, we disentangle task-specific policy parameters by a separate adapter network to shared low-level parameters and learn a probabilistic encoder to extract common structures across different tasks. Specifically, during meta-training, we sample different trajectories from the task distribution, and then the probabilistic encoder accumulates the necessary statistics from past experience into the latent variables that enable the policy to perform the task. At meta-testing time, when the quadrotor is faced with an unseen trajectory, the latent variables can be sampled according to past interactions between the quadrotor and the mobile platform and held constant during an episode, enabling rapid trajectory-level adaptation. We assume similar tasks share a common low-dimensional structure in the representation of the policy network and the task-specific information is learned in the head of the policy. Accordingly, we further propose a separate adapter net as a supervised learning problem. The adapter net learns the weights of the policy\u2019s output layer for each meta-training task given by the environment interactions from the agent. When adapting to a new task during meta-testing, we fix the shared model layers and predict the head weights for the new task using the trained adapter network. This ensures that the pretrained policy can efficiently adapt to different tasks, which boosts the out-of-distribution performance. Our method can directly control the pitch, roll, yaw angle, and thrust of the quadrotor, yielding a fast response to the trajectory change. Simulation results show the superiority of our method both in success rate and adaptation efficiency over other RL algorithms on meta-testing tasks. The real-world experimental results compared with traditional planning and control algorithms demonstrate the satisfactory performance of our autonomous landing method, especially its robustness in adapting to unknown dynamics.Note to Practitioners\u2014Given the challenge posed by the motion uncertainty when a quadrotor lands on a mobile platform with an unknown trajectory, there hasn\u2019t been a well-established solution, as far as we know. This paper introduces meta-reinforcement learning, incorporating a latent variable encoder to extract common features from training tasks, and designing an adapter network to enhance the ability of policy networks to adapt to new tasks, thereby enhancing the landing performance of the agent. The proposed method demonstrates promising results in both simulation and experiments.",
+      "venue": "IEEE Transactions on Automation Science and Engineering",
+      "found_in": [
+        "openalex"
+      ],
+      "query": "meta reinforcement learning quadrotor adaptation"
+    },
+    {
+      "title": "Multi-Task Reinforcement Learning for Quadrotors",
+      "authors": [
+        "Jiaxu Xing",
+        "Ismail Geles",
+        "Yunlong Song",
+        "Elie Aljalbout",
+        "Davide Scaramuzza"
+      ],
+      "year": 2024,
+      "ids": {
+        "openalex": "W4405561987",
+        "doi": "10.48550/arxiv.2412.12442"
+      },
+      "url": "https://doi.org/10.48550/arxiv.2412.12442",
+      "abstract": "Reinforcement learning (RL) has shown great effectiveness in quadrotor control, enabling specialized policies to develop even human-champion-level performance in single-task scenarios. However, these specialized policies often struggle with novel tasks, requiring a complete retraining of the policy from scratch. To address this limitation, this paper presents a novel multi-task reinforcement learning (MTRL) framework tailored for quadrotor control, leveraging the shared physical dynamics of the platform to enhance sample efficiency and task performance. By employing a multi-critic architecture and shared task encoders, our framework facilitates knowledge transfer across tasks, enabling a single policy to execute diverse maneuvers, including high-speed stabilization, velocity tracking, and autonomous racing. Our experimental results, validated both in simulation and real-world scenarios, demonstrate that our framework outperforms baseline approaches in terms of sample efficiency and overall task performance.",
+      "venue": "arXiv (Cornell University)",
+      "found_in": [
+        "openalex"
+      ],
+      "query": "meta reinforcement learning quadrotor adaptation"
+    },
+    {
+      "title": "Data-Driven Reinforcement Learning Control for Quadrotor Systems",
+      "authors": [
+        "Ngoc Trung Dang",
+        "Phuong Nam Dao"
+      ],
+      "year": 2024,
+      "ids": {
+        "doi": "10.18178/ijmerr.13.5.495-501"
+      },
+      "url": "https://doi.org/10.18178/ijmerr.13.5.495-501",
+      "abstract": "This paper aims to solve the tracking problem and optimality effectiveness of an Unmanned Aerial Vehicle (UAV) by model-free data Reinforcement Learning (RL) algorithms in both sub-systems of attitude and position. First, a cascade UAV model structure is given to establish the control system diagram with two corresponding attitude and position control loops. Second, based on the computation of the time derivative of the Bellman function by two different methods, the combination of the Bellman function and the optimal control is adopted to maintain the control signal as time converges to infinity with the addition of a discount factor. Third, according to off policy technique, the two proposed model-free RL algorithms are designed for attitude and position sub-systems in UAV control structure with a discount factor, respectively. In particular, the designed algorithms not only solve the trajectory tracking problem but also guarantee the optimality performance. Finally, an illustrative system is used to verify the performance of the proposed model-free data RL algorithms in the UAV control system.",
+      "venue": "International Journal of Mechanical Engineering and Robotics Research",
+      "found_in": [
+        "crossref"
+      ],
+      "query": "meta reinforcement learning quadrotor adaptation"
+    },
+    {
+      "title": "Self-Supervised Meta-Learning for All-Layer DNN-Based Adaptive Control with Stability Guarantees",
+      "authors": [
+        "Guanqi He",
+        "Yogita Choudhary",
+        "Guanya Shi"
+      ],
+      "year": 2024,
+      "ids": {
+        "arxiv": "2410.07575"
+      },
+      "url": "https://arxiv.org/abs/2410.07575",
+      "abstract": "A critical goal of adaptive control is enabling robots to rapidly adapt in dynamic environments. Recent studies have developed a meta-learning-based adaptive control scheme, which uses meta-learning to extract nonlinear features (represented by Deep Neural Networks (DNNs)) from offline data, and uses adaptive control to update linear coefficients online. However, such a scheme is fundamentally limited by the linear parameterization of uncertainties and does not fully unleash the capability of DNNs. This paper introduces a novel learning-based adaptive control framework that pretrains a DNN via self-supervised meta-learning (SSML) from offline trajectories and online adapts the full DNN via composite adaptation. In particular, the offline SSML stage leverages the time consistency in trajectory data to train the DNN to predict future disturbances from history, in a self-supervised manner without environment condition labels. The online stage carefully designs a control law and an adaptation law to update the full DNN with stability guarantees. Empirically, the proposed framework significantly outperforms (19-39%) various classic and learning-based adaptive control baselines, in challenging real-world quadrotor tracking problems under large dynamic wind disturbance.",
+      "venue": "arXiv preprint",
+      "found_in": [
+        "arxiv"
+      ],
+      "query": "meta-learning adaptive control quadrotor wind"
+    },
+    {
+      "title": "Multi-Agent Reinforcement Learning for the Low-Level Control of a Quadrotor UAV",
+      "authors": [
+        "Beomyeol Yu",
+        "Taeyoung Lee"
+      ],
+      "year": 2023,
+      "ids": {
+        "openalex": "W4388650523",
+        "doi": "10.48550/arxiv.2311.06144"
+      },
+      "url": "https://doi.org/10.48550/arxiv.2311.06144",
+      "abstract": "By leveraging the underlying structures of the quadrotor dynamics, we propose multi-agent reinforcement learning frameworks to innovate the low-level control of a quadrotor, where independent agents operate cooperatively to achieve a common goal. While single-agent reinforcement learning has been successfully applied in quadrotor controls, training a large monolithic network is often data-intensive and time-consuming. Moreover, achieving agile yawing control remains a significant challenge due to the strongly coupled nature of the quadrotor dynamics. To address this, we decompose the quadrotor dynamics into translational and yawing components and assign collaborative reinforcement learning agents to each part to facilitate more efficient training. Additionally, we introduce regularization terms to mitigate steady-state errors and prevent excessive maneuvers. Benchmark studies, including sim-to-sim transfer verification, demonstrate that our proposed training schemes substantially improve the convergence rate of training, while enhancing flight control performance and stability compared to traditional single-agent approaches.",
+      "venue": "arXiv (Cornell University)",
+      "found_in": [
+        "openalex"
+      ],
+      "query": "meta reinforcement learning quadrotor adaptation"
+    },
+    {
+      "title": "Meta-Learning-Based Incremental Nonlinear Dynamic Inversion Control for Quadrotors with Disturbances",
+      "authors": [
+        "Xinyue Zhang",
+        "Maopeng Ran"
+      ],
+      "year": 2023,
+      "ids": {
+        "openalex": "W4388019219",
+        "doi": "10.3390/app132111844"
+      },
+      "url": "https://doi.org/10.3390/app132111844",
+      "abstract": "This paper proposes an online meta-learning-based incremental nonlinear dynamic inversion (INDI) control method for quadrotors with disturbances. The quadrotor dynamic model is first transformed into linear form via an INDI control law. Since INDI largely depends on the accuracy of the control matrix, a method composed of meta-learning and adaptive control is proposed to estimate it online. The effectiveness of the proposed control framework is validated through simulation on a quadrotor with 3D wind disturbances.",
+      "venue": "Applied Sciences",
+      "found_in": [
+        "openalex"
+      ],
+      "query": "meta-learning adaptive control quadrotor wind"
+    },
+    {
+      "title": "Quadrotor Control using Reinforcement Learning under Wind Disturbance",
+      "authors": [
+        "Songshuo Lu",
+        "Yanjie Li",
+        "Zihan Liu"
+      ],
+      "year": 2023,
+      "ids": {
+        "doi": "10.1109/ccdc58219.2023.10326621"
+      },
+      "url": "https://doi.org/10.1109/ccdc58219.2023.10326621",
+      "abstract": "",
+      "venue": "2023 35th Chinese Control and Decision Conference (CCDC)",
+      "found_in": [
+        "crossref"
+      ],
+      "query": "meta-learning adaptive control quadrotor wind"
+    },
+    {
+      "title": "Deep learning, reinforcement learning, and world models",
+      "authors": [
+        "Yutaka Matsuo",
+        "Yann LeCun",
+        "Maneesh Sahani",
+        "Doina Precup",
+        "David Silver",
+        "Masashi Sugiyama",
+        "Eiji Uchibe",
+        "Jun Morimoto"
+      ],
+      "year": 2022,
+      "ids": {
+        "openalex": "W4224220194",
+        "doi": "10.1016/j.neunet.2022.03.037"
+      },
+      "url": "https://doi.org/10.1016/j.neunet.2022.03.037",
+      "abstract": "Deep learning (DL) and reinforcement learning (RL) methods seem to be a part of indispensable factors to achieve human-level or super-human AI systems. On the other hand, both DL and RL have strong connections with our brain functions and with neuroscientific findings. In this review, we summarize talks and discussions in the \"Deep Learning and Reinforcement Learning\" session of the symposium, International Symposium on Artificial Intelligence and Brain Science. In this session, we discussed whether we can achieve comprehensive understanding of human intelligence based on the recent advances of deep learning and reinforcement learning algorithms. Speakers contributed to provide talks about their recent studies that can be key technologies to achieve human-level intelligence.",
+      "venue": "Neural Networks",
+      "found_in": [
+        "openalex"
+      ],
+      "query": "meta reinforcement learning quadrotor adaptation"
+    },
+    {
+      "title": "Geometric Adaptive Control for a Quadrotor UAV with Wind Disturbance Rejection",
+      "authors": [
+        "Mahdis Bisheban",
+        "Taeyoung Lee"
+      ],
+      "year": 2018,
+      "ids": {
+        "doi": "10.1109/cdc.2018.8619390"
+      },
+      "url": "https://doi.org/10.1109/cdc.2018.8619390",
+      "abstract": "",
+      "venue": "2018 IEEE Conference on Decision and Control (CDC)",
+      "found_in": [
+        "crossref"
+      ],
+      "query": "meta-learning adaptive control quadrotor wind"
+    },
+    {
+      "title": "Learning-Based Adaptive Morphing Flight Control for Disturbance Resistance of Morphing Quadrotor UAVs via Meta Reinforcement Learning_supp1-3735975.pdf",
+      "authors": [
+        "Jun-Wei Wang"
+      ],
+      "year": null,
+      "ids": {
+        "doi": "10.1109/taes.2026.3735975/mm1"
+      },
+      "url": "https://doi.org/10.1109/taes.2026.3735975/mm1",
+      "abstract": "",
+      "venue": "",
+      "found_in": [
+        "crossref"
+      ],
+      "query": "meta reinforcement learning quadrotor adaptation"
+    },
+    {
+      "title": "DEEP REINFORCEMENT LEARNING FOR QUADROTOR TRAJECTORY CONTROL IN VIRTUAL ENVIRONMENTS",
+      "authors": [
+        "GUILHERME SIQUEIRA EDUARDO"
+      ],
+      "year": null,
+      "ids": {
+        "doi": "10.17771/pucrio.acad.54178"
+      },
+      "url": "https://doi.org/10.17771/pucrio.acad.54178",
+      "abstract": "",
+      "venue": "",
+      "found_in": [
+        "crossref"
+      ],
+      "query": "meta reinforcement learning quadrotor adaptation"
+    },
+    {
+      "title": "META REINFORCEMENT LEARNING APPLIED ON QUADRUPEDAL ROBOTS  FOR BLIND LOCOMOTION AND FAST ADAPTATION ON UNKNOWN  TERRAINS",
+      "authors": [
+        "PEDRO LEON FONTES CARDOSO BAZAN"
+      ],
+      "year": null,
+      "ids": {
+        "doi": "10.17771/pucrio.acad.75552"
+      },
+      "url": "https://doi.org/10.17771/pucrio.acad.75552",
+      "abstract": "",
+      "venue": "",
+      "found_in": [
+        "crossref"
+      ],
+      "query": "meta reinforcement learning quadrotor adaptation"
+    },
+    {
+      "title": "Meta-Learning Enhanced Model Predictive Contouring Control for Agile and Precise Quadrotor Flight_supp1-3567491.mp4",
+      "authors": [
+        "Hui Cheng"
+      ],
+      "year": null,
+      "ids": {
+        "doi": "10.1109/tro.2025.3567491/mm1"
+      },
+      "url": "https://doi.org/10.1109/tro.2025.3567491/mm1",
+      "abstract": "",
+      "venue": "",
+      "found_in": [
+        "crossref"
+      ],
+      "query": "meta-learning adaptive control quadrotor wind"
+    }
+  ]
+}

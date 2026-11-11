@@ -29,13 +29,18 @@ tests/test_core.py           fast checks of physics, perception, mapping, planni
 website/index.html           project site with the flight replay viewer
 website/data/demo.json       recorded flights it replays
 website/data/results.json    benchmark summary the results section reads
-website/images/              adaptation figures shown on the site
+website/images/              the paper's adaptation figure, as shown on the site
+website/paper.pdf            the paper, linked from the site
 results/                     benchmark output per (problem, method, seed) and summary.json
 paper/Where Does Meta-Learning Help a Quadrotor.pdf   the compiled paper
 paper/drone-autonomy/        paper sources: intake, figure/table/value scripts, ieee-conf/ (main.tex, sections, generated values and tables, figures, refs.bib, sources.md, checks)
 docs/                        instructions, system design, drone selection, this file, images
 .github/workflows/pages.yml  deploys website/ to GitHub Pages
 scripts/queue_nav_meta.sh    starts navigation meta-training once the DR planner exists
+scripts/bench_nav_seed1_when_ready.sh  benchmarks navigation seed 1 after training
+scripts/export_web_assets.sh copies the compiled paper and Fig. 2 into website/ and docs/images/
+scripts/pdf_to_png.swift     renders a PDF figure to PNG (macOS PDFKit)
+paper/drone-autonomy/ideas/  improvement ideas, literature searches and follow-up experiments
 drone_autonomy.md            project brief, open questions and changelog
 runs/, logs/                 training outputs (not committed)
 ```

@@ -61,132 +61,132 @@ Every number in the paper, where it comes from. Regenerate with `make_all.py`.
 | `\valResRltwoCi` | 1.5 | 95% half-interval of held-out RMSE after adapting, cm | results/summary.json -> tracking_residual / rl2 test_post_ci x100 |
 | `\valResRltwoOod` | 64.6 | OOD RMSE after 3 stages, cm | results/summary.json -> tracking_residual / rl2 ood_post x100 |
 | `\valResRltwoOodCrash` | 36 | OOD crash rate after 3 stages, % | results/summary.json -> tracking_residual / rl2 ood_crash |
-| `\valGainClassicalPre` | 21.4 | held-out RMSE before adapting, cm | results/summary.json -> tracking_gains / classical test_pre x100 |
-| `\valGainClassicalPost` | 21.4 | held-out RMSE after 3 stages, cm | results/summary.json -> tracking_gains / classical test_post x100 |
-| `\valGainClassicalCi` | 3.9 | 95% half-interval of held-out RMSE after adapting, cm | results/summary.json -> tracking_gains / classical test_post_ci x100 |
-| `\valGainClassicalOod` | 78.7 | OOD RMSE after 3 stages, cm | results/summary.json -> tracking_gains / classical ood_post x100 |
+| `\valGainClassicalPre` | 21.5 | held-out RMSE before adapting, cm | results/summary.json -> tracking_gains / classical test_pre x100 |
+| `\valGainClassicalPost` | 21.5 | held-out RMSE after 3 stages, cm | results/summary.json -> tracking_gains / classical test_post x100 |
+| `\valGainClassicalCi` | 2.8 | 95% half-interval of held-out RMSE after adapting, cm | results/summary.json -> tracking_gains / classical test_post_ci x100 |
+| `\valGainClassicalOod` | 79.0 | OOD RMSE after 3 stages, cm | results/summary.json -> tracking_gains / classical ood_post x100 |
 | `\valGainClassicalOodCrash` | 34 | OOD crash rate after 3 stages, % | results/summary.json -> tracking_gains / classical ood_crash |
-| `\valGainDrPre` | 14.4 | held-out RMSE before adapting, cm | results/summary.json -> tracking_gains / dr test_pre x100 |
-| `\valGainDrPost` | 14.4 | held-out RMSE after 3 stages, cm | results/summary.json -> tracking_gains / dr test_post x100 |
-| `\valGainDrCi` | 1.9 | 95% half-interval of held-out RMSE after adapting, cm | results/summary.json -> tracking_gains / dr test_post_ci x100 |
-| `\valGainDrOod` | 76.9 | OOD RMSE after 3 stages, cm | results/summary.json -> tracking_gains / dr ood_post x100 |
-| `\valGainDrOodCrash` | 52 | OOD crash rate after 3 stages, % | results/summary.json -> tracking_gains / dr ood_crash |
-| `\valGainDrftPre` | 14.4 | held-out RMSE before adapting, cm | results/summary.json -> tracking_gains / dr_finetune test_pre x100 |
-| `\valGainDrftPost` | 14.2 | held-out RMSE after 3 stages, cm | results/summary.json -> tracking_gains / dr_finetune test_post x100 |
-| `\valGainDrftCi` | 1.9 | 95% half-interval of held-out RMSE after adapting, cm | results/summary.json -> tracking_gains / dr_finetune test_post_ci x100 |
-| `\valGainDrftOod` | 75.5 | OOD RMSE after 3 stages, cm | results/summary.json -> tracking_gains / dr_finetune ood_post x100 |
+| `\valGainDrPre` | 14.5 | held-out RMSE before adapting, cm | results/summary.json -> tracking_gains / dr test_pre x100 |
+| `\valGainDrPost` | 14.5 | held-out RMSE after 3 stages, cm | results/summary.json -> tracking_gains / dr test_post x100 |
+| `\valGainDrCi` | 1.2 | 95% half-interval of held-out RMSE after adapting, cm | results/summary.json -> tracking_gains / dr test_post_ci x100 |
+| `\valGainDrOod` | 77.4 | OOD RMSE after 3 stages, cm | results/summary.json -> tracking_gains / dr ood_post x100 |
+| `\valGainDrOodCrash` | 53 | OOD crash rate after 3 stages, % | results/summary.json -> tracking_gains / dr ood_crash |
+| `\valGainDrftPre` | 14.5 | held-out RMSE before adapting, cm | results/summary.json -> tracking_gains / dr_finetune test_pre x100 |
+| `\valGainDrftPost` | 14.3 | held-out RMSE after 3 stages, cm | results/summary.json -> tracking_gains / dr_finetune test_post x100 |
+| `\valGainDrftCi` | 1.2 | 95% half-interval of held-out RMSE after adapting, cm | results/summary.json -> tracking_gains / dr_finetune test_post_ci x100 |
+| `\valGainDrftOod` | 75.4 | OOD RMSE after 3 stages, cm | results/summary.json -> tracking_gains / dr_finetune ood_post x100 |
 | `\valGainDrftOodCrash` | 50 | OOD crash rate after 3 stages, % | results/summary.json -> tracking_gains / dr_finetune ood_crash |
-| `\valGainMamlPre` | 15.6 | held-out RMSE before adapting, cm | results/summary.json -> tracking_gains / maml test_pre x100 |
-| `\valGainMamlPost` | 13.7 | held-out RMSE after 3 stages, cm | results/summary.json -> tracking_gains / maml test_post x100 |
-| `\valGainMamlCi` | 2.7 | 95% half-interval of held-out RMSE after adapting, cm | results/summary.json -> tracking_gains / maml test_post_ci x100 |
-| `\valGainMamlOod` | 69.8 | OOD RMSE after 3 stages, cm | results/summary.json -> tracking_gains / maml ood_post x100 |
-| `\valGainMamlOodCrash` | 42 | OOD crash rate after 3 stages, % | results/summary.json -> tracking_gains / maml ood_crash |
-| `\valGainFomamlPre` | 15.7 | held-out RMSE before adapting, cm | results/summary.json -> tracking_gains / fomaml test_pre x100 |
-| `\valGainFomamlPost` | 13.9 | held-out RMSE after 3 stages, cm | results/summary.json -> tracking_gains / fomaml test_post x100 |
-| `\valGainFomamlCi` | 2.8 | 95% half-interval of held-out RMSE after adapting, cm | results/summary.json -> tracking_gains / fomaml test_post_ci x100 |
-| `\valGainFomamlOod` | 72.6 | OOD RMSE after 3 stages, cm | results/summary.json -> tracking_gains / fomaml ood_post x100 |
-| `\valGainFomamlOodCrash` | 46 | OOD crash rate after 3 stages, % | results/summary.json -> tracking_gains / fomaml ood_crash |
-| `\valGainMetasgdPre` | 15.6 | held-out RMSE before adapting, cm | results/summary.json -> tracking_gains / metasgd test_pre x100 |
-| `\valGainMetasgdPost` | 11.3 | held-out RMSE after 3 stages, cm | results/summary.json -> tracking_gains / metasgd test_post x100 |
-| `\valGainMetasgdCi` | 2.0 | 95% half-interval of held-out RMSE after adapting, cm | results/summary.json -> tracking_gains / metasgd test_post_ci x100 |
-| `\valGainMetasgdOod` | 69.9 | OOD RMSE after 3 stages, cm | results/summary.json -> tracking_gains / metasgd ood_post x100 |
-| `\valGainMetasgdOodCrash` | 45 | OOD crash rate after 3 stages, % | results/summary.json -> tracking_gains / metasgd ood_crash |
-| `\valGainReptilePre` | 13.5 | held-out RMSE before adapting, cm | results/summary.json -> tracking_gains / reptile test_pre x100 |
-| `\valGainReptilePost` | 13.4 | held-out RMSE after 3 stages, cm | results/summary.json -> tracking_gains / reptile test_post x100 |
-| `\valGainReptileCi` | 1.7 | 95% half-interval of held-out RMSE after adapting, cm | results/summary.json -> tracking_gains / reptile test_post_ci x100 |
-| `\valGainReptileOod` | 75.4 | OOD RMSE after 3 stages, cm | results/summary.json -> tracking_gains / reptile ood_post x100 |
-| `\valGainReptileOodCrash` | 52 | OOD crash rate after 3 stages, % | results/summary.json -> tracking_gains / reptile ood_crash |
-| `\valNavClassicalPre` | 86 | held-out success before adapting, % | results/summary.json -> navigation / classical test_pre |
-| `\valNavClassicalPost` | 86 | held-out success after 3 stages, % | results/summary.json -> navigation / classical test_post |
-| `\valNavClassicalColl` | 12 | held-out collisions after 3 stages, % | results/summary.json -> navigation / classical test_collision |
-| `\valNavClassicalOod` | 14 | OOD success after 3 stages, % | results/summary.json -> navigation / classical ood_post |
-| `\valNavClassicalFullPre` | 83 | full-stack success before adapting, % | results/summary.json -> navigation / classical full_test_success_pre |
-| `\valNavClassicalFullPost` | 83 | full-stack success after 1 stage, % | results/summary.json -> navigation / classical full_test_success_post |
-| `\valNavClassicalFullColl` | 0 | full-stack collisions after 1 stage, % | results/summary.json -> navigation / classical full_test_collision_post |
-| `\valNavClassicallonePre` | 81 | held-out success before adapting, % | results/summary.json -> navigation / classical_l1 test_pre |
-| `\valNavClassicallonePost` | 81 | held-out success after 3 stages, % | results/summary.json -> navigation / classical_l1 test_post |
-| `\valNavClassicalloneColl` | 18 | held-out collisions after 3 stages, % | results/summary.json -> navigation / classical_l1 test_collision |
-| `\valNavClassicalloneOod` | 11 | OOD success after 3 stages, % | results/summary.json -> navigation / classical_l1 ood_post |
-| `\valNavClassicalloneFullPre` | 75 | full-stack success before adapting, % | results/summary.json -> navigation / classical_l1 full_test_success_pre |
-| `\valNavClassicalloneFullPost` | 75 | full-stack success after 1 stage, % | results/summary.json -> navigation / classical_l1 full_test_success_post |
-| `\valNavClassicalloneFullColl` | 0 | full-stack collisions after 1 stage, % | results/summary.json -> navigation / classical_l1 full_test_collision_post |
-| `\valNavDrPre` | 82 | held-out success before adapting, % | results/summary.json -> navigation / dr test_pre |
-| `\valNavDrPost` | 82 | held-out success after 3 stages, % | results/summary.json -> navigation / dr test_post |
-| `\valNavDrColl` | 18 | held-out collisions after 3 stages, % | results/summary.json -> navigation / dr test_collision |
-| `\valNavDrOod` | 15 | OOD success after 3 stages, % | results/summary.json -> navigation / dr ood_post |
-| `\valNavDrFullPre` | 67 | full-stack success before adapting, % | results/summary.json -> navigation / dr full_test_success_pre |
-| `\valNavDrFullPost` | 67 | full-stack success after 1 stage, % | results/summary.json -> navigation / dr full_test_success_post |
-| `\valNavDrFullColl` | 33 | full-stack collisions after 1 stage, % | results/summary.json -> navigation / dr full_test_collision_post |
-| `\valNavDrftPre` | 82 | held-out success before adapting, % | results/summary.json -> navigation / dr_finetune test_pre |
-| `\valNavDrftPost` | 72 | held-out success after 3 stages, % | results/summary.json -> navigation / dr_finetune test_post |
-| `\valNavDrftColl` | 28 | held-out collisions after 3 stages, % | results/summary.json -> navigation / dr_finetune test_collision |
-| `\valNavDrftOod` | 21 | OOD success after 3 stages, % | results/summary.json -> navigation / dr_finetune ood_post |
-| `\valNavDrftFullPre` | 67 | full-stack success before adapting, % | results/summary.json -> navigation / dr_finetune full_test_success_pre |
-| `\valNavDrftFullPost` | 67 | full-stack success after 1 stage, % | results/summary.json -> navigation / dr_finetune full_test_success_post |
-| `\valNavDrftFullColl` | 33 | full-stack collisions after 1 stage, % | results/summary.json -> navigation / dr_finetune full_test_collision_post |
-| `\valNavEtoePre` | 50 | held-out success before adapting, % | results/summary.json -> navigation / e2e_dr test_pre |
-| `\valNavEtoePost` | 50 | held-out success after 3 stages, % | results/summary.json -> navigation / e2e_dr test_post |
-| `\valNavEtoeColl` | 50 | held-out collisions after 3 stages, % | results/summary.json -> navigation / e2e_dr test_collision |
-| `\valNavEtoeOod` | 7 | OOD success after 3 stages, % | results/summary.json -> navigation / e2e_dr ood_post |
-| `\valNavEtoeFullPre` | 42 | full-stack success before adapting, % | results/summary.json -> navigation / e2e_dr full_test_success_pre |
-| `\valNavEtoeFullPost` | 42 | full-stack success after 1 stage, % | results/summary.json -> navigation / e2e_dr full_test_success_post |
-| `\valNavEtoeFullColl` | 58 | full-stack collisions after 1 stage, % | results/summary.json -> navigation / e2e_dr full_test_collision_post |
-| `\valNavEtoeftPre` | 50 | held-out success before adapting, % | results/summary.json -> navigation / e2e_dr_finetune test_pre |
-| `\valNavEtoeftPost` | 45 | held-out success after 3 stages, % | results/summary.json -> navigation / e2e_dr_finetune test_post |
-| `\valNavEtoeftColl` | 55 | held-out collisions after 3 stages, % | results/summary.json -> navigation / e2e_dr_finetune test_collision |
-| `\valNavEtoeftOod` | 9 | OOD success after 3 stages, % | results/summary.json -> navigation / e2e_dr_finetune ood_post |
-| `\valNavEtoeftFullPre` | 42 | full-stack success before adapting, % | results/summary.json -> navigation / e2e_dr_finetune full_test_success_pre |
-| `\valNavEtoeftFullPost` | 42 | full-stack success after 1 stage, % | results/summary.json -> navigation / e2e_dr_finetune full_test_success_post |
-| `\valNavEtoeftFullColl` | 58 | full-stack collisions after 1 stage, % | results/summary.json -> navigation / e2e_dr_finetune full_test_collision_post |
-| `\valNavMamlPre` | 79 | held-out success before adapting, % | results/summary.json -> navigation / maml test_pre |
-| `\valNavMamlPost` | 45 | held-out success after 3 stages, % | results/summary.json -> navigation / maml test_post |
-| `\valNavMamlColl` | 52 | held-out collisions after 3 stages, % | results/summary.json -> navigation / maml test_collision |
-| `\valNavMamlOod` | 7 | OOD success after 3 stages, % | results/summary.json -> navigation / maml ood_post |
-| `\valNavMamlFullPre` | 58 | full-stack success before adapting, % | results/summary.json -> navigation / maml full_test_success_pre |
-| `\valNavMamlFullPost` | 58 | full-stack success after 1 stage, % | results/summary.json -> navigation / maml full_test_success_post |
-| `\valNavMamlFullColl` | 42 | full-stack collisions after 1 stage, % | results/summary.json -> navigation / maml full_test_collision_post |
-| `\valNavFomamlPre` | 80 | held-out success before adapting, % | results/summary.json -> navigation / fomaml test_pre |
-| `\valNavFomamlPost` | 36 | held-out success after 3 stages, % | results/summary.json -> navigation / fomaml test_post |
-| `\valNavFomamlColl` | 61 | held-out collisions after 3 stages, % | results/summary.json -> navigation / fomaml test_collision |
-| `\valNavFomamlOod` | 8 | OOD success after 3 stages, % | results/summary.json -> navigation / fomaml ood_post |
-| `\valNavFomamlFullPre` | 58 | full-stack success before adapting, % | results/summary.json -> navigation / fomaml full_test_success_pre |
-| `\valNavFomamlFullPost` | 75 | full-stack success after 1 stage, % | results/summary.json -> navigation / fomaml full_test_success_post |
-| `\valNavFomamlFullColl` | 25 | full-stack collisions after 1 stage, % | results/summary.json -> navigation / fomaml full_test_collision_post |
-| `\valNavAnilPre` | 83 | held-out success before adapting, % | results/summary.json -> navigation / anil test_pre |
-| `\valNavAnilPost` | 47 | held-out success after 3 stages, % | results/summary.json -> navigation / anil test_post |
-| `\valNavAnilColl` | 50 | held-out collisions after 3 stages, % | results/summary.json -> navigation / anil test_collision |
+| `\valGainMamlPre` | 15.9 | held-out RMSE before adapting, cm | results/summary.json -> tracking_gains / maml test_pre x100 |
+| `\valGainMamlPost` | 12.8 | held-out RMSE after 3 stages, cm | results/summary.json -> tracking_gains / maml test_post x100 |
+| `\valGainMamlCi` | 1.4 | 95% half-interval of held-out RMSE after adapting, cm | results/summary.json -> tracking_gains / maml test_post_ci x100 |
+| `\valGainMamlOod` | 70.5 | OOD RMSE after 3 stages, cm | results/summary.json -> tracking_gains / maml ood_post x100 |
+| `\valGainMamlOodCrash` | 44 | OOD crash rate after 3 stages, % | results/summary.json -> tracking_gains / maml ood_crash |
+| `\valGainFomamlPre` | 15.9 | held-out RMSE before adapting, cm | results/summary.json -> tracking_gains / fomaml test_pre x100 |
+| `\valGainFomamlPost` | 13.0 | held-out RMSE after 3 stages, cm | results/summary.json -> tracking_gains / fomaml test_post x100 |
+| `\valGainFomamlCi` | 1.4 | 95% half-interval of held-out RMSE after adapting, cm | results/summary.json -> tracking_gains / fomaml test_post_ci x100 |
+| `\valGainFomamlOod` | 73.1 | OOD RMSE after 3 stages, cm | results/summary.json -> tracking_gains / fomaml ood_post x100 |
+| `\valGainFomamlOodCrash` | 47 | OOD crash rate after 3 stages, % | results/summary.json -> tracking_gains / fomaml ood_crash |
+| `\valGainMetasgdPre` | 15.8 | held-out RMSE before adapting, cm | results/summary.json -> tracking_gains / metasgd test_pre x100 |
+| `\valGainMetasgdPost` | 10.8 | held-out RMSE after 3 stages, cm | results/summary.json -> tracking_gains / metasgd test_post x100 |
+| `\valGainMetasgdCi` | 1.1 | 95% half-interval of held-out RMSE after adapting, cm | results/summary.json -> tracking_gains / metasgd test_post_ci x100 |
+| `\valGainMetasgdOod` | 69.3 | OOD RMSE after 3 stages, cm | results/summary.json -> tracking_gains / metasgd ood_post x100 |
+| `\valGainMetasgdOodCrash` | 44 | OOD crash rate after 3 stages, % | results/summary.json -> tracking_gains / metasgd ood_crash |
+| `\valGainReptilePre` | 13.6 | held-out RMSE before adapting, cm | results/summary.json -> tracking_gains / reptile test_pre x100 |
+| `\valGainReptilePost` | 13.5 | held-out RMSE after 3 stages, cm | results/summary.json -> tracking_gains / reptile test_post x100 |
+| `\valGainReptileCi` | 1.1 | 95% half-interval of held-out RMSE after adapting, cm | results/summary.json -> tracking_gains / reptile test_post_ci x100 |
+| `\valGainReptileOod` | 75.8 | OOD RMSE after 3 stages, cm | results/summary.json -> tracking_gains / reptile ood_post x100 |
+| `\valGainReptileOodCrash` | 53 | OOD crash rate after 3 stages, % | results/summary.json -> tracking_gains / reptile ood_crash |
+| `\valNavClassicalPre` | 83 | held-out success before adapting, % | results/summary.json -> navigation / classical test_pre |
+| `\valNavClassicalPost` | 83 | held-out success after 3 stages, % | results/summary.json -> navigation / classical test_post |
+| `\valNavClassicalColl` | 14 | held-out collisions after 3 stages, % | results/summary.json -> navigation / classical test_collision |
+| `\valNavClassicalOod` | 16 | OOD success after 3 stages, % | results/summary.json -> navigation / classical ood_post |
+| `\valNavClassicalFullPre` | 73 | full-stack success before adapting, % | results/summary.json -> navigation / classical full_test_success_pre |
+| `\valNavClassicalFullPost` | 73 | full-stack success after 1 stage, % | results/summary.json -> navigation / classical full_test_success_post |
+| `\valNavClassicalFullColl` | 7 | full-stack collisions after 1 stage, % | results/summary.json -> navigation / classical full_test_collision_post |
+| `\valNavClassicallonePre` | 77 | held-out success before adapting, % | results/summary.json -> navigation / classical_l1 test_pre |
+| `\valNavClassicallonePost` | 77 | held-out success after 3 stages, % | results/summary.json -> navigation / classical_l1 test_post |
+| `\valNavClassicalloneColl` | 21 | held-out collisions after 3 stages, % | results/summary.json -> navigation / classical_l1 test_collision |
+| `\valNavClassicalloneOod` | 8 | OOD success after 3 stages, % | results/summary.json -> navigation / classical_l1 ood_post |
+| `\valNavClassicalloneFullPre` | 73 | full-stack success before adapting, % | results/summary.json -> navigation / classical_l1 full_test_success_pre |
+| `\valNavClassicalloneFullPost` | 73 | full-stack success after 1 stage, % | results/summary.json -> navigation / classical_l1 full_test_success_post |
+| `\valNavClassicalloneFullColl` | 9 | full-stack collisions after 1 stage, % | results/summary.json -> navigation / classical_l1 full_test_collision_post |
+| `\valNavDrPre` | 72 | held-out success before adapting, % | results/summary.json -> navigation / dr test_pre |
+| `\valNavDrPost` | 72 | held-out success after 3 stages, % | results/summary.json -> navigation / dr test_post |
+| `\valNavDrColl` | 28 | held-out collisions after 3 stages, % | results/summary.json -> navigation / dr test_collision |
+| `\valNavDrOod` | 13 | OOD success after 3 stages, % | results/summary.json -> navigation / dr ood_post |
+| `\valNavDrFullPre` | 44 | full-stack success before adapting, % | results/summary.json -> navigation / dr full_test_success_pre |
+| `\valNavDrFullPost` | 44 | full-stack success after 1 stage, % | results/summary.json -> navigation / dr full_test_success_post |
+| `\valNavDrFullColl` | 56 | full-stack collisions after 1 stage, % | results/summary.json -> navigation / dr full_test_collision_post |
+| `\valNavDrftPre` | 72 | held-out success before adapting, % | results/summary.json -> navigation / dr_finetune test_pre |
+| `\valNavDrftPost` | 71 | held-out success after 3 stages, % | results/summary.json -> navigation / dr_finetune test_post |
+| `\valNavDrftColl` | 29 | held-out collisions after 3 stages, % | results/summary.json -> navigation / dr_finetune test_collision |
+| `\valNavDrftOod` | 17 | OOD success after 3 stages, % | results/summary.json -> navigation / dr_finetune ood_post |
+| `\valNavDrftFullPre` | 44 | full-stack success before adapting, % | results/summary.json -> navigation / dr_finetune full_test_success_pre |
+| `\valNavDrftFullPost` | 50 | full-stack success after 1 stage, % | results/summary.json -> navigation / dr_finetune full_test_success_post |
+| `\valNavDrftFullColl` | 50 | full-stack collisions after 1 stage, % | results/summary.json -> navigation / dr_finetune full_test_collision_post |
+| `\valNavEtoePre` | 52 | held-out success before adapting, % | results/summary.json -> navigation / e2e_dr test_pre |
+| `\valNavEtoePost` | 52 | held-out success after 3 stages, % | results/summary.json -> navigation / e2e_dr test_post |
+| `\valNavEtoeColl` | 48 | held-out collisions after 3 stages, % | results/summary.json -> navigation / e2e_dr test_collision |
+| `\valNavEtoeOod` | 10 | OOD success after 3 stages, % | results/summary.json -> navigation / e2e_dr ood_post |
+| `\valNavEtoeFullPre` | 51 | full-stack success before adapting, % | results/summary.json -> navigation / e2e_dr full_test_success_pre |
+| `\valNavEtoeFullPost` | 51 | full-stack success after 1 stage, % | results/summary.json -> navigation / e2e_dr full_test_success_post |
+| `\valNavEtoeFullColl` | 49 | full-stack collisions after 1 stage, % | results/summary.json -> navigation / e2e_dr full_test_collision_post |
+| `\valNavEtoeftPre` | 52 | held-out success before adapting, % | results/summary.json -> navigation / e2e_dr_finetune test_pre |
+| `\valNavEtoeftPost` | 46 | held-out success after 3 stages, % | results/summary.json -> navigation / e2e_dr_finetune test_post |
+| `\valNavEtoeftColl` | 54 | held-out collisions after 3 stages, % | results/summary.json -> navigation / e2e_dr_finetune test_collision |
+| `\valNavEtoeftOod` | 16 | OOD success after 3 stages, % | results/summary.json -> navigation / e2e_dr_finetune ood_post |
+| `\valNavEtoeftFullPre` | 51 | full-stack success before adapting, % | results/summary.json -> navigation / e2e_dr_finetune full_test_success_pre |
+| `\valNavEtoeftFullPost` | 47 | full-stack success after 1 stage, % | results/summary.json -> navigation / e2e_dr_finetune full_test_success_post |
+| `\valNavEtoeftFullColl` | 53 | full-stack collisions after 1 stage, % | results/summary.json -> navigation / e2e_dr_finetune full_test_collision_post |
+| `\valNavMamlPre` | 73 | held-out success before adapting, % | results/summary.json -> navigation / maml test_pre |
+| `\valNavMamlPost` | 36 | held-out success after 3 stages, % | results/summary.json -> navigation / maml test_post |
+| `\valNavMamlColl` | 60 | held-out collisions after 3 stages, % | results/summary.json -> navigation / maml test_collision |
+| `\valNavMamlOod` | 8 | OOD success after 3 stages, % | results/summary.json -> navigation / maml ood_post |
+| `\valNavMamlFullPre` | 46 | full-stack success before adapting, % | results/summary.json -> navigation / maml full_test_success_pre |
+| `\valNavMamlFullPost` | 32 | full-stack success after 1 stage, % | results/summary.json -> navigation / maml full_test_success_post |
+| `\valNavMamlFullColl` | 67 | full-stack collisions after 1 stage, % | results/summary.json -> navigation / maml full_test_collision_post |
+| `\valNavFomamlPre` | 76 | held-out success before adapting, % | results/summary.json -> navigation / fomaml test_pre |
+| `\valNavFomamlPost` | 31 | held-out success after 3 stages, % | results/summary.json -> navigation / fomaml test_post |
+| `\valNavFomamlColl` | 69 | held-out collisions after 3 stages, % | results/summary.json -> navigation / fomaml test_collision |
+| `\valNavFomamlOod` | 5 | OOD success after 3 stages, % | results/summary.json -> navigation / fomaml ood_post |
+| `\valNavFomamlFullPre` | 53 | full-stack success before adapting, % | results/summary.json -> navigation / fomaml full_test_success_pre |
+| `\valNavFomamlFullPost` | 31 | full-stack success after 1 stage, % | results/summary.json -> navigation / fomaml full_test_success_post |
+| `\valNavFomamlFullColl` | 69 | full-stack collisions after 1 stage, % | results/summary.json -> navigation / fomaml full_test_collision_post |
+| `\valNavAnilPre` | 76 | held-out success before adapting, % | results/summary.json -> navigation / anil test_pre |
+| `\valNavAnilPost` | 35 | held-out success after 3 stages, % | results/summary.json -> navigation / anil test_post |
+| `\valNavAnilColl` | 65 | held-out collisions after 3 stages, % | results/summary.json -> navigation / anil test_collision |
 | `\valNavAnilOod` | 8 | OOD success after 3 stages, % | results/summary.json -> navigation / anil ood_post |
-| `\valNavAnilFullPre` | 67 | full-stack success before adapting, % | results/summary.json -> navigation / anil full_test_success_pre |
-| `\valNavAnilFullPost` | 50 | full-stack success after 1 stage, % | results/summary.json -> navigation / anil full_test_success_post |
-| `\valNavAnilFullColl` | 50 | full-stack collisions after 1 stage, % | results/summary.json -> navigation / anil full_test_collision_post |
-| `\valNavMetasgdPre` | 76 | held-out success before adapting, % | results/summary.json -> navigation / metasgd test_pre |
-| `\valNavMetasgdPost` | 42 | held-out success after 3 stages, % | results/summary.json -> navigation / metasgd test_post |
-| `\valNavMetasgdColl` | 52 | held-out collisions after 3 stages, % | results/summary.json -> navigation / metasgd test_collision |
+| `\valNavAnilFullPre` | 49 | full-stack success before adapting, % | results/summary.json -> navigation / anil full_test_success_pre |
+| `\valNavAnilFullPost` | 45 | full-stack success after 1 stage, % | results/summary.json -> navigation / anil full_test_success_post |
+| `\valNavAnilFullColl` | 55 | full-stack collisions after 1 stage, % | results/summary.json -> navigation / anil full_test_collision_post |
+| `\valNavMetasgdPre` | 71 | held-out success before adapting, % | results/summary.json -> navigation / metasgd test_pre |
+| `\valNavMetasgdPost` | 49 | held-out success after 3 stages, % | results/summary.json -> navigation / metasgd test_post |
+| `\valNavMetasgdColl` | 50 | held-out collisions after 3 stages, % | results/summary.json -> navigation / metasgd test_collision |
 | `\valNavMetasgdOod` | 6 | OOD success after 3 stages, % | results/summary.json -> navigation / metasgd ood_post |
-| `\valNavMetasgdFullPre` | 75 | full-stack success before adapting, % | results/summary.json -> navigation / metasgd full_test_success_pre |
-| `\valNavMetasgdFullPost` | 33 | full-stack success after 1 stage, % | results/summary.json -> navigation / metasgd full_test_success_post |
-| `\valNavMetasgdFullColl` | 58 | full-stack collisions after 1 stage, % | results/summary.json -> navigation / metasgd full_test_collision_post |
-| `\valNavReptilePre` | 80 | held-out success before adapting, % | results/summary.json -> navigation / reptile test_pre |
-| `\valNavReptilePost` | 62 | held-out success after 3 stages, % | results/summary.json -> navigation / reptile test_post |
-| `\valNavReptileColl` | 38 | held-out collisions after 3 stages, % | results/summary.json -> navigation / reptile test_collision |
-| `\valNavReptileOod` | 17 | OOD success after 3 stages, % | results/summary.json -> navigation / reptile ood_post |
-| `\valNavReptileFullPre` | 58 | full-stack success before adapting, % | results/summary.json -> navigation / reptile full_test_success_pre |
-| `\valNavReptileFullPost` | 50 | full-stack success after 1 stage, % | results/summary.json -> navigation / reptile full_test_success_post |
-| `\valNavReptileFullColl` | 50 | full-stack collisions after 1 stage, % | results/summary.json -> navigation / reptile full_test_collision_post |
-| `\valNavPearlPre` | 65 | held-out success before adapting, % | results/summary.json -> navigation / pearl test_pre |
-| `\valNavPearlPost` | 66 | held-out success after 3 stages, % | results/summary.json -> navigation / pearl test_post |
-| `\valNavPearlColl` | 33 | held-out collisions after 3 stages, % | results/summary.json -> navigation / pearl test_collision |
-| `\valNavPearlOod` | 7 | OOD success after 3 stages, % | results/summary.json -> navigation / pearl ood_post |
-| `\valNavPearlFullPre` | 67 | full-stack success before adapting, % | results/summary.json -> navigation / pearl full_test_success_pre |
-| `\valNavPearlFullPost` | 17 | full-stack success after 1 stage, % | results/summary.json -> navigation / pearl full_test_success_post |
-| `\valNavPearlFullColl` | 83 | full-stack collisions after 1 stage, % | results/summary.json -> navigation / pearl full_test_collision_post |
-| `\valNavRltwoPre` | 55 | held-out success before adapting, % | results/summary.json -> navigation / rl2 test_pre |
-| `\valNavRltwoPost` | 71 | held-out success after 3 stages, % | results/summary.json -> navigation / rl2 test_post |
-| `\valNavRltwoColl` | 28 | held-out collisions after 3 stages, % | results/summary.json -> navigation / rl2 test_collision |
-| `\valNavRltwoOod` | 12 | OOD success after 3 stages, % | results/summary.json -> navigation / rl2 ood_post |
-| `\valNavRltwoFullPre` | 33 | full-stack success before adapting, % | results/summary.json -> navigation / rl2 full_test_success_pre |
-| `\valNavRltwoFullPost` | 50 | full-stack success after 1 stage, % | results/summary.json -> navigation / rl2 full_test_success_post |
-| `\valNavRltwoFullColl` | 50 | full-stack collisions after 1 stage, % | results/summary.json -> navigation / rl2 full_test_collision_post |
+| `\valNavMetasgdFullPre` | 46 | full-stack success before adapting, % | results/summary.json -> navigation / metasgd full_test_success_pre |
+| `\valNavMetasgdFullPost` | 48 | full-stack success after 1 stage, % | results/summary.json -> navigation / metasgd full_test_success_post |
+| `\valNavMetasgdFullColl` | 51 | full-stack collisions after 1 stage, % | results/summary.json -> navigation / metasgd full_test_collision_post |
+| `\valNavReptilePre` | 72 | held-out success before adapting, % | results/summary.json -> navigation / reptile test_pre |
+| `\valNavReptilePost` | 71 | held-out success after 3 stages, % | results/summary.json -> navigation / reptile test_post |
+| `\valNavReptileColl` | 29 | held-out collisions after 3 stages, % | results/summary.json -> navigation / reptile test_collision |
+| `\valNavReptileOod` | 14 | OOD success after 3 stages, % | results/summary.json -> navigation / reptile ood_post |
+| `\valNavReptileFullPre` | 46 | full-stack success before adapting, % | results/summary.json -> navigation / reptile full_test_success_pre |
+| `\valNavReptileFullPost` | 47 | full-stack success after 1 stage, % | results/summary.json -> navigation / reptile full_test_success_post |
+| `\valNavReptileFullColl` | 53 | full-stack collisions after 1 stage, % | results/summary.json -> navigation / reptile full_test_collision_post |
+| `\valNavPearlPre` | 70 | held-out success before adapting, % | results/summary.json -> navigation / pearl test_pre |
+| `\valNavPearlPost` | 71 | held-out success after 3 stages, % | results/summary.json -> navigation / pearl test_post |
+| `\valNavPearlColl` | 26 | held-out collisions after 3 stages, % | results/summary.json -> navigation / pearl test_collision |
+| `\valNavPearlOod` | 9 | OOD success after 3 stages, % | results/summary.json -> navigation / pearl ood_post |
+| `\valNavPearlFullPre` | 50 | full-stack success before adapting, % | results/summary.json -> navigation / pearl full_test_success_pre |
+| `\valNavPearlFullPost` | 55 | full-stack success after 1 stage, % | results/summary.json -> navigation / pearl full_test_success_post |
+| `\valNavPearlFullColl` | 42 | full-stack collisions after 1 stage, % | results/summary.json -> navigation / pearl full_test_collision_post |
+| `\valNavRltwoPre` | 60 | held-out success before adapting, % | results/summary.json -> navigation / rl2 test_pre |
+| `\valNavRltwoPost` | 55 | held-out success after 3 stages, % | results/summary.json -> navigation / rl2 test_post |
+| `\valNavRltwoColl` | 45 | held-out collisions after 3 stages, % | results/summary.json -> navigation / rl2 test_collision |
+| `\valNavRltwoOod` | 8 | OOD success after 3 stages, % | results/summary.json -> navigation / rl2 ood_post |
+| `\valNavRltwoFullPre` | 34 | full-stack success before adapting, % | results/summary.json -> navigation / rl2 full_test_success_pre |
+| `\valNavRltwoFullPost` | 39 | full-stack success after 1 stage, % | results/summary.json -> navigation / rl2 full_test_success_post |
+| `\valNavRltwoFullColl` | 60 | full-stack collisions after 1 stage, % | results/summary.json -> navigation / rl2 full_test_collision_post |
 | `\valTaskMassTrainLo` | 0.85 | mass_scale train range low | drone_autonomy/tasks.py RANGES |
 | `\valTaskMassTrainHi` | 1.30 | mass_scale train range high | drone_autonomy/tasks.py RANGES |
 | `\valTaskMassOodLo` | 1.30 | mass_scale ood range low | drone_autonomy/tasks.py RANGES |
@@ -216,12 +216,66 @@ Every number in the paper, where it comes from. Regenerate with `make_all.py`.
 | `\valResOodCrashLearnedLo` | 43 | lowest OOD crash rate among learned residuals (excl. Reptile, RL2), % | summary.json min ood_crash over dr,dr_finetune,maml,fomaml,anil,metasgd,pearl |
 | `\valResOodCrashLearnedHi` | 49 | highest OOD crash rate among learned residuals, % | summary.json max ood_crash over same set |
 | `\valOodRmseMin` | 63.1 | lowest OOD RMSE of any tracking method, cm | summary.json min ood_post over tracking problems |
-| `\valOodAdaptMaxDelta` | 6 | largest change in OOD RMSE from adapting (any adaptive tracking method), cm | summary.json max |ood_post - ood_pre| over tracking methods with ood_episodes > 0 |
-| `\valNavOodMax` | 21 | highest OOD success of any navigation method, % | summary.json max navigation ood_post |
-| `\valNavFullLearnedLo` | 17 | lowest full-stack success, learned planners, % | summary.json min full_test_success_post |
-| `\valNavFullLearnedHi` | 75 | highest full-stack success, learned planners, % | summary.json max full_test_success_post |
-| `\valNavFullCollLo` | 25 | lowest full-stack collision rate, learned planners, % | summary.json min full_test_collision_post |
-| `\valNavFullCollHi` | 83 | highest full-stack collision rate, learned planners, % | summary.json max full_test_collision_post |
+| `\valOodAdaptMaxDelta` | 7 | largest change in OOD RMSE from adapting (any adaptive tracking method), cm | summary.json max |ood_post - ood_pre| over tracking methods with ood_episodes > 0 |
+| `\valNavOodMax` | 17 | highest OOD success of any navigation method, % | summary.json max navigation ood_post |
+| `\valNavFullLearnedLo` | 31 | lowest full-stack success, learned planners, % | summary.json min full_test_success_post |
+| `\valNavFullLearnedHi` | 55 | highest full-stack success, learned planners, % | summary.json max full_test_success_post |
+| `\valNavFullCollLo` | 42 | lowest full-stack collision rate, learned planners, % | summary.json min full_test_collision_post |
+| `\valNavFullCollHi` | 69 | highest full-stack collision rate, learned planners, % | summary.json max full_test_collision_post |
+| `\valNavAnilStageOne` | 53 | held-out success after 1 adaptation stage, % | results/summary.json -> navigation / anil test_curve[1] |
+| `\valNavDrftStageOne` | 72 | held-out success after 1 adaptation stage, % | results/summary.json -> navigation / dr_finetune test_curve[1] |
+| `\valNavEtoeftStageOne` | 49 | held-out success after 1 adaptation stage, % | results/summary.json -> navigation / e2e_dr_finetune test_curve[1] |
+| `\valNavFomamlStageOne` | 50 | held-out success after 1 adaptation stage, % | results/summary.json -> navigation / fomaml test_curve[1] |
+| `\valNavMamlStageOne` | 46 | held-out success after 1 adaptation stage, % | results/summary.json -> navigation / maml test_curve[1] |
+| `\valNavMetasgdStageOne` | 67 | held-out success after 1 adaptation stage, % | results/summary.json -> navigation / metasgd test_curve[1] |
+| `\valNavPearlStageOne` | 71 | held-out success after 1 adaptation stage, % | results/summary.json -> navigation / pearl test_curve[1] |
+| `\valNavReptileStageOne` | 70 | held-out success after 1 adaptation stage, % | results/summary.json -> navigation / reptile test_curve[1] |
+| `\valNavRltwoStageOne` | 58 | held-out success after 1 adaptation stage, % | results/summary.json -> navigation / rl2 test_curve[1] |
+| `\valStepsResDr` | 9.6 | tracking_residual dr training budget, million env steps | methods.py ITERS[tracking_residual][dr] x figures_scripts/common.py EPISODES_PER_ITER x HORIZON |
+| `\valStepsResMaml` | 9.6 | tracking_residual maml training budget, million env steps | methods.py ITERS[tracking_residual][maml] x figures_scripts/common.py EPISODES_PER_ITER x HORIZON |
+| `\valStepsResReptile` | 11.5 | tracking_residual reptile training budget, million env steps | methods.py ITERS[tracking_residual][reptile] x figures_scripts/common.py EPISODES_PER_ITER x HORIZON |
+| `\valStepsResPearl` | 1.0 | tracking_residual pearl training budget, million env steps | methods.py ITERS[tracking_residual][pearl] x figures_scripts/common.py EPISODES_PER_ITER x HORIZON |
+| `\valStepsResRltwo` | 4.3 | tracking_residual rl2 training budget, million env steps | methods.py ITERS[tracking_residual][rl2] x figures_scripts/common.py EPISODES_PER_ITER x HORIZON |
+| `\valStepsGainDr` | 4.8 | tracking_gains dr training budget, million env steps | methods.py ITERS[tracking_gains][dr] x figures_scripts/common.py EPISODES_PER_ITER x HORIZON |
+| `\valStepsGainMaml` | 6.4 | tracking_gains maml training budget, million env steps | methods.py ITERS[tracking_gains][maml] x figures_scripts/common.py EPISODES_PER_ITER x HORIZON |
+| `\valStepsGainReptile` | 7.7 | tracking_gains reptile training budget, million env steps | methods.py ITERS[tracking_gains][reptile] x figures_scripts/common.py EPISODES_PER_ITER x HORIZON |
+| `\valStepsNavDr` | 12.0 | navigation dr training budget, million env steps | methods.py ITERS[navigation][dr] x figures_scripts/common.py EPISODES_PER_ITER x HORIZON |
+| `\valStepsNavMaml` | 5.8 | navigation maml training budget, million env steps | methods.py ITERS[navigation][maml] x figures_scripts/common.py EPISODES_PER_ITER x HORIZON |
+| `\valStepsNavReptile` | 7.2 | navigation reptile training budget, million env steps | methods.py ITERS[navigation][reptile] x figures_scripts/common.py EPISODES_PER_ITER x HORIZON |
+| `\valStepsNavPearl` | 1.0 | navigation pearl training budget, million env steps | methods.py ITERS[navigation][pearl] x figures_scripts/common.py EPISODES_PER_ITER x HORIZON |
+| `\valStepsNavRltwo` | 5.2 | navigation rl2 training budget, million env steps | methods.py ITERS[navigation][rl2] x figures_scripts/common.py EPISODES_PER_ITER x HORIZON |
+| `\valSeedsRes` | 2 | training seeds per learned method, tracking_residual | results/summary.json -> tracking_residual seeds |
+| `\valSeedsGain` | 5 | training seeds per learned method, tracking_gains | results/summary.json -> tracking_gains seeds |
+| `\valSeedsNav` | 2 | training seeds per learned method, navigation | results/summary.json -> navigation seeds |
+| `\valNavFullRooms` | 48 | unseen rooms per seed, full-stack evaluation | drone_autonomy/benchmark.py FULLSTACK_TASKS['test'] |
+| `\valNavFullFlights` | 96 | full-stack evaluation flights per method (rooms x seeds) | benchmark.py FULLSTACK_TASKS['test'] x seeds in results/navigation |
+| `\valNavPrivRooms` | 96 | distinct unseen rooms per seed, privileged-planner evaluation (tasks x 4 episodes) | benchmark.py N_TASKS['navigation'] x E_eval=4 |
+| `\valGainPairedDiff` | 3.5 | Meta-SGD minus DR+fine-tune held-out RMSE, mean paired improvement, cm | results/tracking_gains/{metasgd,dr_finetune}_seed*.json test[-1].rmse; paired by seed and task; 10,000 bootstrap resamples (rng seed 0) |
+| `\valGainPairedLo` | 2.8 | paired improvement, 95% bootstrap CI lower end, cm | results/tracking_gains/{metasgd,dr_finetune}_seed*.json test[-1].rmse; paired by seed and task; 10,000 bootstrap resamples (rng seed 0) |
+| `\valGainPairedHi` | 4.3 | paired improvement, 95% bootstrap CI upper end, cm | results/tracking_gains/{metasgd,dr_finetune}_seed*.json test[-1].rmse; paired by seed and task; 10,000 bootstrap resamples (rng seed 0) |
+| `\valGainPairedWin` | 83 | share of task-seed pairs where Meta-SGD has lower RMSE, % | results/tracking_gains/{metasgd,dr_finetune}_seed*.json test[-1].rmse; paired by seed and task; 10,000 bootstrap resamples (rng seed 0) |
+| `\valGainPairedN` | 160 | number of task-seed pairs in the paired comparison | results/tracking_gains/{metasgd,dr_finetune}_seed*.json test[-1].rmse; paired by seed and task; 10,000 bootstrap resamples (rng seed 0) |
+| `\valLoneTunedTest` | 14.0 | tuned L1 held-out RMSE, cm | ideas/experiments/05_l1_tuning/results/l1_tuning.json tuned_test_rmse |
+| `\valLoneDefaultTest` | 14.9 | default L1 held-out RMSE on the same episodes, cm | l1_tuning.json default_test_rmse |
+| `\valLoneTunedCutoff` | 40 | tuned L1 filter bandwidth, rad/s | l1_tuning.json best.cutoff |
+| `\valLoneTunedPole` | 10 | tuned L1 predictor pole, 1/s | l1_tuning.json best.a_s |
+| `\valStepMamlOnePre` | 69 | I-02 maml step x1.0, 10 ep/stage: success before adapting, % | ideas/experiments/02_nav_step_size/results/maml_scale1.0_E10.json success[0] |
+| `\valStepMamlOnePost` | 25 | I-02 maml step x1.0, 10 ep/stage: success after 3 stages, % | maml_scale1.0_E10.json success[3] |
+| `\valStepMamlTenthPre` | 69 | I-02 maml step x0.1, 10 ep/stage: success before adapting, % | ideas/experiments/02_nav_step_size/results/maml_scale0.1_E10.json success[0] |
+| `\valStepMamlTenthPost` | 72 | I-02 maml step x0.1, 10 ep/stage: success after 3 stages, % | maml_scale0.1_E10.json success[3] |
+| `\valStepMamlThirdPre` | 69 | I-02 maml step x0.3, 10 ep/stage: success before adapting, % | ideas/experiments/02_nav_step_size/results/maml_scale0.3_E10.json success[0] |
+| `\valStepMamlThirdPost` | 66 | I-02 maml step x0.3, 10 ep/stage: success after 3 stages, % | maml_scale0.3_E10.json success[3] |
+| `\valStepMamlDataPre` | 69 | I-02 maml step x1.0, 30 ep/stage: success before adapting, % | ideas/experiments/02_nav_step_size/results/maml_scale1.0_E30.json success[0] |
+| `\valStepMamlDataPost` | 64 | I-02 maml step x1.0, 30 ep/stage: success after 3 stages, % | maml_scale1.0_E30.json success[3] |
+| `\valStepMetasgdOnePre` | 67 | I-02 metasgd step x1.0, 10 ep/stage: success before adapting, % | ideas/experiments/02_nav_step_size/results/metasgd_scale1.0_E10.json success[0] |
+| `\valStepMetasgdOnePost` | 38 | I-02 metasgd step x1.0, 10 ep/stage: success after 3 stages, % | metasgd_scale1.0_E10.json success[3] |
+| `\valStepMetasgdTenthPre` | 67 | I-02 metasgd step x0.1, 10 ep/stage: success before adapting, % | ideas/experiments/02_nav_step_size/results/metasgd_scale0.1_E10.json success[0] |
+| `\valStepMetasgdTenthPost` | 70 | I-02 metasgd step x0.1, 10 ep/stage: success after 3 stages, % | metasgd_scale0.1_E10.json success[3] |
+| `\valMildClassicalRmse` | 61.5 | mild-OOD RMSE, classical, cm | ideas/experiments/06_mild_ood/results mean over seeds rmse[-1] |
+| `\valMildClassicalCrash` | 9 | mild-OOD crash rate, classical, % | 06_mild_ood crashed[-1] |
+| `\valMildDrRmse` | 41.1 | mild-OOD RMSE, DR residual, cm | 06_mild_ood dr rmse[-1] |
+| `\valMildResidCrashLo` | 14 | mild-OOD crash rate, lowest of DR/MAML-family residuals, % | 06_mild_ood min over dr,maml,fomaml,anil,metasgd |
+| `\valMildResidCrashHi` | 18 | mild-OOD crash rate, highest of DR/MAML-family residuals, % | 06_mild_ood max over same set |
 
 ## Tables and figures
 
@@ -230,6 +284,8 @@ Every number in the paper, where it comes from. Regenerate with `make_all.py`.
 | generated/tables/tracking.tex | figures_scripts/tracking_table.py | results/summary.json |
 | generated/tables/navigation.tex | figures_scripts/navigation_table.py | results/summary.json |
 | generated/tables/tasks.tex | figures_scripts/task_table.py | drone_autonomy/tasks.py RANGES |
+| generated/tables/budget.tex | figures_scripts/budget_table.py | drone_autonomy/methods.py ITERS, common.py budget constants |
+| generated/tables/stepsize.tex | figures_scripts/step_size_table.py | ideas/experiments/02_nav_step_size/results/*.json |
 | figures/adaptation_curves.pdf | figures_scripts/adaptation_curves.py | results/<problem>/*_seed*.json |
 | figures/example_flights.pdf | figures_scripts/example_flights.py | website/data/demo.json |
 
@@ -302,4 +358,5 @@ Every number in the paper, where it comes from. Regenerate with `make_all.py`.
 | 1--3 | price band of the platform search, k USD | drone_autonomy.md (user answer) |
 | 9980 | CPU model Intel Core i9-9980HK | machine used for all runs (sysctl machdep.cpu.brand_string) |
 | 435 | camera model RealSense D435i | docs/DRONE-SELECTION.md |
+| 16 | held-out tasks in the step-size experiment (I-02) | ideas/experiments/02_nav_step_size/run.py fixed_eval_tasks(16) |
 | 29 | Starling 2 Max configuration C29 (the one with ToF) | docs/DRONE-SELECTION.md |

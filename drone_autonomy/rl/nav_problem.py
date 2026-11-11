@@ -15,7 +15,7 @@ class Navigation(Problem):
     def __init__(self, planner="oracle", pool_size=128, hidden=(128, 64), split="train", local="policy",
                  adaptive=False):
         super().__init__()
-        self.planner, self.local, self.adaptive = planner, local, adaptive
+        self.planner, self.local, self.adaptive, self.split = planner, local, adaptive, split
         self.pool = self.get_pool(split, pool_size)
         self.policy = GaussianMLP(NavEnv.obs_dim, NavEnv.act_dim, hidden)
 
@@ -27,7 +27,9 @@ class Navigation(Problem):
         return cls._pools[key]
 
     def make_env(self, n):
-        return NavEnv(n, self.pool, planner=self.planner, local=self.local, adaptive=self.adaptive)
+        env = NavEnv(n, self.pool, planner=self.planner, local=self.local, adaptive=self.adaptive)
+        env.distinct_rooms = self.split == "test"  # held-out evaluation never repeats a room
+        return env
 
     def collect(self, params, tasks, E, seed=None, deterministic=False):
         return collect_steps(self.env(len(tasks) * E), self.policy, params, tasks, E, seed, deterministic)

@@ -1,4 +1,7 @@
-"""Fig. 2: performance against adaptation data on held-out tasks, for the three combinations."""
+"""Fig. 2: performance against adaptation stage on held-out tasks, for the three combinations.
+
+x is the adaptation stage (0-3): one update from 10 episodes for the gradient methods, one more episode of
+experience for PEARL and RL^2. Panel (c) omits the end-to-end planners (they are in Table III) to stay readable."""
 import numpy as np
 
 import figure_style as fs
@@ -23,7 +26,7 @@ def curve(rs, key, scale):
     for s in range(stages):
         v = np.concatenate([np.asarray(r["test"][s][key], float) for r in rs])
         v = v[np.isfinite(v)] * scale
-        xs.append(rs[0]["test"][s]["episodes_used"])
+        xs.append(s)
         mu.append(v.mean())
         half.append(1.96 * v.std(ddof=1) / np.sqrt(len(v)) if len(v) > 1 else 0.0)
     return np.array(xs), np.array(mu), np.array(half)
@@ -34,6 +37,8 @@ def main():
     handles = {}
     for ax, (problem, key, scale, title, ylabel) in zip(axs, PANELS):
         for m, rs in sorted(runs(problem).items(), key=lambda kv: list(STYLE).index(kv[0])):
+            if m.startswith("e2e"):
+                continue
             c, mk, ls = STYLE[m]
             x, mu, h = curve(rs, key, scale)
             if len(x) == 1:
@@ -42,16 +47,15 @@ def main():
                 line, = ax.plot(x, mu, color=c, marker=mk, ls=ls, lw=1.1, ms=3)
                 ax.fill_between(x, mu - h, mu + h, color=c, alpha=0.10, lw=0)
             handles[m] = line
-        ax.set_xscale("symlog", linthresh=1)
-        ax.set_xlim(0, 32)
-        ax.set_xticks([0, 1, 3, 10, 30])
-        ax.set_xticklabels(["0", "1", "3", "10", "30"])
-        ax.set_xlabel("adaptation episodes")
+        ax.set_xlim(-0.1, 3.1)
+        ax.set_xticks([0, 1, 2, 3])
+        ax.set_xlabel("adaptation stage")
         ax.set_ylabel(ylabel)
         ax.set_title(title, loc="left")
         ax.grid(alpha=0.25, lw=0.5)
     order = [m for m in STYLE if m in handles and m != "classical_l1"]
-    fig.legend([handles[m] for m in order], [LABEL[m] for m in order], loc="outside lower center", ncol=7,
+    note = {"pearl": " (1 ep./stage)", "rl2": " (1 ep./stage)", "maml": " (10 ep./stage)"}
+    fig.legend([handles[m] for m in order], [LABEL[m] + note.get(m, "") for m in order], loc="outside lower center", ncol=6,
                handlelength=2.2, columnspacing=1.0)
     fs.save(fig, VENUE_DIR / "figures" / "adaptation_curves.pdf")
 

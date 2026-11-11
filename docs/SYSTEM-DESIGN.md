@@ -53,7 +53,7 @@ flowchart LR
 
 **RL².** Trials of three episodes per task with the GRU state carried across them. Recurrent PPO over whole trials, with GAE over live steps only.
 
-**Evaluation** (`benchmark.py`). Every method is scored on the same fixed held-out (32 tasks; navigation 24) and OOD task sets, before adaptation and after each of 3 adaptation stages (gradient methods: one update from 10 exploratory episodes per stage; PEARL: one more episode of context; RL²: one more episode of the trial), and plotted against the flight data consumed. Navigation is scored twice: with the privileged planner in unseen test rooms, and on the full depth → map → A* stack in 12 unseen rooms before and after one adaptation stage, whose exploration flights use the privileged planner (a calibration flight in a known room). Results land in `results/<problem>/<method>_seed<k>.json`; `drone-autonomy figures` turns them into `results/summary.json`, `website/data/results.json` and the adaptation figures.
+**Evaluation** (`benchmark.py`). Every method is scored on the same fixed held-out (32 tasks; navigation 24) and OOD task sets, before adaptation and after each of 3 adaptation stages (gradient methods: one update from 10 exploratory episodes per stage; PEARL: one more episode of context; RL²: one more episode of the trial), and plotted against the flight data consumed. Every navigation evaluation episode is flown in its own room from a held-out pool of 128. Navigation is scored twice: with the privileged planner, and on the full depth → map → A* stack in 48 unseen rooms per seed before and after one adaptation stage, whose exploration flights use the privileged planner (a calibration flight in a known room). Results land in `results/<problem>/<method>_seed<k>.json`; `drone-autonomy figures` turns them into `results/summary.json`, `website/data/results.json` and the adaptation figures.
 
 ## Where data lives
 
@@ -75,6 +75,7 @@ flowchart LR
 - **Classical local planner = pure pursuit + depth repulsion + heading gating.** A deliberately standard baseline. With a perfect map, A* plus this follower reached 16 of 16 goals in testing; with the online map, 16 of 24 (67%).
 - **Navigation meta-learners start from the trained DR local planner.** From scratch they reached 0% success within the CPU budget. Starting every gradient-based method from the same competent planner also isolates what meta-training adds. PEARL and RL² use different networks and still train from scratch.
 - **Smaller adaptation step on navigation.** Per-task PPO adaptation uses Adam at 3e-3 on tracking but 3e-4 on navigation: at 3e-3 Reptile wrecked the warm-started planner (0% success; the run is kept in `runs/failed/`).
+- **Distinct evaluation rooms.** An early version drew evaluation rooms with replacement, so rooms repeated; every evaluation episode now gets its own room (old results kept in `results/superseded/`).
 - **Hanging obstacles start at 1.9 m and higher.** The stereo camera sees duct undersides only at grazing angles, and lower ducts made the mapped stack fail for reasons unrelated to the study.
 
 ## How it's tested
@@ -89,5 +90,5 @@ flowchart LR
 - The depth model has no stereo artefacts beyond range noise and dropouts (no texture or lighting dependence).
 - State estimation is perfect in simulation. VIO drift is not modelled.
 - MAML-RL ignores the dependence of the pre-update sampling distribution on θ (as in the original MAML-RL implementation).
-- Compute: the experiments run on a shared, heavily loaded CPU, so seeds (2 for tracking, 1 for navigation) and iteration budgets are smaller than ideal, and the full-stack navigation score uses only 12 rooms (one room = 8 points).
+- Compute: the experiments run on a shared, heavily loaded CPU, so seeds (2 for the residual, 5 for gains, 2 for navigation) and iteration budgets are smaller than ideal.
 - The OOD ranges proved harsh enough that every method fails on them; they measure graceful degradation more than adaptation.

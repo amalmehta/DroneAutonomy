@@ -70,6 +70,7 @@ class NavEnv:
         self.rays = self.cam.body_rays()
         self.map_cam, self.map_rays = map_cam, map_cam.body_rays()
         self.replan_every = replan_every
+        self.distinct_rooms = False
 
     # ------------------------------------------------------------------- API
     def reset(self, tasks: TaskBatch, gains=None, seed=None, world_idx=None):
@@ -77,6 +78,8 @@ class NavEnv:
             self.rng = np.random.default_rng(seed)
             self.sim.rng = np.random.default_rng(seed + 1)
         n = self.n
+        if world_idx is None and self.distinct_rooms:
+            world_idx = np.arange(n) % self.pool.n  # evaluation: every episode in its own room
         idx = self.rng.integers(0, self.pool.n, n) if world_idx is None else np.asarray(world_idx)
         self.world_idx = idx
         self.worlds, self.fields = self.pool.take(idx)

@@ -18,6 +18,18 @@ LABEL = {"classical": "Classical (nominal gains)", "l1": "Classical + L1", "clas
 GAINS_LABEL = dict(LABEL, dr="DR gains (no adaptation)", dr_finetune="DR gains + fine-tune")
 
 
+# Training budget: environment steps per iteration = episodes per iteration x horizon.
+# DR: 16 tasks x 10 episodes; MAML family: 2 x that (pre + post); Reptile: 3 x that;
+# PEARL: 2 episodes x 8 tasks (+ one warm-up episode on 32 tasks); RL^2: 48 trials x 3 episodes.
+HORIZON = {"tracking_residual": 200, "tracking_gains": 200, "navigation": 300}
+EPISODES_PER_ITER = {"dr": 160, "e2e_dr": 160, "maml": 320, "fomaml": 320, "anil": 320, "metasgd": 320,
+                     "reptile": 480, "pearl": 16, "rl2": 144}
+
+
+def train_steps(problem, method, iters):
+    return iters * EPISODES_PER_ITER[method] * HORIZON[problem] + (32 * HORIZON[problem] if method == "pearl" else 0)
+
+
 def summary():
     return json.loads((RESULTS / "summary.json").read_text())
 

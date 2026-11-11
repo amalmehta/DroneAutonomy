@@ -80,6 +80,12 @@ Regenerates every number, table and figure in the paper from `results/`. Then co
 tectonic -Z search-path=template main.tex
 ```
 
+Then copy the PDF and its main figure into the website:
+
+```bash
+scripts/export_web_assets.sh
+```
+
 ## Website
 
 `.github/workflows/pages.yml` publishes `website/` to GitHub Pages on every push to `main` that touches it.
